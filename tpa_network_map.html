@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_18650501bcb718f67ac2e0aec1d1e2e3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_18650501bcb718f67ac2e0aec1d1e2e3" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_18650501bcb718f67ac2e0aec1d1e2e3 = L.map(
+                "map_18650501bcb718f67ac2e0aec1d1e2e3",
+                {
+                    center: [20.16354529897436, 29.426857692179485],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 2,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_c5766dc333d4916a8f7da1ecb307dd1c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_c5766dc333d4916a8f7da1ecb307dd1c.addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+            var circle_marker_4d69c427bd1b5f6de2ddf1a60e25709c = L.circleMarker(
+                [0.0, 0.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_b8bc90b554220aac4b91cddbed37db3b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0f60bd8ee143f45875ec5533b1e3358f = $(`<div id="html_0f60bd8ee143f45875ec5533b1e3358f" style="width: 100.0%; height: 100.0%;">     <b>MARITIME & HEALTHCARE GROUP</b><br/>     <b>Main Country:</b> WORLDWIDE MARITIME<br/>     <b>Additional Countries:</b> Nautic world: Albania, Angola, Antigua, Argentina, Aruba, Australia, Austria, Bahamas, Bahrein, Bangladesh, Barbados, Belarus, Belgium, Belize, Bermuda, Bhutan, Bolivia, Bosnia & Herzegovina, Brazil, British Virgin Islands, Bulgaria, Cambodia, Canda, Cape Verde, Cayman Islands, Chile, China, Colombia, Costa Rica, Croatia, Cuba, Curacao, Cyprus, Czechia, Denmark, Dominica, Dominican Republic, Duth Antilles, Ecuador, Egypt, England, Estonia, Ethiopia, Fiji, France, French Guian, Georgia, Germany, Ghana, Gibraltar, Greece, Grenada, Guatemala, Guyana, Honduras, Hong Kong, Hungary, Iceland, India, Indonesia, Iran, Iraq, Ireland, Israel, Italy, Jamaica, Japan, Jordan, Kenya, Kuwait, Latvia, Lebanon, Lithuania, Madagascar, Malaysia, Malta, Martinique, Mauritius, Mexico, Moldava, Montenegro, Morocco, Myanmar, Namibia, Nepal, Netherlands, New Zealand, Nicaragua, Nigeria, North Macedonia, Northern Ireland, Norway, Oman, Pakistan, Panama, Paraguay, Peru, Philippines, Poland, Portugal, Puerto Rico, Qatar, Romania, Russia, Saipan, Saudi Arabia, Scotland, Senegal, Serbia, Seychelles, Singapore, South Africa, South Korea, Spain, Sri Lanka, St Croix, St Kitts, St Lucia, St Maarten, St Thomas, St Vincent, Sweden, Swizerland, Taiwan, Tanzania, Thailand, Togo, Trinidad & Tobago, Tunisia, Turkey, Turks & Caicos, UAE - United Arab Emirates, Ukraine, Uruguay, USA, Vanatu, Venezuela, Vietnam, Yemen, Zimbabwe<br/>     <b>Ops Email:</b> info@maritimehealthcare.co<br/>     <b>Ops 24/7 Phone:</b> +1 657 347-6522<br/>     <b>Network Manager:</b> Sofia RIZOU Tyler Sylvina Nolte<br/>     <b>Phone (Network Manager):</b> Phone: +30 6944890026<br/>     <b>Email (Network Manager):</b> sofia.rizou@maritimehealthcare.co tyler@maritimehealthcare.co sylvina.nolte@maritimehealthcare.co<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_b8bc90b554220aac4b91cddbed37db3b.setContent(html_0f60bd8ee143f45875ec5533b1e3358f);
+            
+        
+
+        circle_marker_4d69c427bd1b5f6de2ddf1a60e25709c.bindPopup(popup_b8bc90b554220aac4b91cddbed37db3b)
+        ;
+
+        
+    
+    
+            var circle_marker_101b029b07317325f863ddc292b4eb03 = L.circleMarker(
+                [-29.0, 24.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_e7f0cba2abbf8843c84b00a4e9a9e992 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_356f795486d2f5bf9a92c1bf628b7377 = $(`<div id="html_356f795486d2f5bf9a92c1bf628b7377" style="width: 100.0%; height: 100.0%;">     <b>AIMS</b><br/>     <b>Main Country:</b> South Africa<br/>     <b>Additional Countries:</b> Angola, Botswana , Burundi, Cameroon, Central Africa Republic, Chad, Congo, Comoros, Democratic Republic of Congo, Ethiopia, Equatorial, Guinea, Gabon, Ghana, Guinea, Ivory Coast, Kenya, Lesotho, Madagascar, Mauritius, Mozambique, Namibia, Nigeria, Reunion, Rwanda, Senegal, Seychelles, Sierra Leone, South Africa, Tanzania, The Gambia, Uganda, Zambia, Zimbabwe <br/>     <b>Ops Email:</b> operations@aims.org.za<br/>     <b>Ops 24/7 Phone:</b> Tel: +27 11 783 0135<br/>     <b>Network Manager:</b> Eric Prinsloo<br/>     <b>Phone (Network Manager):</b> Tel: +27 82 329 2198 <br/>     <b>Email (Network Manager):</b> eric@aims.org.za<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_e7f0cba2abbf8843c84b00a4e9a9e992.setContent(html_356f795486d2f5bf9a92c1bf628b7377);
+            
+        
+
+        circle_marker_101b029b07317325f863ddc292b4eb03.bindPopup(popup_e7f0cba2abbf8843c84b00a4e9a9e992)
+        ;
+
+        
+    
+    
+            var circle_marker_b2e6247465c74c668378a16b94b2458d = L.circleMarker(
+                [0.0, 38.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_99cff8f5492be43c2d6ad605277fbc09 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b2ada8ee5fedf705572df4a4ec3b6243 = $(`<div id="html_b2ada8ee5fedf705572df4a4ec3b6243" style="width: 100.0%; height: 100.0%;">     <b>AMREF</b><br/>     <b>Main Country:</b> East Africa<br/>     <b>Additional Countries:</b> Burundi, Congo, Democratic Republic of Congo / DRC, Ethopia, Kenya, Malawi, Mali, Nigeria, Rwanda, South Africa, South Sudan,Tanzania, Uganda, Zambia<br/>     <b>Ops Email:</b> Emergency@Flydoc.org<br/>     <b>Ops 24/7 Phone:</b> Tel: +254 20 699 2299<br/>     <b>Network Manager:</b> Jane Munyua<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> jane@flydoc.org<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_99cff8f5492be43c2d6ad605277fbc09.setContent(html_b2ada8ee5fedf705572df4a4ec3b6243);
+            
+        
+
+        circle_marker_b2e6247465c74c668378a16b94b2458d.bindPopup(popup_99cff8f5492be43c2d6ad605277fbc09)
+        ;
+
+        
+    
+    
+            var circle_marker_8f8aaef78d7eda974e9c669cec3b1931 = L.circleMarker(
+                [10.0, 8.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_e1cfe0851986bebef8c7af370ea6716f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_931416c50a393fe7c1cd5803cde3d32d = $(`<div id="html_931416c50a393fe7c1cd5803cde3d32d" style="width: 100.0%; height: 100.0%;">     <b>HOLISTIC CARE MEDICALS</b><br/>     <b>Main Country:</b> Nigeria<br/>     <b>Additional Countries:</b> Angola, Benin, Burkina Faso, Burundi, Cameroun, Central African Republic, Chad, Congo, Democratic Republic of Congo, Equatorial Guinea, Ethiopia, Gabon, Gambia, Ghana, Guinea, Guinea Bissau, Ivory Coast, Liberia, Mali, Mauritania, Niger, Nigeria, Rwanda, Sao Tome Principe, Senegal, Sierra Leone, Tanzania, Togo, Uganda<br/>     <b>Ops Email:</b> operations@holisticcaremedicals.com<br/>     <b>Ops 24/7 Phone:</b> +2347000333999 +2348072545980 +44 7931465185<br/>     <b>Network Manager:</b> Dr Tomiwa OGUNBONA<br/>     <b>Phone (Network Manager):</b> ‪+234 803 433 0784‬<br/>     <b>Email (Network Manager):</b> tommy.ogunbona@holisticcaremedicals.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_e1cfe0851986bebef8c7af370ea6716f.setContent(html_931416c50a393fe7c1cd5803cde3d32d);
+            
+        
+
+        circle_marker_8f8aaef78d7eda974e9c669cec3b1931.bindPopup(popup_e1cfe0851986bebef8c7af370ea6716f)
+        ;
+
+        
+    
+    
+            var circle_marker_d1a63fb1372a6affd2e83c88f1cbbf3e = L.circleMarker(
+                [-20.0, 47.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_c3d59281e56e30ba0a5c1a872132a6a7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_94f84270ad33800da70eceaf566573c7 = $(`<div id="html_94f84270ad33800da70eceaf566573c7" style="width: 100.0%; height: 100.0%;">     <b>ASSISTANCE PLUS</b><br/>     <b>Main Country:</b> Madagascar<br/>     <b>Additional Countries:</b> Madagascar<br/>     <b>Ops Email:</b> assistante.com@assistanceplus.mg<br/>     <b>Ops 24/7 Phone:</b> Tel: +261 32 07 801 10 Tel: +261 34 07 801 10<br/>     <b>Network Manager:</b> Sandra Cejudo (Directrice Générale)<br/>     <b>Phone (Network Manager):</b> Tel: +261 20 22 487 47 Tel: +261 32 07 846 67 Mob: +261 34 07 801 13 (Sandra Cejudo)<br/>     <b>Email (Network Manager):</b> s.cejudo@assistanceplus.mg assistante.com@assistanceplus.mg adhesions@assistanceplus.mg<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_c3d59281e56e30ba0a5c1a872132a6a7.setContent(html_94f84270ad33800da70eceaf566573c7);
+            
+        
+
+        circle_marker_d1a63fb1372a6affd2e83c88f1cbbf3e.bindPopup(popup_c3d59281e56e30ba0a5c1a872132a6a7)
+        ;
+
+        
+    
+    
+            var circle_marker_c05eee6581e31ae7ba57f06298862068 = L.circleMarker(
+                [31.7917, -7.0926],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_02f194d49e2e9715b932e69e2f295f7d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6b29738826b95b2ec1c051431ea07df4 = $(`<div id="html_6b29738826b95b2ec1c051431ea07df4" style="width: 100.0%; height: 100.0%;">     <b>ISAS INTER SECOURS ASSISTANCE</b><br/>     <b>Main Country:</b> Maroc<br/>     <b>Additional Countries:</b> Algeria, Angola, Bahreïn, Cape Verde, Egypt, Ivory Coast, Jordan, Koweït, Mauritania, Morocco, Mozambique, Oman, Qatar, Saudi Arabia, Senegal, Tunisia, United Arab Emirates et Yemen<br/>     <b>Ops Email:</b> isas.international@isas.ma<br/>     <b>Ops 24/7 Phone:</b> Tel: +212 522 262 121 Tel: +212 661 949 701 Tel: +212 522 482 424<br/>     <b>Network Manager:</b> Zaina El Mouadden<br/>     <b>Phone (Network Manager):</b> +33 629 166 366<br/>     <b>Email (Network Manager):</b> direction@isas.ma<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_02f194d49e2e9715b932e69e2f295f7d.setContent(html_6b29738826b95b2ec1c051431ea07df4);
+            
+        
+
+        circle_marker_c05eee6581e31ae7ba57f06298862068.bindPopup(popup_02f194d49e2e9715b932e69e2f295f7d)
+        ;
+
+        
+    
+    
+            var circle_marker_ddd02b49ac3183cf80252b04eaae745a = L.circleMarker(
+                [6.0, -5.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_ca5463b698cac1792a8e7463067af414 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_468de81d06fdd0b6534713707c2ff4a4 = $(`<div id="html_468de81d06fdd0b6534713707c2ff4a4" style="width: 100.0%; height: 100.0%;">     <b>ODYSSEY - MEDICIS OWA</b><br/>     <b>Main Country:</b> West Africa<br/>     <b>Additional Countries:</b> Algeria, Angola, Benin, Burkina Faso, Cameroon, Cape Verde, Central African Republic, Chad, Democratic Republic of Congo, Egypt, Equatorial Guinea, Gabon, Gambia, Ghana, Guinea, Guinea Bissau, Ivory Coast, Kenya, Liberia, Mali, Morocco, Mozambique, Niger, Nigeria, Senegal, Sierra Leone, South Africa, Togo, Zambia, Zimbabwe<br/>     <b>Ops Email:</b> hotline@medicis-ci.com info@odyssey-ci.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +225 07 07 11 14 29  Tel: +225 07 59 83 83 47 Tel: +225 07 11 14 29 (CI) Tel: +226 65 12 80 70 (BF)<br/>     <b>Network Manager:</b> Pascal Lamadieu<br/>     <b>Phone (Network Manager):</b> Tel: +225 05 95 55 07 (Pascal) Mob: +33 6 23 38 09 11 (Pascal)<br/>     <b>Email (Network Manager):</b> lamadieu@medicis-ci.com partner@medicis-ci.com mathieu@medicis-ci.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_ca5463b698cac1792a8e7463067af414.setContent(html_468de81d06fdd0b6534713707c2ff4a4);
+            
+        
+
+        circle_marker_ddd02b49ac3183cf80252b04eaae745a.bindPopup(popup_ca5463b698cac1792a8e7463067af414)
+        ;
+
+        
+    
+    
+            var circle_marker_558070bc3d0eea7c7433e3abc0de84dc = L.circleMarker(
+                [-22.0, 24.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_e83d8cbcb47ffee7e50e072ad79cda31 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_54ae8aa79af4763f49ee31d9622c3e2d = $(`<div id="html_54ae8aa79af4763f49ee31d9622c3e2d" style="width: 100.0%; height: 100.0%;">     <b>Emergency Assist 991 (EA991)</b><br/>     <b>Main Country:</b> Botswana<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Phone number: 991 / +267 390 4537<br/>     <b>Network Manager:</b> Seeletso Reikeletseng<br/>     <b>Phone (Network Manager):</b> Tel: +26 739 04537<br/>     <b>Email (Network Manager):</b> seeletso@ea991.co.bw<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_e83d8cbcb47ffee7e50e072ad79cda31.setContent(html_54ae8aa79af4763f49ee31d9622c3e2d);
+            
+        
+
+        circle_marker_558070bc3d0eea7c7433e3abc0de84dc.bindPopup(popup_e83d8cbcb47ffee7e50e072ad79cda31)
+        ;
+
+        
+    
+    
+            var circle_marker_39053db7a628c7791e411933e18378db = L.circleMarker(
+                [-22.0, 24.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_7af0c4c4c9b35d20e0ca5a722f0656ca = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e97c6d3c2efc6e9cf4daf4dc7cea022e = $(`<div id="html_e97c6d3c2efc6e9cf4daf4dc7cea022e" style="width: 100.0%; height: 100.0%;">     <b>MRI Botswana</b><br/>     <b>Main Country:</b> Botswana<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Phone number: 992 / +267 390 1601<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> Whatsapp: +267 71322361<br/>     <b>Email (Network Manager):</b> enquiries@mri.co.bw medicaldesk@mri.co.bw<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_7af0c4c4c9b35d20e0ca5a722f0656ca.setContent(html_e97c6d3c2efc6e9cf4daf4dc7cea022e);
+            
+        
+
+        circle_marker_39053db7a628c7791e411933e18378db.bindPopup(popup_7af0c4c4c9b35d20e0ca5a722f0656ca)
+        ;
+
+        
+    
+    
+            var circle_marker_53bc4a1279e88dd89738db1af1782a42 = L.circleMarker(
+                [27.0, 30.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_c63234199b9f79a25bae54ddb5b6729e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_193d2fb809180d919d74cdda3d56c863 = $(`<div id="html_193d2fb809180d919d74cdda3d56c863" style="width: 100.0%; height: 100.0%;">     <b>CONNEX ASSISTANCE</b><br/>     <b>Main Country:</b> EGYPT<br/>     <b>Additional Countries:</b> Saudi Arabi, Egypt, UAE, Egypt, United Arab Emirates, Saudi Arabia, Oman, Jordan, Israel, Qatar, Bahrain, Kuwait, Morocco, Algeria, Tunisia, Iraq, Turkey, Angola, Cote d'ivoire, Djibouti, Kenya, Senegal, Lybia and Tanzania<br/>     <b>Ops Email:</b> Egypt Office alarm@connexassistance.com UAE Office dubai@connexassistance.com KSA Office saudi@connexassistance.com<br/>     <b>Ops 24/7 Phone:</b> Egypt Alarm Center: +2 02 333 2 35 98 UAE Alarm Center:  + 971 4 587 69 89 KSA Alarm Center:  +966 53723 8987<br/>     <b>Network Manager:</b> Lara Helmi (Managing director) Waseem El Tanahi (BDM)<br/>     <b>Phone (Network Manager):</b> Mob: +2 0100 344 92 14 (Waseem) Tel: +2 0233 360 005 (Lara Helmi) Mob: +2 0100 171 4900 (Lara Helmi)<br/>     <b>Email (Network Manager):</b> weltanahi@connexassistance.com lhelmi@connexassistance.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_c63234199b9f79a25bae54ddb5b6729e.setContent(html_193d2fb809180d919d74cdda3d56c863);
+            
+        
+
+        circle_marker_53bc4a1279e88dd89738db1af1782a42.bindPopup(popup_c63234199b9f79a25bae54ddb5b6729e)
+        ;
+
+        
+    
+    
+            var circle_marker_de0410c11f241036a2763b243982ef39 = L.circleMarker(
+                [27.0, 30.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_aeeb66d67f7a4aad0770b5ff00447072 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0fea91960b62d8ff17fec489bc56b0ce = $(`<div id="html_0fea91960b62d8ff17fec489bc56b0ce" style="width: 100.0%; height: 100.0%;">     <b>EGYPT ASSISTANCE (Remed Group)</b><br/>     <b>Main Country:</b> EGYPT<br/>     <b>Additional Countries:</b> Egypt<br/>     <b>Ops Email:</b> alarm@egyptassistance.com<br/>     <b>Ops 24/7 Phone:</b> +20 224 137 300 <br/>     <b>Network Manager:</b> Noha Elshafaay Mohamed Essam Hazem Samir<br/>     <b>Phone (Network Manager):</b> Phone: +20 2 2413 7300 / 10 2354 3838 (Noha)<br/>     <b>Email (Network Manager):</b> noha.elshafaay@egyptassistance.com mohamed.essam@egyptassistance.com egypt@egyptassistance.com hazem.samir@egyptassistance.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_aeeb66d67f7a4aad0770b5ff00447072.setContent(html_0fea91960b62d8ff17fec489bc56b0ce);
+            
+        
+
+        circle_marker_de0410c11f241036a2763b243982ef39.bindPopup(popup_aeeb66d67f7a4aad0770b5ff00447072)
+        ;
+
+        
+    
+    
+            var circle_marker_f75490078adb452a32b7d47e8809c61e = L.circleMarker(
+                [27.0, 30.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_fb2b3e012da59a12cea3261632819baf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a0a966a515a9d7531b67cc9ff8b21edd = $(`<div id="html_a0a966a515a9d7531b67cc9ff8b21edd" style="width: 100.0%; height: 100.0%;">     <b>Egypt In-Touch Assistance</b><br/>     <b>Main Country:</b> EGYPT<br/>     <b>Additional Countries:</b> Egypt, Oman, Zanzibar<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Tel: +20 122 024 0504 Tel: +20 122 024 0560 Tel: +20 65 355 5332<br/>     <b>Network Manager:</b>  Dr.Amira Jacob, MBA<br/>     <b>Phone (Network Manager):</b> Mob. +20 122 242 0612 Tel: +20 122 024 0504 Tel: +20122 024 0560<br/>     <b>Email (Network Manager):</b> amira.jacob@egyptintouch.com info@egyptintouch.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_fb2b3e012da59a12cea3261632819baf.setContent(html_a0a966a515a9d7531b67cc9ff8b21edd);
+            
+        
+
+        circle_marker_f75490078adb452a32b7d47e8809c61e.bindPopup(popup_fb2b3e012da59a12cea3261632819baf)
+        ;
+
+        
+    
+    
+            var circle_marker_6272253e1640a14be3e0f9d6fe99dcad = L.circleMarker(
+                [0.0, 20.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_c49f4d41bc437c76836101739727541f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5620964e6247977eff277dda6582d12b = $(`<div id="html_5620964e6247977eff277dda6582d12b" style="width: 100.0%; height: 100.0%;">     <b>Flying Doctors Nigeria</b><br/>     <b>Main Country:</b> AFRICA & GLOBAL<br/>     <b>Additional Countries:</b> Algeria, Angola, Benin, Botswana, Burkina Faso, Burundi, Cameroon, Cape Verde, CAR / Central African Republic, Chad, Congo, Djibouti, DRC / Democratic Republic of Congo, Egypt, Equatorial Guinea, Eritrea, Eswatini, Ethiopia, Gabon, Gambia, Ghana, Guinea, Guinea-Bissau, Ivory Coast, Kenya, Lesotho, Liberia, Libya, Madagascar, Malawi, Mali, Mauritania, Mauritius, Morocco, Mozambique, Namibia, Niger, Nigeria, Rwanda, São Tomé and Príncipe, Senegal, Seychelles, Sierra Leone, South Africa, South Sudan, Sudan, Tanzania, Togo, Tunisia, Uganda, Zambia, Zimbabwe<br/>     <b>Ops Email:</b> emergency@flyingdoctorsnigeria.com<br/>     <b>Ops 24/7 Phone:</b> Phone: 0700-FLYINGDRS (0700 3594 64377) +234 916 450 0023<br/>     <b>Network Manager:</b> Oluwatosin AREMU<br/>     <b>Phone (Network Manager):</b> Tel: +234 803 065 7357<br/>     <b>Email (Network Manager):</b> o.aremu@flyingdoctorsnigeria.com fdnops@flyingdoctorsnigeria.com<br/>     <b>Agreement Status:</b> waiting for them to sign     </div>`)[0];
+                popup_c49f4d41bc437c76836101739727541f.setContent(html_5620964e6247977eff277dda6582d12b);
+            
+        
+
+        circle_marker_6272253e1640a14be3e0f9d6fe99dcad.bindPopup(popup_c49f4d41bc437c76836101739727541f)
+        ;
+
+        
+    
+    
+            var circle_marker_96c7d84d9720462fb8e31b0151f7b50b = L.circleMarker(
+                [-2.0, 30.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_411651153100c5ab047b913630f4252a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_903a8145b3fbf1e0371c175fade78574 = $(`<div id="html_903a8145b3fbf1e0371c175fade78574" style="width: 100.0%; height: 100.0%;">     <b>RADIANT</b><br/>     <b>Main Country:</b> Rwanda<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> auwera@radiant.rw, info@radiant.rw<br/>     <b>Ops 24/7 Phone:</b> +250 788 313 649 // +250 788 575 // +250 788 381 093<br/>     <b>Network Manager:</b> Angelique UWERA<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_411651153100c5ab047b913630f4252a.setContent(html_903a8145b3fbf1e0371c175fade78574);
+            
+        
+
+        circle_marker_96c7d84d9720462fb8e31b0151f7b50b.bindPopup(popup_411651153100c5ab047b913630f4252a)
+        ;
+
+        
+    
+    
+            var circle_marker_93f29a89cac0f02822992a73c266ffba = L.circleMarker(
+                [34.0, 9.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_0b5e6ee171aa7d9a7e805c68f8115893 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1f155c57083fe1dc2457bd072f494a08 = $(`<div id="html_1f155c57083fe1dc2457bd072f494a08" style="width: 100.0%; height: 100.0%;">     <b>WECOVER</b><br/>     <b>Main Country:</b> Tunisia<br/>     <b>Additional Countries:</b> Algeria, Lybia, Morocco, Tunisia<br/>     <b>Ops Email:</b> assistance@wecover.tn<br/>     <b>Ops 24/7 Phone:</b> Tel: +216 70 139 835<br/>     <b>Network Manager:</b> Mohamed CHOUCHENI<br/>     <b>Phone (Network Manager):</b> Tel: +216 70 139 839<br/>     <b>Email (Network Manager):</b> m.choucheni@wecover.tn<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_0b5e6ee171aa7d9a7e805c68f8115893.setContent(html_1f155c57083fe1dc2457bd072f494a08);
+            
+        
+
+        circle_marker_93f29a89cac0f02822992a73c266ffba.bindPopup(popup_0b5e6ee171aa7d9a7e805c68f8115893)
+        ;
+
+        
+    
+    
+            var circle_marker_48f7a4dd2de4b3ba79cf027b8324f583 = L.circleMarker(
+                [34.0, 9.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_9e4e31480a7e5b1f28c726c9d0d0eead = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdb2e95545ea58fad12539492591f1de = $(`<div id="html_bdb2e95545ea58fad12539492591f1de" style="width: 100.0%; height: 100.0%;">     <b>MED EVASAN</b><br/>     <b>Main Country:</b> Tunisia<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> +33 4 91 32 19 36<br/>     <b>Network Manager:</b> Dr Issam BADAOUI, Sr DirMed<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> ibadaoui@medeva.org<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_9e4e31480a7e5b1f28c726c9d0d0eead.setContent(html_bdb2e95545ea58fad12539492591f1de);
+            
+        
+
+        circle_marker_48f7a4dd2de4b3ba79cf027b8324f583.bindPopup(popup_9e4e31480a7e5b1f28c726c9d0d0eead)
+        ;
+
+        
+    
+    
+            var circle_marker_1c227294b1d138fbd74d66467511b7fb = L.circleMarker(
+                [27.0, 30.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_93ec8f1e5faef6f32f82b68c2acc3468 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_301f21e22657e389b342a922d09098c7 = $(`<div id="html_301f21e22657e389b342a922d09098c7" style="width: 100.0%; height: 100.0%;">     <b>Euro Air Jet Assistance</b><br/>     <b>Main Country:</b> Egypt<br/>     <b>Additional Countries:</b> Egypt, Sudan, South Sudan, Ethiopa, Somalia, Libya<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> Amany Ahmed/Nevine<br/>     <b>Phone (Network Manager):</b> +20 110 324 9966 <br/>     <b>Email (Network Manager):</b> nevine.s@euroairjet.com/ amany.r@euro-assist.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_93ec8f1e5faef6f32f82b68c2acc3468.setContent(html_301f21e22657e389b342a922d09098c7);
+            
+        
+
+        circle_marker_1c227294b1d138fbd74d66467511b7fb.bindPopup(popup_93ec8f1e5faef6f32f82b68c2acc3468)
+        ;
+
+        
+    
+    
+            var circle_marker_c1105ef3d0d29953f4bfe88a65e73b5b = L.circleMarker(
+                [36.0, 138.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_4893f49a08810d88421f1f3cfeb17d60 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3e7da17051a62119d34438925df09015 = $(`<div id="html_3e7da17051a62119d34438925df09015" style="width: 100.0%; height: 100.0%;">     <b>EMA GLOBAL</b><br/>     <b>Main Country:</b> Japan<br/>     <b>Additional Countries:</b> China, Japan, Kuala Lumpur, Malaysia, Philippines, Singapore, Thailand, South Korea<br/>     <b>Ops Email:</b>  jp.assistance@emaglobal.com.sg (Japan) assistance@emaglobal.com.sg (Singapore) assistance@emaglobal.com.my (Selangore) assistance@emaglobal.com.ph (Philipines) assistance@emaglobal.co.th (Thailand) assistance@emaglobal.com.sg (Hong Kong)<br/>     <b>Ops 24/7 Phone:</b> +81 (0)112 12 1186 +81 (0)50 1725 4601 (24/7) (Japan) +65 65702552 (Singapore) +603 2712 3187 (Selangore) +63 2 8396 9886 (Philipines) +66 2340 7633 (Thailand) +85235778128 (Hong Kong)<br/>     <b>Network Manager:</b> Taro Matsumoto (Japan) Dexter Tan Joy Mariano Mark Ryan Mark My Beda Bialas Loh Kim Loon Thomas<br/>     <b>Phone (Network Manager):</b> Dexter +65 8100 4481 Mobile: +63 916 603 8356 (Joy Mariano) Taro: +81(0)112121186 <br/>     <b>Email (Network Manager):</b> dexter@emaglobal.com.sg taro@emaglobal.com.sg joy@emaglobal.com.sg mark@emaglobal.com.my jay@emaglobal.com.ph beda@emaglobal.com.sg kl.loh@emaglobal.com.my thomas@emaglobal.com.my<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_4893f49a08810d88421f1f3cfeb17d60.setContent(html_3e7da17051a62119d34438925df09015);
+            
+        
+
+        circle_marker_c1105ef3d0d29953f4bfe88a65e73b5b.bindPopup(popup_4893f49a08810d88421f1f3cfeb17d60)
+        ;
+
+        
+    
+    
+            var circle_marker_f7bcfcaf9bdaf189897812189cf3720d = L.circleMarker(
+                [2.5, 112.5],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_88656ea0e5544adda45d057354d85069 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f01c5800cd4572c395f1f30ed0ed442 = $(`<div id="html_3f01c5800cd4572c395f1f30ed0ed442" style="width: 100.0%; height: 100.0%;">     <b>ACROSS ASIA ASSIST</b><br/>     <b>Main Country:</b> Malaysia<br/>     <b>Additional Countries:</b> Malaysia, Singapore and Indonesia<br/>     <b>Ops Email:</b> Ops.Travel.My@AcrossAsiaAssist.com (Malaysia & Indonesia) Ops.Travel.Sg@AcrossAsiaAssist.com (Singapore)<br/>     <b>Ops 24/7 Phone:</b> t: +603- 7890 1379 // +603 7890 1378 (Malaysia & Indonesia) t: +65 6950 9288 // +65 6950 9288 (Singapore)<br/>     <b>Network Manager:</b> Lorraine Audrey Paul Jeffery Lam<br/>     <b>Phone (Network Manager):</b> +603 7890 1379 (Lorraine, Jeffery<br/>     <b>Email (Network Manager):</b> lorraine.paul@acrossasiaassist.com Jeffery.Lam@AcrossAsiaAssist.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_88656ea0e5544adda45d057354d85069.setContent(html_3f01c5800cd4572c395f1f30ed0ed442);
+            
+        
+
+        circle_marker_f7bcfcaf9bdaf189897812189cf3720d.bindPopup(popup_88656ea0e5544adda45d057354d85069)
+        ;
+
+        
+    
+    
+            var circle_marker_b85d77492af01afe26173d5db28b6fd6 = L.circleMarker(
+                [20.0, 77.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_15a30388c0ac474a9a05fd29467bea85 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_66049ac88a4c4c5f9b816d2c703a6630 = $(`<div id="html_66049ac88a4c4c5f9b816d2c703a6630" style="width: 100.0%; height: 100.0%;">     <b>GOLDEN HOUR RESCUE</b><br/>     <b>Main Country:</b> India<br/>     <b>Additional Countries:</b> India, Nepal, Sri Lanka<br/>     <b>Ops Email:</b> goldenhrescue@gmail.com info@goldenhrrescue.com betterlife.healthcare92@gmail.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +91 9891202064 Tel: +91 9891521512 Tel: +91 9599418192 Tel: +91120 4176553<br/>     <b>Network Manager:</b> Dr Veerbhadra Yadav Rishabh Luthra  Ruchi<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> veerbhadra.y@goldenhrrescue.com rishabh.l@goldenhrrescue.com ruchi.y@goldenhrrescue.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_15a30388c0ac474a9a05fd29467bea85.setContent(html_66049ac88a4c4c5f9b816d2c703a6630);
+            
+        
+
+        circle_marker_b85d77492af01afe26173d5db28b6fd6.bindPopup(popup_15a30388c0ac474a9a05fd29467bea85)
+        ;
+
+        
+    
+    
+            var circle_marker_616cca3b736359d6bb46b75820defa6d = L.circleMarker(
+                [-5.0, 120.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_45db0fcc9aa8204881d2f4e6b1953966 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_929ecabd09fc47c98d9c6656c42c2b08 = $(`<div id="html_929ecabd09fc47c98d9c6656c42c2b08" style="width: 100.0%; height: 100.0%;">     <b>DIRJA ASSISTANCE</b><br/>     <b>Main Country:</b> Indonesia<br/>     <b>Additional Countries:</b> Indonesia, Malaysia, China, Singapor<br/>     <b>Ops Email:</b> Network991@dirjaassistance.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +62 877-2267-9577 Tel: +62 817-0991-991<br/>     <b>Network Manager:</b> Dr. Bayu Tirta Dirja, CEO<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> network991@dirjaassistance.com<br/>     <b>Agreement Status:</b> waiting for them to sign the mutual agreement     </div>`)[0];
+                popup_45db0fcc9aa8204881d2f4e6b1953966.setContent(html_929ecabd09fc47c98d9c6656c42c2b08);
+            
+        
+
+        circle_marker_616cca3b736359d6bb46b75820defa6d.bindPopup(popup_45db0fcc9aa8204881d2f4e6b1953966)
+        ;
+
+        
+    
+    
+            var circle_marker_d9d5cbda85f52a37b44d76fb1c438487 = L.circleMarker(
+                [37.0, 127.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_c15e14a09cab1f9c5f0501a8c881eb57 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_18cfbdc791b31c8a02257e1c12b5796b = $(`<div id="html_18cfbdc791b31c8a02257e1c12b5796b" style="width: 100.0%; height: 100.0%;">     <b>GLOBAL ASSISTANCE PARTNERS</b><br/>     <b>Main Country:</b> Korea<br/>     <b>Additional Countries:</b> South Korea<br/>     <b>Ops Email:</b> operations@globalassistance.co.kr<br/>     <b>Ops 24/7 Phone:</b> Tel: +82 1670 0722<br/>     <b>Network Manager:</b> Leah Lee, RN<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> chunggna@globalassistance.co.kr marketing@globalassistance.co.kr<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_c15e14a09cab1f9c5f0501a8c881eb57.setContent(html_18cfbdc791b31c8a02257e1c12b5796b);
+            
+        
+
+        circle_marker_d9d5cbda85f52a37b44d76fb1c438487.bindPopup(popup_c15e14a09cab1f9c5f0501a8c881eb57)
+        ;
+
+        
+    
+    
+            var circle_marker_37a99ccb1b5fdca62cbc0f03152edf3f = L.circleMarker(
+                [20.0, 77.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_70a7003a0c6372e9cf4c1fc3d829d5f0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08e6ef084e50156280b4aa0e6ba89bc7 = $(`<div id="html_08e6ef084e50156280b4aa0e6ba89bc7" style="width: 100.0%; height: 100.0%;">     <b>ASSUREON MEDICAL ASSISTANCE</b><br/>     <b>Main Country:</b> India<br/>     <b>Additional Countries:</b> Bahrain, Bangladesh, Bhutan, Brunei, Cambodia, Egypt, India, Indonesia, Japan, Jordan, Kuwait, Laos, Lebanon, Malaysia, Maldives, Nepal, Oman, Philippines, Qatar, Sri Lanka, Saudi Arabia, Singapore, South Korea, Taiwan, Thailand, Timor-Leste, Turkey, United Arab Emirates - UAE, Vietnam<br/>     <b>Ops Email:</b> operations@assureonassist.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +91 8093213018 Tel: +91 9163483291<br/>     <b>Network Manager:</b> Aloke Gupta<br/>     <b>Phone (Network Manager):</b> Whatsapp: +91 80932 13018<br/>     <b>Email (Network Manager):</b> aloke@assureonassist.com contact@assureonassist.com<br/>     <b>Agreement Status:</b> waiting for them to sign the mutual agreement     </div>`)[0];
+                popup_70a7003a0c6372e9cf4c1fc3d829d5f0.setContent(html_08e6ef084e50156280b4aa0e6ba89bc7);
+            
+        
+
+        circle_marker_37a99ccb1b5fdca62cbc0f03152edf3f.bindPopup(popup_70a7003a0c6372e9cf4c1fc3d829d5f0)
+        ;
+
+        
+    
+    
+            var circle_marker_83bb21b24fc5852bbda3021e5328e7df = L.circleMarker(
+                [28.0, 84.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_377bbcc0e35ab04ff9d3a86b39912867 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_19f0f97546382578cc25a8af9cd57a48 = $(`<div id="html_19f0f97546382578cc25a8af9cd57a48" style="width: 100.0%; height: 100.0%;">     <b>Alpine Rescue Service</b><br/>     <b>Main Country:</b> Nepal  <br/>     <b>Additional Countries:</b> Himalaya<br/>     <b>Ops Email:</b> ops@eastwestrescue.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +977-9801068400 Tel: +977- 9851232668<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> Tel: +977-1-4362652 <br/>     <b>Email (Network Manager):</b> info@alpine-rescue.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_377bbcc0e35ab04ff9d3a86b39912867.setContent(html_19f0f97546382578cc25a8af9cd57a48);
+            
+        
+
+        circle_marker_83bb21b24fc5852bbda3021e5328e7df.bindPopup(popup_377bbcc0e35ab04ff9d3a86b39912867)
+        ;
+
+        
+    
+    
+            var circle_marker_93e9509ca654e9936ca02887adc4a270 = L.circleMarker(
+                [28.0, 84.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_f5bac6c38ec54f1c0b6e4f27b4e46887 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c9261f73f770e9adb742768c8bb484c7 = $(`<div id="html_c9261f73f770e9adb742768c8bb484c7" style="width: 100.0%; height: 100.0%;">     <b>Ama Global Assistance</b><br/>     <b>Main Country:</b> Nepal / India<br/>     <b>Additional Countries:</b> Austria / Hong Kong / India / Nepal/  Philippines / Sri Lanka / Turkey / Dubai<br/>     <b>Ops Email:</b> opseurope@asiamedassist.org; opsindia@asiamedassist.org; opshongkong@asiamedassist.or<br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> Kumar Rajiv<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> Kumar (AMA-Group) <client.relationships@ama-group.org><br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_f5bac6c38ec54f1c0b6e4f27b4e46887.setContent(html_c9261f73f770e9adb742768c8bb484c7);
+            
+        
+
+        circle_marker_93e9509ca654e9936ca02887adc4a270.bindPopup(popup_f5bac6c38ec54f1c0b6e4f27b4e46887)
+        ;
+
+        
+    
+    
+            var circle_marker_01ef0ce4ba6546557be1bb2f7be1b9b5 = L.circleMarker(
+                [30.0, 90.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_9ed016a48fe179e0133029c9683d7eb9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c5716f4fa91dea22d6002492528a0f12 = $(`<div id="html_c5716f4fa91dea22d6002492528a0f12" style="width: 100.0%; height: 100.0%;">     <b>EAST WEST RESCUE</b><br/>     <b>Main Country:</b> Asia<br/>     <b>Additional Countries:</b> Bangladesh, Bhutan, India, Maldives, Myanmar, Nepal, Pakistan, Sri Lanka<br/>     <b>Ops Email:</b> ops@eastwestrescue.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +91-11- 47222500<br/>     <b>Network Manager:</b> Dr Kimberley <br/>     <b>Phone (Network Manager):</b> Tel: +91 11 24623 738 // +91 11 2469 0428<br/>     <b>Email (Network Manager):</b> network@eastwestrescue.com drkimberley@eastwestrescue.com<br/>     <b>Agreement Status:</b> 20/01/26 our mutual agreement sent. Waiting for them to sign     </div>`)[0];
+                popup_9ed016a48fe179e0133029c9683d7eb9.setContent(html_c5716f4fa91dea22d6002492528a0f12);
+            
+        
+
+        circle_marker_01ef0ce4ba6546557be1bb2f7be1b9b5.bindPopup(popup_9ed016a48fe179e0133029c9683d7eb9)
+        ;
+
+        
+    
+    
+            var circle_marker_a96f8504824dbbc55701688bf9f64c8e = L.circleMarker(
+                [1.3521, 103.8198],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_6e4a34ef160940f53a42cf611c199a68 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6f489b5c7c8a253fe43230d4bd19b88c = $(`<div id="html_6f489b5c7c8a253fe43230d4bd19b88c" style="width: 100.0%; height: 100.0%;">     <b>FULLERTON HEALTH // GLOBAL ASSISTANCE & HEALTHCARE</b><br/>     <b>Main Country:</b> (Indonesia) Singapore<br/>     <b>Additional Countries:</b> Asia<br/>     <b>Ops Email:</b> ops@global-assistance.net<br/>     <b>Ops 24/7 Phone:</b> Tel: +62 021 29978 999 Tel: +62 816 78 27 27 Tel: +62 816 119 73 73 Tel: +62 815 166 75 55 Tel: +62 21 2997 8997<br/>     <b>Network Manager:</b> 1) Alain Durand, President Director 2) Mr. Bagus Sayuto, Head of Medevac Dpt 3) Rahel Pinta Kristiana, General manager<br/>     <b>Phone (Network Manager):</b> 1) Cell Phone: +62 8161198181 2) T: +62 21 29978999 / M: +62 816872516<br/>     <b>Email (Network Manager):</b> 1) alain.durand@fullertonhealth.com (for escalation) 2) bagus.sayuto@global-assistance.net 3) rahel.kristiana@global-assistance.net<br/>     <b>Agreement Status:</b> 15/12/25 agreement review to be checked by us     </div>`)[0];
+                popup_6e4a34ef160940f53a42cf611c199a68.setContent(html_6f489b5c7c8a253fe43230d4bd19b88c);
+            
+        
+
+        circle_marker_a96f8504824dbbc55701688bf9f64c8e.bindPopup(popup_6e4a34ef160940f53a42cf611c199a68)
+        ;
+
+        
+    
+    
+            var circle_marker_dacb3f17ee681134050def021d4ae13a = L.circleMarker(
+                [32.0, 53.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_1e6a2c34ed6e72f287b0e41e106c4e6b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9ee9b42c5f125fadc2e6da897964c525 = $(`<div id="html_9ee9b42c5f125fadc2e6da897964c525" style="width: 100.0%; height: 100.0%;">     <b>IRAN ASSIST</b><br/>     <b>Main Country:</b> Iran<br/>     <b>Additional Countries:</b> Iran<br/>     <b>Ops Email:</b> operation@iranassistance.com info@iranassistance.com<br/>     <b>Ops 24/7 Phone:</b> WhatsApp: +98 912 792 7207<br/>     <b>Network Manager:</b> Ashkan Lahiji<br/>     <b>Phone (Network Manager):</b> Tel: + 98 (21) 88 64 84 21 (Ext.472)<br/>     <b>Email (Network Manager):</b> ashkan.lahiji@iranassistance.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_1e6a2c34ed6e72f287b0e41e106c4e6b.setContent(html_9ee9b42c5f125fadc2e6da897964c525);
+            
+        
+
+        circle_marker_dacb3f17ee681134050def021d4ae13a.bindPopup(popup_1e6a2c34ed6e72f287b0e41e106c4e6b)
+        ;
+
+        
+    
+    
+            var circle_marker_4d3b4be0a4cee55341e63676d7bc4bf9 = L.circleMarker(
+                [25.2048, 55.2708],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_b1c9d16b5aee9c24c28af1b96beb3d96 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f3040bea1a35b455f36f242b05a015f2 = $(`<div id="html_f3040bea1a35b455f36f242b05a015f2" style="width: 100.0%; height: 100.0%;">     <b>LGA Assistance Dubai</b><br/>     <b>Main Country:</b> Dubai<br/>     <b>Additional Countries:</b> United Arab Emirates/ Egypt /Bahrain/ Kuwait/ Qatar/  Oman/ Saudi Arabia/ Morocco/ Tunisia/ Jordan<br/>     <b>Ops Email:</b> lga@lgadubai.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +971 7 204 5000  Tel: +971 55 314 5045 <br/>     <b>Network Manager:</b> Charlotte Estipular<br/>     <b>Phone (Network Manager):</b> Tel: +971 58 289 7910<br/>     <b>Email (Network Manager):</b> cestipular@lgadubai.com<br/>     <b>Agreement Status:</b> 26/11/25 reciprocal agreement signed     </div>`)[0];
+                popup_b1c9d16b5aee9c24c28af1b96beb3d96.setContent(html_f3040bea1a35b455f36f242b05a015f2);
+            
+        
+
+        circle_marker_4d3b4be0a4cee55341e63676d7bc4bf9.bindPopup(popup_b1c9d16b5aee9c24c28af1b96beb3d96)
+        ;
+
+        
+    
+    
+            var circle_marker_764723af71482580a83368fb01fe849a = L.circleMarker(
+                [31.5, 34.75],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_2a3132c5dc30c974460e729fbd303846 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f79d559d899fdbb904b245c8cf71dad0 = $(`<div id="html_f79d559d899fdbb904b245c8cf71dad0" style="width: 100.0%; height: 100.0%;">     <b>MEDASSIS </b><br/>     <b>Main Country:</b> Israel <br/>     <b>Additional Countries:</b> Israel / West Bank (case by case & must be risk assessed) <br/>     <b>Ops Email:</b> info@MedAssis.com Ariel.M@MedAssis.com<br/>     <b>Ops 24/7 Phone:</b> 24/7 Tel: +972-3-644-0669 <br/>     <b>Network Manager:</b> Ariel Mauer Clinical Manager<br/>     <b>Phone (Network Manager):</b> Tel: +972-3-7575433 //   Fax: +972-3-6440107  //  Mobile: +972-50-9912800<br/>     <b>Email (Network Manager):</b> arielm@medassis.org<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_2a3132c5dc30c974460e729fbd303846.setContent(html_f79d559d899fdbb904b245c8cf71dad0);
+            
+        
+
+        circle_marker_764723af71482580a83368fb01fe849a.bindPopup(popup_2a3132c5dc30c974460e729fbd303846)
+        ;
+
+        
+    
+    
+            var circle_marker_1c96b1ab53823caad601bec705295601 = L.circleMarker(
+                [16.16666666, 107.83333333],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_55832573583bdc454209fb9170445026 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52b0e4ae25884e305f9de0b8b79a56ba = $(`<div id="html_52b0e4ae25884e305f9de0b8b79a56ba" style="width: 100.0%; height: 100.0%;">     <b>Pacific Cross</b><br/>     <b>Main Country:</b> Vietnam<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> inquiry@pacificcross.com.vn<br/>     <b>Ops 24/7 Phone:</b> Tel: +84 28 3821 9908<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_55832573583bdc454209fb9170445026.setContent(html_52b0e4ae25884e305f9de0b8b79a56ba);
+            
+        
+
+        circle_marker_1c96b1ab53823caad601bec705295601.bindPopup(popup_55832573583bdc454209fb9170445026)
+        ;
+
+        
+    
+    
+            var circle_marker_805d2fd239bc8a9e60cc46e6d18d8873 = L.circleMarker(
+                [30.0, 70.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_a001a83505912bbe21ed03005494b77d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_86dc4e6df74e6efde05f9d7acc3033b1 = $(`<div id="html_86dc4e6df74e6efde05f9d7acc3033b1" style="width: 100.0%; height: 100.0%;">     <b>Pak-Assist Healthcare Management</b><br/>     <b>Main Country:</b> Pakistan<br/>     <b>Additional Countries:</b> Pakistan, Nepal, Afghanistan<br/>     <b>Ops Email:</b> info@pak-assistance.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +92 (334) 338-4346<br/>     <b>Network Manager:</b> Hamad Hussain<br/>     <b>Phone (Network Manager):</b> Tel:  +9221 3416 1551 Mob:+9233 338 4346<br/>     <b>Email (Network Manager):</b> coo@pakassistance.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_a001a83505912bbe21ed03005494b77d.setContent(html_86dc4e6df74e6efde05f9d7acc3033b1);
+            
+        
+
+        circle_marker_805d2fd239bc8a9e60cc46e6d18d8873.bindPopup(popup_a001a83505912bbe21ed03005494b77d)
+        ;
+
+        
+    
+    
+            var circle_marker_08fa850066799b1f454966ebaf62b69a = L.circleMarker(
+                [23.5, 121.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_3eaed70b16c414f06556b17b1bde9ba1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5e8db7473a3a06d85217bbe7e16745ff = $(`<div id="html_5e8db7473a3a06d85217bbe7e16745ff" style="width: 100.0%; height: 100.0%;">     <b>UIA  Union International Assistance </b><br/>     <b>Main Country:</b> Taiwan<br/>     <b>Additional Countries:</b> China/ Japan<br/>     <b>Ops Email:</b> uia@uiassistance.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +886-2-2250-5515 <br/>     <b>Network Manager:</b> Josephine Chan<br/>     <b>Phone (Network Manager):</b> Tel: +886 2 2250 5515 ext.209<br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_3eaed70b16c414f06556b17b1bde9ba1.setContent(html_5e8db7473a3a06d85217bbe7e16745ff);
+            
+        
+
+        circle_marker_08fa850066799b1f454966ebaf62b69a.bindPopup(popup_3eaed70b16c414f06556b17b1bde9ba1)
+        ;
+
+        
+    
+    
+            var circle_marker_a2504d6c9cfa06775b2639f6367fc683 = L.circleMarker(
+                [30.0, 90.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_018eddc614d9326a4527ec202b0ebfb7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a840865813c1b137fa82b388d9d0c96a = $(`<div id="html_a840865813c1b137fa82b388d9d0c96a" style="width: 100.0%; height: 100.0%;">     <b>Savitar Group</b><br/>     <b>Main Country:</b> Asia<br/>     <b>Additional Countries:</b> All the Stans<br/>     <b>Ops Email:</b> network@savitar-gr.com<br/>     <b>Ops 24/7 Phone:</b> +7 495 987 17 75/Whats App +7 985 896 00 72.<br/>     <b>Network Manager:</b> Sergey Nickoulitchev, BDM/Margarita Nikiforova<br/>     <b>Phone (Network Manager):</b> Tel: + 7 495 987 17 75<br/>     <b>Email (Network Manager):</b> sen@savitar-gr.com, svg@savitar-gr.com/man@savitar-gr.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_018eddc614d9326a4527ec202b0ebfb7.setContent(html_a840865813c1b137fa82b388d9d0c96a);
+            
+        
+
+        circle_marker_a2504d6c9cfa06775b2639f6367fc683.bindPopup(popup_018eddc614d9326a4527ec202b0ebfb7)
+        ;
+
+        
+    
+    
+            var circle_marker_867b60379be145e6eda0865b4e3c266f = L.circleMarker(
+                [30.0, 90.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_4f532ec20ec053cf8458bccabfce33ba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0ac24a283ab4491f6da6e6fe6877b143 = $(`<div id="html_0ac24a283ab4491f6da6e6fe6877b143" style="width: 100.0%; height: 100.0%;">     <b>CREDIBLE MEDICAL ASSISTANCE</b><br/>     <b>Main Country:</b> Asia<br/>     <b>Additional Countries:</b> § Asia: Bangladesh, Bhutan, Cambodia, India, Indonesia, Japan, Malaysia, Nepal Philippines, Singapore, Sri Lanka, Taiwan, Thailand, Vietnam § Europe: Albania, Austria, Belgium, Bosnia & Herzegovina, Croatia, Denmark, France, Germany, Greece, Hungary, Italy, Luxembourg, Montenegro, Netherlands, North Macedonia, Norway, Poland, Portugal, Serbia, Spain, Sweden, Switzerland, United Kingdom § Middle East: Egypt, Turkey, UAE, Oman, Qatar § South America: Argentina, Bolivia, Brazil, Chile, Colombia, Ecuador, Paraguay, Peru, Uruguay, Venezuela, Guyana<br/>     <b>Ops Email:</b> operations@credibleassist.com<br/>     <b>Ops 24/7 Phone:</b> + 91 62907 44386 +91 6291662954 +91 8420204696<br/>     <b>Network Manager:</b>          Md Saif Ali, based in India<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> management@credibleassist.com, contact@credibleassist.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_4f532ec20ec053cf8458bccabfce33ba.setContent(html_0ac24a283ab4491f6da6e6fe6877b143);
+            
+        
+
+        circle_marker_867b60379be145e6eda0865b4e3c266f.bindPopup(popup_4f532ec20ec053cf8458bccabfce33ba)
+        ;
+
+        
+    
+    
+            var circle_marker_cea351d263de7d4941ee3e701b8233eb = L.circleMarker(
+                [40.1431, 47.5769],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_78b258d204fd01955b8cc7c1e9c039e2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ba15c80b5348228cadb943d8deee0739 = $(`<div id="html_ba15c80b5348228cadb943d8deee0739" style="width: 100.0%; height: 100.0%;">     <b>MediClub</b><br/>     <b>Main Country:</b> Azerbaidjan<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Phone: +994 12 497 09 11<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> Email: office@mediclub.az<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_78b258d204fd01955b8cc7c1e9c039e2.setContent(html_ba15c80b5348228cadb943d8deee0739);
+            
+        
+
+        circle_marker_cea351d263de7d4941ee3e701b8233eb.bindPopup(popup_78b258d204fd01955b8cc7c1e9c039e2)
+        ;
+
+        
+    
+    
+            var circle_marker_69e688dfee2e9b2ca68b3864a13f63f3 = L.circleMarker(
+                [30.0, 90.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_81447b4d4ee139d47c81dc92e5526dde = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9fdc1c618a7ce6f7b03078f85f277d12 = $(`<div id="html_9fdc1c618a7ce6f7b03078f85f277d12" style="width: 100.0%; height: 100.0%;">     <b>ATMS - Asian Travel and Medical Services</b><br/>     <b>Main Country:</b> All Asia<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> +91 8981 207280<br/>     <b>Network Manager:</b> Md Ali Hussain<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> mdali.hussain@asiantms.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_81447b4d4ee139d47c81dc92e5526dde.setContent(html_9fdc1c618a7ce6f7b03078f85f277d12);
+            
+        
+
+        circle_marker_69e688dfee2e9b2ca68b3864a13f63f3.bindPopup(popup_81447b4d4ee139d47c81dc92e5526dde)
+        ;
+
+        
+    
+    
+            var circle_marker_5fd0fedad4a7ee1c09fec990563b34f4 = L.circleMarker(
+                [35.0, 44.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_289e9d6109030b99abc2c30694a0a085 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_26e12bb249a64171ab63c40fde74bd38 = $(`<div id="html_26e12bb249a64171ab63c40fde74bd38" style="width: 100.0%; height: 100.0%;">     <b>Life Support Team Medical Services (Erbil)</b><br/>     <b>Main Country:</b> Irak, Kurdistan<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Phone: +964 750 881 0102 / +964 750 881 0103<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> Email: info@lst-medic.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_289e9d6109030b99abc2c30694a0a085.setContent(html_26e12bb249a64171ab63c40fde74bd38);
+            
+        
+
+        circle_marker_5fd0fedad4a7ee1c09fec990563b34f4.bindPopup(popup_289e9d6109030b99abc2c30694a0a085)
+        ;
+
+        
+    
+    
+            var circle_marker_2ced9e43acd7c3c574422a86a0840638 = L.circleMarker(
+                [36.0, 138.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_4e61dc0745567c1997d294c0304b68b0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3bb18f3b0f6c2e6052b9a99ca4b48b4a = $(`<div id="html_3bb18f3b0f6c2e6052b9a99ca4b48b4a" style="width: 100.0%; height: 100.0%;">     <b>GIJU JAPAN ぎふ民間救急</b><br/>     <b>Main Country:</b> Japan<br/>     <b>Additional Countries:</b> Japan<br/>     <b>Ops Email:</b> gpe@ymail.ne.jp<br/>     <b>Ops 24/7 Phone:</b> +81582963050<br/>     <b>Network Manager:</b> IBUKA Koji<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_4e61dc0745567c1997d294c0304b68b0.setContent(html_3bb18f3b0f6c2e6052b9a99ca4b48b4a);
+            
+        
+
+        circle_marker_2ced9e43acd7c3c574422a86a0840638.bindPopup(popup_4e61dc0745567c1997d294c0304b68b0)
+        ;
+
+        
+    
+    
+            var circle_marker_66f89a00c47cbdcb176d62be96bc53e8 = L.circleMarker(
+                [33.83333333, 35.83333333],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_c48e1358897421cf0a0d0892c808463c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0cd8c25e2f19c2390df421d7a8fb517a = $(`<div id="html_0cd8c25e2f19c2390df421d7a8fb517a" style="width: 100.0%; height: 100.0%;">     <b>Swan Assist</b><br/>     <b>Main Country:</b> Lebanon<br/>     <b>Additional Countries:</b> Lebanon, Iraq, Yemen, Jordan, Syria, Kuwait<br/>     <b>Ops Email:</b> request@swanassistance.com<br/>     <b>Ops 24/7 Phone:</b> +961 9 210 232 - +44 808 18 92 449<br/>     <b>Network Manager:</b> Desiree wansa (RN)<br/>     <b>Phone (Network Manager):</b> Tel: +961 9 224 013 ext.179 <br/>     <b>Email (Network Manager):</b> dwansa@swanassistance.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_c48e1358897421cf0a0d0892c808463c.setContent(html_0cd8c25e2f19c2390df421d7a8fb517a);
+            
+        
+
+        circle_marker_66f89a00c47cbdcb176d62be96bc53e8.bindPopup(popup_c48e1358897421cf0a0d0892c808463c)
+        ;
+
+        
+    
+    
+            var circle_marker_c24ba2858b0c78398dbaa1e214c52937 = L.circleMarker(
+                [39.0, 35.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_b3e38b964e8dee9e2d898509678448f7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_108deee08a923e94af7d8726f19f5298 = $(`<div id="html_108deee08a923e94af7d8726f19f5298" style="width: 100.0%; height: 100.0%;">     <b>MEDJET MEDICAL ASSISTANCE</b><br/>     <b>Main Country:</b> Turkey<br/>     <b>Additional Countries:</b> Albania, Armenia, Azerbaijan, Bahrain, Bosnia, Egypt, Greece, Kirgizistan, Kuwait, Middle East, Montenegro, Oman, Saudi Arabia Kingdom, Serbia, Turkmenistan, UAE, United Arab Emirates, USA, Uzbekistan<br/>     <b>Ops Email:</b> operation@medjet.info<br/>     <b>Ops 24/7 Phone:</b> +90 850 307 20 83  +90 216 393 82 92 +90-537-722 70 66  (24H) <br/>     <b>Network Manager:</b> Musa Gürçay<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_b3e38b964e8dee9e2d898509678448f7.setContent(html_108deee08a923e94af7d8726f19f5298);
+            
+        
+
+        circle_marker_c24ba2858b0c78398dbaa1e214c52937.bindPopup(popup_b3e38b964e8dee9e2d898509678448f7)
+        ;
+
+        
+    
+    
+            var circle_marker_dc481005a6f20c4c12fcdd08a8607783 = L.circleMarker(
+                [20.0, 77.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_5c7314011da5398152b217cbebe9c110 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c2e9c75163267bd406cd1b58e67932c1 = $(`<div id="html_c2e9c75163267bd406cd1b58e67932c1" style="width: 100.0%; height: 100.0%;">     <b>ROY MEDICAL ASSISTANCE</b><br/>     <b>Main Country:</b> India<br/>     <b>Additional Countries:</b> Azerbaijan, Bahrain, Cambodia, China, Hong Kong, India, Indonesia, Japan, Kenya, Laos, Malaysia, Maldives, Myanmar, Nepal, Philippines, Qatar, Singapore, South Korea, Sri Lanka, Taiwan, Tanzania, Thailand, Turkey, UAE - United Arab Emirates, Vietnam<br/>     <b>Ops Email:</b> info@roymedicalassistance.com assistance@roymedicalassistance.net<br/>     <b>Ops 24/7 Phone:</b> +91 98 7187 7260<br/>     <b>Network Manager:</b> Mr Sumit GAURAV<br/>     <b>Phone (Network Manager):</b> +91 88261 86929<br/>     <b>Email (Network Manager):</b> sumit@roymedicalassistance.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_5c7314011da5398152b217cbebe9c110.setContent(html_c2e9c75163267bd406cd1b58e67932c1);
+            
+        
+
+        circle_marker_dc481005a6f20c4c12fcdd08a8607783.bindPopup(popup_5c7314011da5398152b217cbebe9c110)
+        ;
+
+        
+    
+    
+            var circle_marker_9aa7560ee508722e19d09b9df75595b8 = L.circleMarker(
+                [20.0, 77.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_632c721b571f021ee1ae4e8e1f8d732c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9ff7956c7436e08ba6c195ed8d6b7a4f = $(`<div id="html_9ff7956c7436e08ba6c195ed8d6b7a4f" style="width: 100.0%; height: 100.0%;">     <b>HUMANCARE WORLDWIDE</b><br/>     <b>Main Country:</b> India<br/>     <b>Additional Countries:</b> Bangladesh, India, Kenya, Oman, Singapore, Turkey UAE - United Arab Emirates<br/>     <b>Ops Email:</b> global.ops@humancareworldwide.com medical.assistance@humancareworldwide.com<br/>     <b>Ops 24/7 Phone:</b> +968 92402959<br/>     <b>Network Manager:</b> Rahul Tripathi Amruta Baisane<br/>     <b>Phone (Network Manager):</b> Tel: +91 96999 99065/67， Tel: +971 58578 7878<br/>     <b>Email (Network Manager):</b> coo@humancareworldwide.com md@humancareworldwide.com hemant.rathod@humancareworldwide.com (commercial) insure@humancareworldwide.com director.gcc@humancareworldwide.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_632c721b571f021ee1ae4e8e1f8d732c.setContent(html_9ff7956c7436e08ba6c195ed8d6b7a4f);
+            
+        
+
+        circle_marker_9aa7560ee508722e19d09b9df75595b8.bindPopup(popup_632c721b571f021ee1ae4e8e1f8d732c)
+        ;
+
+        
+    
+    
+            var circle_marker_0f20db4ce707258ffd5e42bf3abbe6ef = L.circleMarker(
+                [15.0, 100.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_8fd73a6566a3b460fa022c641331c102 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fee7aad85232c904acfa6c8cc54ab062 = $(`<div id="html_fee7aad85232c904acfa6c8cc54ab062" style="width: 100.0%; height: 100.0%;">     <b>WORLD WIDE ASSIST</b><br/>     <b>Main Country:</b> Thailand<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> ops@worldwideassist.org<br/>     <b>Ops 24/7 Phone:</b> +919818111937 // +919953211937<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_8fd73a6566a3b460fa022c641331c102.setContent(html_fee7aad85232c904acfa6c8cc54ab062);
+            
+        
+
+        circle_marker_0f20db4ce707258ffd5e42bf3abbe6ef.bindPopup(popup_8fd73a6566a3b460fa022c641331c102)
+        ;
+
+        
+    
+    
+            var circle_marker_94d5c93a3f4441726e340f19214221e5 = L.circleMarker(
+                [39.0, 35.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_d8151b933338e29b27f03baf803d5f09 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_005ee872108ac97b404454c772b40035 = $(`<div id="html_005ee872108ac97b404454c772b40035" style="width: 100.0%; height: 100.0%;">     <b>Remed Assistance</b><br/>     <b>Main Country:</b> Turkey<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> Email: info@remed-assistance.com<br/>     <b>Ops 24/7 Phone:</b> Phone number: +90 850 455 0 911 (24/7 Alarm Centre)<br/>     <b>Network Manager:</b> Cem ÖZDENİZ Eren Karacaoglu Murat Kecik<br/>     <b>Phone (Network Manager):</b> T: +90 212 371 07 00 (Cem) M: +90 539 720 13 97 (Cem)<br/>     <b>Email (Network Manager):</b> cem.ozdeniz@remed.com.tr eren.karacaoglu@remed.com.tr murat.kecik@remed.com.tr<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_d8151b933338e29b27f03baf803d5f09.setContent(html_005ee872108ac97b404454c772b40035);
+            
+        
+
+        circle_marker_94d5c93a3f4441726e340f19214221e5.bindPopup(popup_d8151b933338e29b27f03baf803d5f09)
+        ;
+
+        
+    
+    
+            var circle_marker_3e1d654a175e81580bddaeaf1a6dd645 = L.circleMarker(
+                [39.0, 35.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_92d45de121561863381ac4cb9cc8c1a0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b55b2910c683b9677b189c160020793a = $(`<div id="html_b55b2910c683b9677b189c160020793a" style="width: 100.0%; height: 100.0%;">     <b>Marm Assistance </b><br/>     <b>Main Country:</b> Turkey<br/>     <b>Additional Countries:</b> Turkey, Tajikistan, Uzbekistan, Kyrgyzstan, Turkmenistan, <br/>     <b>Ops Email:</b> Phone number: +90 216 468 62 00 (24/7 Alarm Centre)<br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> Esma Tekin/Evrim Firincioglu<br/>     <b>Phone (Network Manager):</b> Tel: +90 216 560 0 724<br/>     <b>Email (Network Manager):</b> esmat@marm.com.tr/evrimf@marm.com.tr<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_92d45de121561863381ac4cb9cc8c1a0.setContent(html_b55b2910c683b9677b189c160020793a);
+            
+        
+
+        circle_marker_3e1d654a175e81580bddaeaf1a6dd645.bindPopup(popup_92d45de121561863381ac4cb9cc8c1a0)
+        ;
+
+        
+    
+    
+            var circle_marker_7c314e7cb28266c057aa0821179ebe64 = L.circleMarker(
+                [23.4241, 53.8478],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_480fd386ca72ce6a7bdae3100ffd91ec = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_201e2a3cfc2c9a69f4a9ede97188bb05 = $(`<div id="html_201e2a3cfc2c9a69f4a9ede97188bb05" style="width: 100.0%; height: 100.0%;">     <b>Blue Dot</b><br/>     <b>Main Country:</b> UAE<br/>     <b>Additional Countries:</b> Bahrain, Bangladesh, China, Egypt, Germany, Greece, India, Italy, Jordhan, KSA, Kuwait, Lebanon, Malaysia, Morocco, Nepal, Nigeria, Oman, Pakisthan, Philippines, Qatar, Senegal, Srilanka, Thailand, Turkey, UAE, Uganda<br/>     <b>Ops Email:</b> ops@bluedotassist.com <br/>     <b>Ops 24/7 Phone:</b> +971 55 188 1441 +91 974541 0000<br/>     <b>Network Manager:</b> Parul Thakur Rakesh NAIR Sreeregh Suraj Aiyer<br/>     <b>Phone (Network Manager):</b> Ph: +971 4 299 4401 Ext-106 (Parul) Mob: +971 565381449 (Parul) Mob : +91 7356606991<br/>     <b>Email (Network Manager):</b> parul@bluedotassist.com rakesh@bluedotassist.com sreeregh@bluedotassist.com suraj@bluedotassist.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_480fd386ca72ce6a7bdae3100ffd91ec.setContent(html_201e2a3cfc2c9a69f4a9ede97188bb05);
+            
+        
+
+        circle_marker_7c314e7cb28266c057aa0821179ebe64.bindPopup(popup_480fd386ca72ce6a7bdae3100ffd91ec)
+        ;
+
+        
+    
+    
+            var circle_marker_048953c41a2a7e534b36251d4c893c7f = L.circleMarker(
+                [31.5, 34.75],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_fe778303e208131ba953091a3d3a78a8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ca611d71fc34beb1910af7239043fc3 = $(`<div id="html_8ca611d71fc34beb1910af7239043fc3" style="width: 100.0%; height: 100.0%;">     <b>GORAL ASSISTANCE</b><br/>     <b>Main Country:</b> Israel<br/>     <b>Additional Countries:</b> Canada /USA /Germany<br/>     <b>Ops Email:</b>  info@goralassist.com marcel@goralassist.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +972-9-9579930 Fax: +972-9-9579931<br/>     <b>Network Manager:</b> Marcel Kadoche CEO / Intematonal Network & Development Manager Goral Assistance Israel/ Canada /USA /Germany<br/>     <b>Phone (Network Manager):</b> Tel: +972-9-9579930<br/>     <b>Email (Network Manager):</b> marcel@goralassist.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_fe778303e208131ba953091a3d3a78a8.setContent(html_8ca611d71fc34beb1910af7239043fc3);
+            
+        
+
+        circle_marker_048953c41a2a7e534b36251d4c893c7f.bindPopup(popup_fe778303e208131ba953091a3d3a78a8)
+        ;
+
+        
+    
+    
+            var circle_marker_cf4e7d8be8aeb005706ef8d8c797c16e = L.circleMarker(
+                [15.0, 105.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_4cf902c6a1d1c227e9fdcc11a1a2f150 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ebfb48016b44cd2bbbcc36b9ee72621e = $(`<div id="html_ebfb48016b44cd2bbbcc36b9ee72621e" style="width: 100.0%; height: 100.0%;">     <b>Raffles Medical Vietnam</b><br/>     <b>Main Country:</b> Vietnam, Laos, Cambodge<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> frontdesk_hcmc@rafflesmedical.com (HCMC), claims@raffleshealthinsurance.com<br/>     <b>Ops 24/7 Phone:</b> Phone: HCMC: +84 28 3824 0777; Hanoi: +84 24 3934 0666<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> enquiries@raffleshealthinsurance.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_4cf902c6a1d1c227e9fdcc11a1a2f150.setContent(html_ebfb48016b44cd2bbbcc36b9ee72621e);
+            
+        
+
+        circle_marker_cf4e7d8be8aeb005706ef8d8c797c16e.bindPopup(popup_4cf902c6a1d1c227e9fdcc11a1a2f150)
+        ;
+
+        
+    
+    
+            var circle_marker_8b4f7894a53abe1bf4e82021fcd33a74 = L.circleMarker(
+                [36.0, 138.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_e68e600efed17c7cf76001d60ccd2f79 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7475d1dd463f125453b971ebd2702f04 = $(`<div id="html_7475d1dd463f125453b971ebd2702f04" style="width: 100.0%; height: 100.0%;">     <b>EURO-CENTER</b><br/>     <b>Main Country:</b> Japan<br/>     <b>Additional Countries:</b> Japan, Australia, Europe<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> +420 221 860 331<br/>     <b>Network Manager:</b> Máté CSIK<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> m.csik@euro-center.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_e68e600efed17c7cf76001d60ccd2f79.setContent(html_7475d1dd463f125453b971ebd2702f04);
+            
+        
+
+        circle_marker_8b4f7894a53abe1bf4e82021fcd33a74.bindPopup(popup_e68e600efed17c7cf76001d60ccd2f79)
+        ;
+
+        
+    
+    
+            var circle_marker_25fb81e0a4db3b1c7b01201afe9d23d2 = L.circleMarker(
+                [31.0, 36.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_0e0bd287350c11f9198597f6e4d84280 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bb976240aeb0a5b4e1cdcedb24cd8416 = $(`<div id="html_bb976240aeb0a5b4e1cdcedb24cd8416" style="width: 100.0%; height: 100.0%;">     <b>UTA Assistance</b><br/>     <b>Main Country:</b> Jordan<br/>     <b>Additional Countries:</b> GCC, Jordan, Palestine, Syria, Lebanon, Iraq, Yemen, Afghanistan, Pakistan<br/>     <b>Ops Email:</b> Alarmcenter@uta-assistance.com<br/>     <b>Ops 24/7 Phone:</b> Tel: + 962 77 999 9814/+ 962 6 200 0078 | + 962 77 999 9621<br/>     <b>Network Manager:</b> Neveen.H.Al-Khammash<br/>     <b>Phone (Network Manager):</b> + 962 77 999 9814<br/>     <b>Email (Network Manager):</b> Neveen.al-khammash@uta,com.jo  <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_0e0bd287350c11f9198597f6e4d84280.setContent(html_bb976240aeb0a5b4e1cdcedb24cd8416);
+            
+        
+
+        circle_marker_25fb81e0a4db3b1c7b01201afe9d23d2.bindPopup(popup_0e0bd287350c11f9198597f6e4d84280)
+        ;
+
+        
+    
+    
+            var circle_marker_5bf84bb0a867c5add9cf931309dd07e0 = L.circleMarker(
+                [35.0, 105.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_7f42c405f9548b5a58bd8f1900438834 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b6b484dc84d4cabe2fc3bc9fbff50f71 = $(`<div id="html_b6b484dc84d4cabe2fc3bc9fbff50f71" style="width: 100.0%; height: 100.0%;">     <b>Jiangtai Global Assistance</b><br/>     <b>Main Country:</b> China<br/>     <b>Additional Countries:</b> China, Indo-China <br/>     <b>Ops Email:</b>  ops@dajiuxing.com.cn<br/>     <b>Ops 24/7 Phone:</b> Tel: 24 hrs:  + 86 18515349191<br/>     <b>Network Manager:</b> "Yvonne Yang/ 杨欢 Senior coordinator/ 高级协调员<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> yanghuan@dajiuxing.com.cn"<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_7f42c405f9548b5a58bd8f1900438834.setContent(html_b6b484dc84d4cabe2fc3bc9fbff50f71);
+            
+        
+
+        circle_marker_5bf84bb0a867c5add9cf931309dd07e0.bindPopup(popup_7f42c405f9548b5a58bd8f1900438834)
+        ;
+
+        
+    
+    
+            var circle_marker_d944b805d3e734587ccf1a77d1535ae6 = L.circleMarker(
+                [-5.0, 120.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_ef9c0c30fd871a4b863e18bb01438796 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8d95d253fd4042e6abfde980dfb93d1f = $(`<div id="html_8d95d253fd4042e6abfde980dfb93d1f" style="width: 100.0%; height: 100.0%;">     <b>SAVANA ASSISTACE</b><br/>     <b>Main Country:</b> Indonesia<br/>     <b>Additional Countries:</b> Indonesia<br/>     <b>Ops Email:</b> info@savanaassistance.com<br/>     <b>Ops 24/7 Phone:</b> Tel: ‭+62 811 1719119‬<br/>     <b>Network Manager:</b> Dr Valensia Hanafi<br/>     <b>Phone (Network Manager):</b> Tel: +62-811-1719-119 M: +62-813-855-40248<br/>     <b>Email (Network Manager):</b> valen@savanaassistance.com tessa@savanaasisstance.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_ef9c0c30fd871a4b863e18bb01438796.setContent(html_8d95d253fd4042e6abfde980dfb93d1f);
+            
+        
+
+        circle_marker_d944b805d3e734587ccf1a77d1535ae6.bindPopup(popup_ef9c0c30fd871a4b863e18bb01438796)
+        ;
+
+        
+    
+    
+            var circle_marker_3cee4e6be68809a95942a084ba445f0d = L.circleMarker(
+                [49.0, 32.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_94f7e6d220b75a4dc9f91eadea1f311e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e979f0f8626b04453a8fbafcb6165ac6 = $(`<div id="html_e979f0f8626b04453a8fbafcb6165ac6" style="width: 100.0%; height: 100.0%;">     <b>Ensuria</b><br/>     <b>Main Country:</b> Ukraine<br/>     <b>Additional Countries:</b> Ukraine, Georgia, Moldova<br/>     <b>Ops Email:</b> care@ensuria.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +380443900010<br/>     <b>Network Manager:</b> Anstasia Koshel/Olga Koveleva<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> Anastasiia.koshel@ensuria.com / olga.kovaleva@ensuria.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_94f7e6d220b75a4dc9f91eadea1f311e.setContent(html_e979f0f8626b04453a8fbafcb6165ac6);
+            
+        
+
+        circle_marker_3cee4e6be68809a95942a084ba445f0d.bindPopup(popup_94f7e6d220b75a4dc9f91eadea1f311e)
+        ;
+
+        
+    
+    
+            var circle_marker_86cef5b8df36ba4b1dd8a3dde85c9d92 = L.circleMarker(
+                [51.5074, -0.1278],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_129bfb690cf6d3cf905a9c40da2aac15 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6ac4b138e64e0272c5907870a8d69afa = $(`<div id="html_6ac4b138e64e0272c5907870a8d69afa" style="width: 100.0%; height: 100.0%;">     <b>Albin International</b><br/>     <b>Main Country:</b> London<br/>     <b>Additional Countries:</b> International Repatriation of Mortal remains<br/>     <b>Ops Email:</b> info@albininternational.com<br/>     <b>Ops 24/7 Phone:</b> Tel: + 44 (0) 20 7313 6920<br/>     <b>Network Manager:</b> Emerson De Luca <br/>     <b>Phone (Network Manager):</b> M:+ 44 (0) 78 6641 3191 T: + 44 (0) 20 7313 6920<br/>     <b>Email (Network Manager):</b> emerson@albininternational.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_129bfb690cf6d3cf905a9c40da2aac15.setContent(html_6ac4b138e64e0272c5907870a8d69afa);
+            
+        
+
+        circle_marker_86cef5b8df36ba4b1dd8a3dde85c9d92.bindPopup(popup_129bfb690cf6d3cf905a9c40da2aac15)
+        ;
+
+        
+    
+    
+            var circle_marker_de5848931e583ae9cd1fd2f6d7917c6b = L.circleMarker(
+                [39.5, -8.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_952aab7b5ef5db005b0a9e04aa7567bd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d7ba028240a2f6cb7406517222a1945 = $(`<div id="html_6d7ba028240a2f6cb7406517222a1945" style="width: 100.0%; height: 100.0%;">     <b>ALGARVE MED ASSIST</b><br/>     <b>Main Country:</b> Portugal<br/>     <b>Additional Countries:</b> Portugal<br/>     <b>Ops Email:</b> assistance@algarvemedassist.com<br/>     <b>Ops 24/7 Phone:</b> +351 960 385 367 +351 967 681 664 +351 925 487266<br/>     <b>Network Manager:</b> Antonio BETTANCOURT Nádia MOREIRA CAMILO<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> a.bettencourt@algarveassist.com n.camilo@algarveassist.com<br/>     <b>Agreement Status:</b> 23/02/26 waiting for their agreement template     </div>`)[0];
+                popup_952aab7b5ef5db005b0a9e04aa7567bd.setContent(html_6d7ba028240a2f6cb7406517222a1945);
+            
+        
+
+        circle_marker_de5848931e583ae9cd1fd2f6d7917c6b.bindPopup(popup_952aab7b5ef5db005b0a9e04aa7567bd)
+        ;
+
+        
+    
+    
+            var circle_marker_18b9c5345a1ace11354ffe1380bbecb9 = L.circleMarker(
+                [42.83333333, 12.83333333],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_1e83714a0f4fb5f43de278982e375904 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_267a618659284670fc41601545150643 = $(`<div id="html_267a618659284670fc41601545150643" style="width: 100.0%; height: 100.0%;">     <b>BMC Health Services h24</b><br/>     <b>Main Country:</b> Italy<br/>     <b>Additional Countries:</b> Malta<br/>     <b>Ops Email:</b> operations@bmch24.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +3908231766412<br/>     <b>Network Manager:</b> Alessia Fortuni <br/>     <b>Phone (Network Manager):</b> Tel: +3908231766412 <br/>     <b>Email (Network Manager):</b> alessia.fortuni@bmch24.com<br/>     <b>Agreement Status:</b> checking agreement     </div>`)[0];
+                popup_1e83714a0f4fb5f43de278982e375904.setContent(html_267a618659284670fc41601545150643);
+            
+        
+
+        circle_marker_18b9c5345a1ace11354ffe1380bbecb9.bindPopup(popup_1e83714a0f4fb5f43de278982e375904)
+        ;
+
+        
+    
+    
+            var circle_marker_56a03b46197425f153836cc5a9d3759e = L.circleMarker(
+                [39.0, 22.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_64a08ef3d51a7293d0744b286756c580 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ba836ad3a26aee20193b0918c4ef3c86 = $(`<div id="html_ba836ad3a26aee20193b0918c4ef3c86" style="width: 100.0%; height: 100.0%;">     <b>HWA Health Watch</b><br/>     <b>Main Country:</b> Greece<br/>     <b>Additional Countries:</b> Cyprus, Turkey, Egypt, Bulgaria, Albania, Balkan region, MENA region<br/>     <b>Ops Email:</b> assistance@healthwatch.gr<br/>     <b>Ops 24/7 Phone:</b> Tel: +30 2313 084500<br/>     <b>Network Manager:</b> Eleni Bikou<br/>     <b>Phone (Network Manager):</b> Tel: +  302313084333<br/>     <b>Email (Network Manager):</b> e.bikou@healthwatch.gr<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_64a08ef3d51a7293d0744b286756c580.setContent(html_ba836ad3a26aee20193b0918c4ef3c86);
+            
+        
+
+        circle_marker_56a03b46197425f153836cc5a9d3759e.bindPopup(popup_64a08ef3d51a7293d0744b286756c580)
+        ;
+
+        
+    
+    
+            var circle_marker_a5100b3f1603cc03906e9f0aeee77d5f = L.circleMarker(
+                [0.0, 0.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_6bdc2ad681d453a5eb40aea9a92e07a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_84d7067442835c6f5d8a14f0e5898066 = $(`<div id="html_84d7067442835c6f5d8a14f0e5898066" style="width: 100.0%; height: 100.0%;">     <b>Rowland Brothers Int. Repatriation</b><br/>     <b>Main Country:</b> Worldwide<br/>     <b>Additional Countries:</b> Worldwide<br/>     <b>Ops Email:</b> fiona@rowlandbrothersinternational.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +44 20 8684 2324<br/>     <b>Network Manager:</b> Steve Rowland<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> steve@rowlandbrothers.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_6bdc2ad681d453a5eb40aea9a92e07a6.setContent(html_84d7067442835c6f5d8a14f0e5898066);
+            
+        
+
+        circle_marker_a5100b3f1603cc03906e9f0aeee77d5f.bindPopup(popup_6bdc2ad681d453a5eb40aea9a92e07a6)
+        ;
+
+        
+    
+    
+            var circle_marker_a59793fb3bf83a2af4677fdc5d6c4969 = L.circleMarker(
+                [62.0, 15.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_976ae670ed6365510a9463a4c0427246 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_13c871524b2ccab1a90dbfe1e112b5bd = $(`<div id="html_13c871524b2ccab1a90dbfe1e112b5bd" style="width: 100.0%; height: 100.0%;">     <b>Stabilitas Global Assistance</b><br/>     <b>Main Country:</b> Sweden<br/>     <b>Additional Countries:</b> Denmark, Norway, Finland, Iceland, Faroe Islands, Greenland, Aland<br/>     <b>Ops Email:</b> erc@stabilitasglobalassistance.com <br/>     <b>Ops 24/7 Phone:</b> Tel: +46 40 260001 <br/>     <b>Network Manager:</b> Per Byberg<br/>     <b>Phone (Network Manager):</b> Tel: +46 73 4045055<br/>     <b>Email (Network Manager):</b> per.byberg@stabilitasglobalassistance.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_976ae670ed6365510a9463a4c0427246.setContent(html_13c871524b2ccab1a90dbfe1e112b5bd);
+            
+        
+
+        circle_marker_a59793fb3bf83a2af4677fdc5d6c4969.bindPopup(popup_976ae670ed6365510a9463a4c0427246)
+        ;
+
+        
+    
+    
+            var circle_marker_07a3a79d1e9e64b0f55fbeddeb363f02 = L.circleMarker(
+                [35.0, 33.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_fc31ef3205e1baacddcc3a8976035b54 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_afc058cb942e28d2efdfcd3701ce910c = $(`<div id="html_afc058cb942e28d2efdfcd3701ce910c" style="width: 100.0%; height: 100.0%;">     <b>Global Voyager Assistance (GVA)</b><br/>     <b>Main Country:</b> Cyprus<br/>     <b>Additional Countries:</b> Bulgaria, Ukraine<br/>     <b>Ops Email:</b> operations@global-voyager-assistance.com<br/>     <b>Ops 24/7 Phone:</b> Phone: +357 25 056 180 (24/7 Ops) | +359 529 20 115 | +380 48 737 3441<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> front@global-voyager-assistance.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_fc31ef3205e1baacddcc3a8976035b54.setContent(html_afc058cb942e28d2efdfcd3701ce910c);
+            
+        
+
+        circle_marker_07a3a79d1e9e64b0f55fbeddeb363f02.bindPopup(popup_fc31ef3205e1baacddcc3a8976035b54)
+        ;
+
+        
+    
+    
+            var circle_marker_95cfd871f2534d784f65fc1ab1fe4a5f = L.circleMarker(
+                [42.0, 43.5],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_792fb9c1b870708407175929a50d4f91 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_84a312bf1e01f88b77a9773281eff4f5 = $(`<div id="html_84a312bf1e01f88b77a9773281eff4f5" style="width: 100.0%; height: 100.0%;">     <b>GeoAssistance</b><br/>     <b>Main Country:</b> Georgia<br/>     <b>Additional Countries:</b> Georgia<br/>     <b>Ops Email:</b> info@geoassistance.ge<br/>     <b>Ops 24/7 Phone:</b> WhatsApp / Viber (+995) 599 156 969<br/>     <b>Network Manager:</b> Veriko Gogelia <br/>     <b>Phone (Network Manager):</b> Tel: +995 598) 92 74 75<br/>     <b>Email (Network Manager):</b> network@geoassistance.ge<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_792fb9c1b870708407175929a50d4f91.setContent(html_84a312bf1e01f88b77a9773281eff4f5);
+            
+        
+
+        circle_marker_95cfd871f2534d784f65fc1ab1fe4a5f.bindPopup(popup_792fb9c1b870708407175929a50d4f91)
+        ;
+
+        
+    
+    
+            var circle_marker_0a7b838858efca77c3b2b38e15ecc0e5 = L.circleMarker(
+                [42.0, 22.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_0c21de06f95607c8a6f75c578719dc82 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d380bb370fbe934b9283c0b8cc01575 = $(`<div id="html_6d380bb370fbe934b9283c0b8cc01575" style="width: 100.0%; height: 100.0%;">     <b>SUGGERO ASSISTANCE</b><br/>     <b>Main Country:</b> Balkans<br/>     <b>Additional Countries:</b> Albania, Bosnia and Herzegovina, Croatia, Kosovo, Montenegro, North Macedonia, Serbia<br/>     <b>Ops Email:</b> suggeroassistance@gmail.com<br/>     <b>Ops 24/7 Phone:</b> +385 21 296 244<br/>     <b>Network Manager:</b> Ivana Tokić<br/>     <b>Phone (Network Manager):</b> +385 95 522 51 36 +385 91 581 83 86 +385 95 562 60 98<br/>     <b>Email (Network Manager):</b> suggeroassistance@gmail.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_0c21de06f95607c8a6f75c578719dc82.setContent(html_6d380bb370fbe934b9283c0b8cc01575);
+            
+        
+
+        circle_marker_0a7b838858efca77c3b2b38e15ecc0e5.bindPopup(popup_0c21de06f95607c8a6f75c578719dc82)
+        ;
+
+        
+    
+    
+            var circle_marker_e285f4873876c0a5243f92cdead2b921 = L.circleMarker(
+                [50.0, 10.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_7ad14d5cf90b17e3c02bc5a1c0696250 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7b96478dd77d735ef4da469d9c8422b4 = $(`<div id="html_7b96478dd77d735ef4da469d9c8422b4" style="width: 100.0%; height: 100.0%;">     <b>Global Excel (Europe)</b><br/>     <b>Main Country:</b> Europe<br/>     <b>Additional Countries:</b> Tel: +972-9-9579930<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Tel:+1800 465 8602<br/>     <b>Network Manager:</b> Esther Muller<br/>     <b>Phone (Network Manager):</b> Tel: +41 762 113 217<br/>     <b>Email (Network Manager):</b> Birger.Oldorff@globalexcel.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_7ad14d5cf90b17e3c02bc5a1c0696250.setContent(html_7b96478dd77d735ef4da469d9c8422b4);
+            
+        
+
+        circle_marker_e285f4873876c0a5243f92cdead2b921.bindPopup(popup_7ad14d5cf90b17e3c02bc5a1c0696250)
+        ;
+
+        
+    
+    
+            var circle_marker_9858c7388252e21797d3f92198f73f8d = L.circleMarker(
+                [45.0, -100.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_fc982d9e3aa7868d295cac5ed6b2d1cd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7b66ab67441f953919cd4ecd062c20e4 = $(`<div id="html_7b66ab67441f953919cd4ecd062c20e4" style="width: 100.0%; height: 100.0%;">     <b>Penfield</b><br/>     <b>Main Country:</b> USA/Canada<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> claims@penfieldcare.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +1800 877 791 0529<br/>     <b>Network Manager:</b> Christian Deloughery<br/>     <b>Phone (Network Manager):</b> Tel: +1 613 909 9791   Mobile: +46 7366 45890<br/>     <b>Email (Network Manager):</b> CDeloughery@penfieldcare.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_fc982d9e3aa7868d295cac5ed6b2d1cd.setContent(html_7b66ab67441f953919cd4ecd062c20e4);
+            
+        
+
+        circle_marker_9858c7388252e21797d3f92198f73f8d.bindPopup(popup_fc982d9e3aa7868d295cac5ed6b2d1cd)
+        ;
+
+        
+    
+    
+            var circle_marker_25abab4769f55ea93e9e990e67712586 = L.circleMarker(
+                [38.0, -97.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_6c92a5aabdba72661ad0996f0207933a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0401a715dc0b8331dc332471f0fa1f1a = $(`<div id="html_0401a715dc0b8331dc332471f0fa1f1a" style="width: 100.0%; height: 100.0%;">     <b>QTAssist</b><br/>     <b>Main Country:</b> USA<br/>     <b>Additional Countries:</b> Buenos Aires/ Argentinien<br/>     <b>Ops Email:</b> coordinacion@qtassist.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +1 786-715-7411<br/>     <b>Network Manager:</b> Anna Gudzinowicz Avila / Maria Alenjandra Angio<br/>     <b>Phone (Network Manager):</b> Tel: +1 305 497 9713<br/>     <b>Email (Network Manager):</b> commercial@qualitytravelassistance.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_6c92a5aabdba72661ad0996f0207933a.setContent(html_0401a715dc0b8331dc332471f0fa1f1a);
+            
+        
+
+        circle_marker_25abab4769f55ea93e9e990e67712586.bindPopup(popup_6c92a5aabdba72661ad0996f0207933a)
+        ;
+
+        
+    
+    
+            var circle_marker_729a63c8a9fd63452baee58e7470bbd9 = L.circleMarker(
+                [38.0, -97.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_54fefa7d3f31600ae170c0c1db0c565d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_42836266dd8d8bbf3046e43a4ab02169 = $(`<div id="html_42836266dd8d8bbf3046e43a4ab02169" style="width: 100.0%; height: 100.0%;">     <b>DOCTORS NOW</b><br/>     <b>Main Country:</b> USA / Canada / LATAM<br/>     <b>Additional Countries:</b> USA / Canada / LATAM<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> Emiliano Erro<br/>     <b>Phone (Network Manager):</b> Tel: 954.414.9995  Mobile: 954.579.3267<br/>     <b>Email (Network Manager):</b> emiliano@doctorsnowusa.com<br/>     <b>Agreement Status:</b> waiting for them to sign     </div>`)[0];
+                popup_54fefa7d3f31600ae170c0c1db0c565d.setContent(html_42836266dd8d8bbf3046e43a4ab02169);
+            
+        
+
+        circle_marker_729a63c8a9fd63452baee58e7470bbd9.bindPopup(popup_54fefa7d3f31600ae170c0c1db0c565d)
+        ;
+
+        
+    
+    
+            var circle_marker_4fe055e162c3710614afbbab0e194fd5 = L.circleMarker(
+                [18.0, -77.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_6fc249ead860d1a2d27343845cfdc316 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b3232c1ad84b8940c79f9b0b735d9ab0 = $(`<div id="html_b3232c1ad84b8940c79f9b0b735d9ab0" style="width: 100.0%; height: 100.0%;">     <b>WEST INDIES ASSISTANCE</b><br/>     <b>Main Country:</b> Caribean<br/>     <b>Additional Countries:</b> Antigua and Barbuda, Bahamas, Barbados, Dominica, Grenada, Haiti, Jamaica, Dominican Republic, Saint Kitts and Nevis, Saint Vincent and the Grenadines, Saint Lucia, Trinidad and Tobago<br/>     <b>Ops Email:</b> contact@westindies-assistance.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +596 596 70 18 89<br/>     <b>Network Manager:</b> Diane Heckel Juliane Pingray<br/>     <b>Phone (Network Manager):</b> Tel: +33 6 96 32 65 57 (Diane mobile)<br/>     <b>Email (Network Manager):</b> diane@westindies-assistance.com juliane@westindies-assistance.com<br/>     <b>Agreement Status:</b> waiting for them to sign     </div>`)[0];
+                popup_6fc249ead860d1a2d27343845cfdc316.setContent(html_b3232c1ad84b8940c79f9b0b735d9ab0);
+            
+        
+
+        circle_marker_4fe055e162c3710614afbbab0e194fd5.bindPopup(popup_6fc249ead860d1a2d27343845cfdc316)
+        ;
+
+        
+    
+    
+            var circle_marker_a894b2d6502a9ed8de7514822f6e1b6d = L.circleMarker(
+                [23.0, -102.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_129d6e235578daace9b656ad7c25ff1d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_90b7857589e1dae110a194558f861c11 = $(`<div id="html_90b7857589e1dae110a194558f861c11" style="width: 100.0%; height: 100.0%;">     <b>ASA</b><br/>     <b>Main Country:</b> Mexico<br/>     <b>Additional Countries:</b> Latam<br/>     <b>Ops Email:</b> help@medicalassistanceservices.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +52 333 627 0706<br/>     <b>Network Manager:</b> Gerardo Martinez<br/>     <b>Phone (Network Manager):</b> Toll Free: 1-866-98-4357-6 (US/Canada) Tel. Gratis: 01-800-777-4357 (Mexico)<br/>     <b>Email (Network Manager):</b> gerardo.martinez@medicalassistanceservices.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_129d6e235578daace9b656ad7c25ff1d.setContent(html_90b7857589e1dae110a194558f861c11);
+            
+        
+
+        circle_marker_a894b2d6502a9ed8de7514822f6e1b6d.bindPopup(popup_129d6e235578daace9b656ad7c25ff1d)
+        ;
+
+        
+    
+    
+            var circle_marker_c94a4bc64c5d925b6d6dd3e9a768fd77 = L.circleMarker(
+                [-10.0, -55.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_d39c8ba2550c4ad1b9c4db99608fc0eb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d2aeb5daa688161f6f69ef8628d5e30a = $(`<div id="html_d2aeb5daa688161f6f69ef8628d5e30a" style="width: 100.0%; height: 100.0%;">     <b>IKE Assistance</b><br/>     <b>Main Country:</b> Brazil<br/>     <b>Additional Countries:</b> Mexico/ Colombia/ Argentina<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Tel: +55 11 2101-2900<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_d39c8ba2550c4ad1b9c4db99608fc0eb.setContent(html_d2aeb5daa688161f6f69ef8628d5e30a);
+            
+        
+
+        circle_marker_c94a4bc64c5d925b6d6dd3e9a768fd77.bindPopup(popup_d39c8ba2550c4ad1b9c4db99608fc0eb)
+        ;
+
+        
+    
+    
+            var circle_marker_0031100abec97d18df975f634281a1f9 = L.circleMarker(
+                [-15.0, -60.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_b33c6ce29586a0e58c7e4b97126d7acc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bf4eb63a77bb65e621a31d00533e57ca = $(`<div id="html_bf4eb63a77bb65e621a31d00533e57ca" style="width: 100.0%; height: 100.0%;">     <b>Quantico</b><br/>     <b>Main Country:</b> LATAM<br/>     <b>Additional Countries:</b> all LATAM, including risk & sanctioned zones<br/>     <b>Ops Email:</b> coordination@quanticoservicios.com<br/>     <b>Ops 24/7 Phone:</b> +34 671 219 597 // +507 831 5098<br/>     <b>Network Manager:</b> Gustavo Montero<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> gustavo.montero@quanticoservicios.com<br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_b33c6ce29586a0e58c7e4b97126d7acc.setContent(html_bf4eb63a77bb65e621a31d00533e57ca);
+            
+        
+
+        circle_marker_0031100abec97d18df975f634281a1f9.bindPopup(popup_b33c6ce29586a0e58c7e4b97126d7acc)
+        ;
+
+        
+    
+    
+            var circle_marker_cbe0f3be6e94485d0a6231839b43d9eb = L.circleMarker(
+                [-10.0, -76.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_7de7e64446d5d62bd9cd292a3289f768 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2565deba982c8ea75786e672aac71060 = $(`<div id="html_2565deba982c8ea75786e672aac71060" style="width: 100.0%; height: 100.0%;">     <b>DOCTOR CUSCO</b><br/>     <b>Main Country:</b> Peru<br/>     <b>Additional Countries:</b> HOUSE VISITS ONLY Cities: Cusco, Arequipa,Iquitos y Lima<br/>     <b>Ops Email:</b> ops.doctorcusco@gmail.com  info@doctorcusco.com<br/>     <b>Ops 24/7 Phone:</b> +51 967 011 285 +51 985 324 578<br/>     <b>Network Manager:</b> David Quispe<br/>     <b>Phone (Network Manager):</b> +51 985 324 578<br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_7de7e64446d5d62bd9cd292a3289f768.setContent(html_2565deba982c8ea75786e672aac71060);
+            
+        
+
+        circle_marker_cbe0f3be6e94485d0a6231839b43d9eb.bindPopup(popup_7de7e64446d5d62bd9cd292a3289f768)
+        ;
+
+        
+    
+    
+            var circle_marker_8d9e9f4fc59912b9a0a762a158359a23 = L.circleMarker(
+                [-10.0, -55.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_f739de144aef5d87a52e0ceb251fb303 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3516088e6f19ea73a2782f7e66b5166 = $(`<div id="html_a3516088e6f19ea73a2782f7e66b5166" style="width: 100.0%; height: 100.0%;">     <b>ASSIST CARD Brasil</b><br/>     <b>Main Country:</b> Brazil<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Phone: 0800 170 6133 (toll-free BR); +55 11 3191-8700 / 3526-8700<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_f739de144aef5d87a52e0ceb251fb303.setContent(html_a3516088e6f19ea73a2782f7e66b5166);
+            
+        
+
+        circle_marker_8d9e9f4fc59912b9a0a762a158359a23.bindPopup(popup_f739de144aef5d87a52e0ceb251fb303)
+        ;
+
+        
+    
+    
+            var circle_marker_b8c29420587b66b5d3ccc4a5b01a01dc = L.circleMarker(
+                [-10.0, -55.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_5f007b16c7cf0bcecaef602e60a8ff33 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a3b07c565cdb76990b09f4ba047b1e24 = $(`<div id="html_a3b07c565cdb76990b09f4ba047b1e24" style="width: 100.0%; height: 100.0%;">     <b>Serges</b><br/>     <b>Main Country:</b> Brazil<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> +5541998005906<br/>     <b>Network Manager:</b> Giuliano Dalledone<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> giuliano.dalledone@serges.org<br/>     <b>Agreement Status:</b> our agreement sent, awaiting their signature     </div>`)[0];
+                popup_5f007b16c7cf0bcecaef602e60a8ff33.setContent(html_a3b07c565cdb76990b09f4ba047b1e24);
+            
+        
+
+        circle_marker_b8c29420587b66b5d3ccc4a5b01a01dc.bindPopup(popup_5f007b16c7cf0bcecaef602e60a8ff33)
+        ;
+
+        
+    
+    
+            var circle_marker_0c3bb76959174a36cbb6b4ba3244b568 = L.circleMarker(
+                [-15.0, -60.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_ccab0fa20d16ae77a0ec0a344daf75c6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_83486e2af1c0c96a640c02993c0a4457 = $(`<div id="html_83486e2af1c0c96a640c02993c0a4457" style="width: 100.0%; height: 100.0%;">     <b>ASISTUR</b><br/>     <b>Main Country:</b> LATAM<br/>     <b>Additional Countries:</b> <br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> Phone number: 1500 (from local phone) / (502) 2290‑2810 / WhatsApp +502‑5188‑1819<br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_ccab0fa20d16ae77a0ec0a344daf75c6.setContent(html_83486e2af1c0c96a640c02993c0a4457);
+            
+        
+
+        circle_marker_0c3bb76959174a36cbb6b4ba3244b568.bindPopup(popup_ccab0fa20d16ae77a0ec0a344daf75c6)
+        ;
+
+        
+    
+    
+            var circle_marker_ac363d21fb143177b4fedc6f707587e5 = L.circleMarker(
+                [-15.0, -60.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_cf950b9dc1740edf0e3ef29e3c076e63 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5cb1938c528ab9c78e4d0abef6a6b778 = $(`<div id="html_5cb1938c528ab9c78e4d0abef6a6b778" style="width: 100.0%; height: 100.0%;">     <b>ASA</b><br/>     <b>Main Country:</b> LATAM<br/>     <b>Additional Countries:</b> CENTRAL AMERICA: Belize, Costa Rica, Guatemala, Honduras, Mexico, Nicaragua, Panama, Salvador SOUTH AMERICA: Argentina, Bolivia, Brazil, Chile, Colombia, Ecuador, Guyana, Paraguay, Peru, Surinam, Uruguay,  CARIBBEAN: Aruba, Bahamas, Barbados, Bermuda, Bonaire, Cayman Islands, Cuba, Curacao, Dominica, Dominican Republic, Grenada, Haiti, Jamaica, Puerto Rico, Saint Kitts, Saint Lucia, Saint Vincent, Trinidad and Tobago, Turks and Caicos, Virgin Islands<br/>     <b>Ops Email:</b> help@medicalassistanceservices.com<br/>     <b>Ops 24/7 Phone:</b> Tel: 52-33-3627-0706<br/>     <b>Network Manager:</b> Andrea Noble Dr. Gerardo Martínez, MD; MHA Medical Director & CEO<br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> andrea.noble@medicalassistanceservices.com gerardo.martinez@medicalassistanceservices.com<br/>     <b>Agreement Status:</b> sent a more appropriate agreement. Waiting for them to sign     </div>`)[0];
+                popup_cf950b9dc1740edf0e3ef29e3c076e63.setContent(html_5cb1938c528ab9c78e4d0abef6a6b778);
+            
+        
+
+        circle_marker_ac363d21fb143177b4fedc6f707587e5.bindPopup(popup_cf950b9dc1740edf0e3ef29e3c076e63)
+        ;
+
+        
+    
+    
+            var circle_marker_2c6e318833a2e3212bc013062b163b91 = L.circleMarker(
+                [18.0, -77.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_95eb173dd2976fb4d66160f38a109868 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_22fac880efb29e4ce5300d5f107849df = $(`<div id="html_22fac880efb29e4ce5300d5f107849df" style="width: 100.0%; height: 100.0%;">     <b>Masa Assistance </b><br/>     <b>Main Country:</b> Caribean<br/>     <b>Additional Countries:</b> All Caribean<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> Owne Burrows<br/>     <b>Phone (Network Manager):</b> Tel: +1 242 393-5048 Cell: +1 242 812 4412 <br/>     <b>Email (Network Manager):</b> oburrows@masaassist.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_95eb173dd2976fb4d66160f38a109868.setContent(html_22fac880efb29e4ce5300d5f107849df);
+            
+        
+
+        circle_marker_2c6e318833a2e3212bc013062b163b91.bindPopup(popup_95eb173dd2976fb4d66160f38a109868)
+        ;
+
+        
+    
+    
+            var circle_marker_3b356f86600aad6044f383627516f74d = L.circleMarker(
+                [15.0, -75.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_024ed399ba10390ab2ed2a620aa608aa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_21149e33e80ed87ba1cde632c86e9aad = $(`<div id="html_21149e33e80ed87ba1cde632c86e9aad" style="width: 100.0%; height: 100.0%;">     <b>World Medical Care (WMC) </b><br/>     <b>Main Country:</b> LATAM / USA<br/>     <b>Additional Countries:</b> USA, Asia, Canada, Caribbean, Central America, Europe, Russia and South America.<br/>     <b>Ops Email:</b> coordinations@worldmedicalcare.com<br/>     <b>Ops 24/7 Phone:</b> Tel: +1 (305) 692-9009    Fax. (305) 501-4220<br/>     <b>Network Manager:</b> Camila C. Dos Santos Domingues (Front Office Supervisor)<br/>     <b>Phone (Network Manager):</b> Tel: +1 305 692 9009 <br/>     <b>Email (Network Manager):</b> cds@worldmedicalcare.com<br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_024ed399ba10390ab2ed2a620aa608aa.setContent(html_21149e33e80ed87ba1cde632c86e9aad);
+            
+        
+
+        circle_marker_3b356f86600aad6044f383627516f74d.bindPopup(popup_024ed399ba10390ab2ed2a620aa608aa)
+        ;
+
+        
+    
+    
+            var circle_marker_72eeabbc6afb74310080142693e72acc = L.circleMarker(
+                [-34.0, -64.0],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_9ac1f46478ce5a89b3c1a207127eea15 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d540cee9c69017400331209549b1d79c = $(`<div id="html_d540cee9c69017400331209549b1d79c" style="width: 100.0%; height: 100.0%;">     <b>OMINT</b><br/>     <b>Main Country:</b> ARGENTINA<br/>     <b>Additional Countries:</b> Argentina, Bolivia, Chile, Uruguay<br/>     <b>Ops Email:</b> <br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b>      </div>`)[0];
+                popup_9ac1f46478ce5a89b3c1a207127eea15.setContent(html_d540cee9c69017400331209549b1d79c);
+            
+        
+
+        circle_marker_72eeabbc6afb74310080142693e72acc.bindPopup(popup_9ac1f46478ce5a89b3c1a207127eea15)
+        ;
+
+        
+    
+    
+            var circle_marker_a615b79e0a62b949281684f9b8429a0d = L.circleMarker(
+                [-15.0, -60.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(map_18650501bcb718f67ac2e0aec1d1e2e3);
+        
+    
+        var popup_382db1f8a0fa437ec43fd3e7a533c42e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_80024df13e9112e7e33afde10494165e = $(`<div id="html_80024df13e9112e7e33afde10494165e" style="width: 100.0%; height: 100.0%;">     <b>MD ABROAD</b><br/>     <b>Main Country:</b> LATAM<br/>     <b>Additional Countries:</b> LATAM<br/>     <b>Ops Email:</b> operations@mdabroad.com<br/>     <b>Ops 24/7 Phone:</b> <br/>     <b>Network Manager:</b> <br/>     <b>Phone (Network Manager):</b> <br/>     <b>Email (Network Manager):</b> <br/>     <b>Agreement Status:</b> AGREEMENT SIGNED     </div>`)[0];
+                popup_382db1f8a0fa437ec43fd3e7a533c42e.setContent(html_80024df13e9112e7e33afde10494165e);
+            
+        
+
+        circle_marker_a615b79e0a62b949281684f9b8429a0d.bindPopup(popup_382db1f8a0fa437ec43fd3e7a533c42e)
+        ;
+
+        
+    
+</script>
+</html>
