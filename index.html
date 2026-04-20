@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global TPA Network Map</title>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha512-xwE/ZXOtf1Bks3hC4CZwK4f33xH8cbopFk9n1YyKa4zgRl22CENKqo3cPzlr8o6O60Q3rO6pKY6gK0Dse8g7qQ=="
+    crossorigin=""
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="sidebar">
+    <h2>TPA Provider Network</h2>
+    <p id="summaryText"></p>
+    <div class="filter-buttons">
+      <button id="filterAll" class="active">All</button>
+      <button id="filterSigned">Signed</button>
+      <button id="filterPending">Pending</button>
+    </div>
+    <div class="search-box">
+      <input type="search" id="searchInput" placeholder="Search provider..." />
+    </div>
+    <ul id="providerList" class="provider-list"></ul>
+  </div>
+  <div id="map"></div>
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha512-mQ8k9JYsbeHlXr7vX04xYCM7EUkQe0PuyDH/p/xZ4t9qvpxY8KM2G4F8cNDyLa8Zl40HfqtTopLxIF/eYGplDg=="
+    crossorigin=""
+  ></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
