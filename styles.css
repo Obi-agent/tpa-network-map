@@ -1,0 +1,101 @@
+/* Basic styling for the TPA map application */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar styling */
+#sidebar {
+  width: 320px;
+  max-width: 100%;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
+  padding: 1rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+#sidebar h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+#summaryText {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.filter-buttons {
+  margin-bottom: 0.5rem;
+}
+
+.filter-buttons button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+  border: 1px solid #007bff;
+  background-color: #fff;
+  color: #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.search-box {
+  margin-bottom: 0.5rem;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.provider-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.provider-list li {
+  padding: 0.4rem 0.3rem;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.provider-list li:hover {
+  background-color: #e9ecef;
+}
+
+.provider-list li.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Map container styling */
+#map {
+  flex: 1;
+  height: 100%;
+}
