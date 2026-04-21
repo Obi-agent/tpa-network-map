@@ -133,11 +133,16 @@
     return Promise.resolve([]);
   }
 
+  const worldBounds = L.latLngBounds([[-85, -180], [85, 180]]);
   const mapCenter = computeMapCenter(allProviders);
   const map = L.map('map', {
     center: mapCenter,
     zoom: 2,
+    minZoom: 2,
     scrollWheelZoom: true,
+    maxBounds: worldBounds,
+    maxBoundsViscosity: 1,
+    worldCopyJump: false,
   });
 
   const posLayer = L.tileLayer(
@@ -145,37 +150,49 @@
     {
       attribution: '&copy; <a href=\'https://carto.com/attributions\'>CARTO</a> contributors',
       maxZoom: 19,
+      noWrap: true,
+      bounds: worldBounds,
     }
   );
   const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors',
     maxZoom: 19,
+    noWrap: true,
+    bounds: worldBounds,
   });
-  const satelliteLayer = L.tileLayer(
+  const satelliteImageryLayer = L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     {
-      attribution: 'Tiles &copy; Esri',
+      attribution: 'Imagery &copy; Esri',
       maxZoom: 19,
+      noWrap: true,
+      bounds: worldBounds,
     }
   );
+  const satelliteLabelsLayer = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',
+    {
+      attribution: 'Labels &copy; Esri',
+      maxZoom: 19,
+      noWrap: true,
+      bounds: worldBounds,
+    }
+  );
+  const satelliteLayer = L.layerGroup([satelliteImageryLayer, satelliteLabelsLayer]);
 
-  posLayer.addTo(map);
+  satelliteLayer.addTo(map);
   L.control
     .layers({
-      'CartoDB Positron': posLayer,
+      'Satellite with labels': satelliteLayer,
+      'Light map': posLayer,
       OpenStreetMap: osmLayer,
-      Satellite: satelliteLayer,
     })
     .addTo(map);
 
   const markers = allProviders.map((provider) => {
-    const color = getColor(provider.agreement);
-    const marker = L.circleMarker([provider.lat, provider.lon], {
-      radius: provider.type === 'TPA' ? 6 : 5,
-      color,
-      fillColor: color,
-      weight: provider.type === 'TPA' ? 1 : 2,
-      fillOpacity: 0.82,
+    const marker = L.marker([provider.lat, provider.lon], {
+      icon: createProviderIcon(provider),
+      riseOnHover: true,
     });
     marker.bindPopup(buildPopup(provider));
     marker.on('click', () => highlightProvider(provider._index));
@@ -346,12 +363,26 @@
       li.appendChild(name);
       li.appendChild(meta);
       li.addEventListener('click', () => {
-        highlightProvider(provider._index);
-        markers[provider._index].openPopup();
-        map.setView([provider.lat, provider.lon], provider.lat === 0 && provider.lon === 0 ? 2 : 5);
+        focusProvider(provider._index);
       });
       listEl.appendChild(li);
     });
+  }
+
+  function focusProvider(index) {
+    const provider = allProviders[index];
+    if (!provider) return;
+    highlightProvider(index);
+    const target = [provider.lat, provider.lon];
+    const zoom = getFocusZoom(provider);
+    map.flyTo(target, zoom, { duration: 0.65 });
+    markers[index].openPopup();
+  }
+
+  function getFocusZoom(provider) {
+    if (provider.lat === 0 && provider.lon === 0) return 2;
+    if (hasValue(provider.city) || hasValue(provider.address)) return 8;
+    return 5;
   }
 
   function highlightProvider(index) {
@@ -369,6 +400,22 @@
       .filter(Boolean)
       .join('');
     return `<div class='popup-content'><strong>${escapeHTML(provider.name)}</strong>${rows}</div>`;
+  }
+
+  function createProviderIcon(provider) {
+    const statusClass = isSigned(provider) ? 'marker-signed' : 'marker-pending';
+    const categoryClass = categoryClassName(provider.type);
+    return L.divIcon({
+      className: 'provider-marker-shell',
+      html: `<span class='provider-marker ${statusClass} ${categoryClass}'><span></span></span>`,
+      iconSize: [30, 38],
+      iconAnchor: [15, 34],
+      popupAnchor: [0, -31],
+    });
+  }
+
+  function categoryClassName(category) {
+    return `marker-${String(category || 'provider').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   }
 
   function formatPopupRow(label, value) {
