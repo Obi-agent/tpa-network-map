@@ -3,8 +3,9 @@
 (async function () {
   const tpaProviders = typeof providers !== 'undefined' ? providers : [];
   const groundProviders = await getGroundProviders();
+  const airProviders = await getAirProviders();
 
-  const allProviders = [...tpaProviders, ...groundProviders]
+  const allProviders = [...tpaProviders, ...groundProviders, ...airProviders]
     .filter((provider) => Number.isFinite(Number(provider.lat)) && Number.isFinite(Number(provider.lon)))
     .map((provider, index) => ({
       ...provider,
@@ -49,6 +50,22 @@
       ['Notes', 'comments'],
       ['Agreement Status', 'agreement'],
     ],
+    'Air Ambulance': [
+      ['Type', 'type'],
+      ['Location', 'main_country'],
+      ['Country', 'country'],
+      ['City', 'city'],
+      ['Region', 'region'],
+      ['Certification', 'certification'],
+      ['Contact', 'network_manager'],
+      ['Website', 'website'],
+      ['Phone', 'ops_phone'],
+      ['Coordination Email', 'ops_email'],
+      ['Logistics Email', 'manager_email'],
+      ['Address', 'address'],
+      ['Notes', 'comments'],
+      ['Agreement Status', 'agreement'],
+    ],
   };
 
   const categoryOrder = [
@@ -75,6 +92,16 @@
     }
     if (typeof groundAmbulanceProviders !== 'undefined') {
       return Promise.resolve(groundAmbulanceProviders);
+    }
+    return Promise.resolve([]);
+  }
+
+  function getAirProviders() {
+    if (typeof airAmbulanceProvidersPromise !== 'undefined') {
+      return airAmbulanceProvidersPromise;
+    }
+    if (typeof airAmbulanceProviders !== 'undefined') {
+      return Promise.resolve(airAmbulanceProviders);
     }
     return Promise.resolve([]);
   }
@@ -216,11 +243,16 @@
       provider.type,
       provider.main_country,
       provider.region,
+      provider.country,
+      provider.city,
       provider.additional_countries,
       provider.covered_zones,
+      provider.certification,
       provider.network_manager,
       provider.ops_email,
       provider.manager_email,
+      provider.address,
+      provider.comments,
     ]
       .filter(Boolean)
       .join(' ')
