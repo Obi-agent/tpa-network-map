@@ -1,4 +1,3 @@
-/* Basic styling for the TPA map application */
 html,
 body {
   margin: 0;
@@ -12,9 +11,8 @@ body {
   overflow: hidden;
 }
 
-/* Sidebar styling */
 #sidebar {
-  width: 320px;
+  width: 360px;
   max-width: 100%;
   background-color: #f8f9fa;
   border-right: 1px solid #ddd;
@@ -26,24 +24,26 @@ body {
 #sidebar h2 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
 }
 
 #summaryText {
   margin: 0.5rem 0 1rem;
   font-size: 0.9rem;
+  line-height: 1.35;
   color: #555;
 }
 
 .filter-buttons {
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.65rem;
 }
 
 .filter-buttons button {
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.9rem;
+  padding: 0.35rem 0.6rem;
+  font-size: 0.88rem;
   border: 1px solid #007bff;
   background-color: #fff;
   color: #007bff;
@@ -57,13 +57,24 @@ body {
   color: #fff;
 }
 
+.category-buttons button {
+  border-color: #59636f;
+  color: #2f3944;
+}
+
+.category-buttons button.active,
+.category-buttons button:hover {
+  background-color: #2f3944;
+  color: #fff;
+}
+
 .search-box {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
 }
 
 #searchInput {
   width: 100%;
-  padding: 0.4rem;
+  padding: 0.45rem;
   font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -74,12 +85,13 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 60vh;
+  max-height: calc(100vh - 245px);
   overflow-y: auto;
 }
 
 .provider-list li {
-  padding: 0.4rem 0.3rem;
+  display: block;
+  padding: 0.45rem 0.3rem;
   border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
   font-size: 0.9rem;
@@ -94,8 +106,54 @@ body {
   color: #fff;
 }
 
-/* Map container styling */
+.provider-name {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.provider-meta {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: #667085;
+  overflow-wrap: anywhere;
+}
+
+.provider-list li.active .provider-meta {
+  color: #eaf2ff;
+}
+
+mark {
+  background: #ffec99;
+  color: inherit;
+  padding: 0 0.1rem;
+}
+
+.popup-content {
+  max-width: 360px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
 #map {
   flex: 1;
   height: 100%;
+}
+
+@media (max-width: 760px) {
+  body {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+    max-height: 46vh;
+    border-right: 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .provider-list {
+    max-height: 22vh;
+  }
 }
