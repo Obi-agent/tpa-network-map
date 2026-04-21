@@ -4,8 +4,9 @@
   const tpaProviders = typeof providers !== 'undefined' ? providers : [];
   const groundProviders = await getGroundProviders();
   const airProviders = await getAirProviders();
+  const medicalEscortProviders = await getMedicalEscortProviders();
 
-  const allProviders = [...tpaProviders, ...groundProviders, ...airProviders]
+  const allProviders = [...tpaProviders, ...groundProviders, ...airProviders, ...medicalEscortProviders]
     .filter((provider) => Number.isFinite(Number(provider.lat)) && Number.isFinite(Number(provider.lon)))
     .map((provider, index) => ({
       ...provider,
@@ -66,6 +67,22 @@
       ['Notes', 'comments'],
       ['Agreement Status', 'agreement'],
     ],
+    'Medical Escort': [
+      ['Type', 'type'],
+      ['Location', 'main_country'],
+      ['Country', 'country'],
+      ['City', 'city'],
+      ['Region', 'region'],
+      ['Covered Zones', 'covered_zones'],
+      ['Contact', 'network_manager'],
+      ['Website', 'website'],
+      ['Phone', 'ops_phone'],
+      ['Coordination Email', 'ops_email'],
+      ['Secondary Email', 'manager_email'],
+      ['Address', 'address'],
+      ['Notes', 'comments'],
+      ['Agreement Status', 'agreement'],
+    ],
   };
 
   const categoryOrder = [
@@ -102,6 +119,16 @@
     }
     if (typeof airAmbulanceProviders !== 'undefined') {
       return Promise.resolve(airAmbulanceProviders);
+    }
+    return Promise.resolve([]);
+  }
+
+  function getMedicalEscortProviders() {
+    if (typeof medicalEscortProvidersPromise !== 'undefined') {
+      return medicalEscortProvidersPromise;
+    }
+    if (typeof medicalEscortProviders !== 'undefined') {
+      return Promise.resolve(medicalEscortProviders);
     }
     return Promise.resolve([]);
   }
