@@ -139,6 +139,8 @@
     center: mapCenter,
     zoom: 2,
     minZoom: 2,
+    zoomSnap: 0.25,
+    zoomDelta: 0.5,
     scrollWheelZoom: true,
     maxBounds: worldBounds,
     maxBoundsViscosity: 1,
@@ -181,6 +183,9 @@
   const satelliteLayer = L.layerGroup([satelliteImageryLayer, satelliteLabelsLayer]);
 
   satelliteLayer.addTo(map);
+  constrainWorldView();
+  map.on('resize', constrainWorldView);
+
   L.control
     .layers({
       'Satellite with labels': satelliteLayer,
@@ -374,9 +379,16 @@
     if (!provider) return;
     highlightProvider(index);
     const target = [provider.lat, provider.lon];
-    const zoom = getFocusZoom(provider);
+    const zoom = Math.max(map.getMinZoom(), getFocusZoom(provider));
     map.flyTo(target, zoom, { duration: 0.65 });
     markers[index].openPopup();
+  }
+
+  function constrainWorldView() {
+    const minZoom = Math.max(2, map.getBoundsZoom(worldBounds, true));
+    map.setMinZoom(minZoom);
+    if (map.getZoom() < minZoom) map.setZoom(minZoom);
+    map.panInsideBounds(worldBounds, { animate: false });
   }
 
   function getFocusZoom(provider) {
