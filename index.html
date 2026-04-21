@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Global TPA Network Map</title>
+  <title>Global Provider Network Map</title>
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -13,19 +13,20 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="sidebar">
-    <h2>TPA Provider Network</h2>
+  <aside id="sidebar">
+    <h2>Provider Network</h2>
     <p id="summaryText"></p>
+    <div id="categoryFilters" class="filter-buttons category-buttons"></div>
     <div class="filter-buttons">
       <button id="filterAll" class="active">All</button>
       <button id="filterSigned">Signed</button>
       <button id="filterPending">Pending</button>
     </div>
     <div class="search-box">
-      <input type="search" id="searchInput" placeholder="Search provider..." />
+      <input type="search" id="searchInput" placeholder="Search provider or location..." />
     </div>
     <ul id="providerList" class="provider-list"></ul>
-  </div>
+  </aside>
   <div id="map"></div>
   <script
     src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -33,6 +34,7 @@
     crossorigin=""
   ></script>
   <script src="data.js"></script>
+  <script src="ground_ambulance.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
