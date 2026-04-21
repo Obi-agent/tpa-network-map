@@ -389,7 +389,7 @@
     document
       .querySelectorAll('#providerList li')
       .forEach((item) => item.classList.toggle('active', item.dataset.index === String(index)));
-    const target = document.querySelector(`#providerList li[data-index=${index}]`);
+    const target = document.querySelector(`#providerList li[data-index='${index}']`);
     if (target) target.scrollIntoView({ block: 'nearest' });
   }
 
