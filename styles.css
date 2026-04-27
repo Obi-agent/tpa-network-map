@@ -169,6 +169,59 @@ mark {
   overflow-wrap: anywhere;
 }
 
+.provider-review-actions {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.provider-review-actions button {
+  min-height: 30px;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #1f6f61;
+  border-radius: 4px;
+  background: #fff;
+  color: #15544a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.provider-review-actions button:hover,
+.provider-review-actions button:focus-visible {
+  background: #1f6f61;
+  color: #fff;
+}
+
+.provider-review-actions button.danger {
+  border-color: #b42318;
+  color: #b42318;
+}
+
+.provider-review-actions button.danger:hover,
+.provider-review-actions button.danger:focus-visible {
+  background: #b42318;
+  color: #fff;
+}
+
+.provider-change-summary {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  border: 1px solid #d5dbe3;
+  border-radius: 4px;
+  background: #f8f9fa;
+  color: #1f2933;
+}
+
+.provider-change-summary span {
+  font-weight: 700;
+}
+
+.provider-change-summary small {
+  color: #667085;
+}
+
 #map {
   flex: 1;
   height: 100%;
