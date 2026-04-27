@@ -160,25 +160,7 @@ function getApprovedProviders_() {
   const rows = readObjects_(PROVIDER_SHEET_NAME, PROVIDER_HEADERS);
   return rows
     .filter((row) => isApproved_(row.review_status) && isAddAction_(row.change_action))
-    .map((row) => compact_({
-      id: row.provider_id,
-      source: 'google-sheets-approved',
-      name: row.name,
-      type: row.type,
-      agreement: row.agreement,
-      main_country: row.main_country,
-      country: row.country || row.main_country,
-      city: row.city,
-      region: row.region,
-      lat: parseNumber_(row.lat),
-      lon: parseNumber_(row.lon),
-      address: row.address,
-      network_manager: row.network_manager,
-      ops_phone: row.ops_phone,
-      ops_email: row.ops_email,
-      website: row.website,
-      comments: row.comments,
-    }))
+    .map((row) => resolveProviderCoordinates_(buildApprovedProvider_(row, 'google-sheets-approved'), row))
     .filter((provider) => provider.name && isFinite(provider.lat) && isFinite(provider.lon));
 }
 
@@ -194,7 +176,8 @@ function getApprovedProviderChanges_() {
         lat: row.target_provider_lat,
         lon: row.target_provider_lon,
       });
-      const provider = compact_({
+      const action = String(row.change_action || '').trim().toLowerCase();
+      let provider = compact_({
         id: row.provider_id || target.id,
         source: 'google-sheets-approved-edit',
         name: row.name,
@@ -213,8 +196,11 @@ function getApprovedProviderChanges_() {
         website: row.website,
         comments: row.comments,
       });
+      if (action === 'edit') {
+        provider = resolveProviderCoordinates_(provider, row);
+      }
       return compact_({
-        change_action: String(row.change_action || '').trim().toLowerCase(),
+        change_action: action,
         target_provider: target,
         provider,
         approved_at: row.approved_at,
@@ -238,12 +224,13 @@ function readObjects_(sheetName, headers) {
   const sheet = getSheet_(sheetName, headers);
   const values = sheet.getDataRange().getValues();
   const actualHeaders = getSheetHeaders_(sheet, headers);
-  return values.slice(1).map((row) => {
+  return values.slice(1).map((row, rowIndex) => {
     const record = {};
     headers.forEach((header) => {
       const index = actualHeaders.indexOf(header);
       record[header] = index === -1 ? '' : row[index];
     });
+    record.__row_number = rowIndex + 2;
     return record;
   });
 }
@@ -331,6 +318,111 @@ function parseJson_(value) {
 function parseNumber_(value) {
   if (value === '' || value === null || value === undefined) return NaN;
   return Number(value);
+}
+
+function buildApprovedProvider_(row, source) {
+  return compact_({
+    id: row.provider_id,
+    source,
+    name: row.name,
+    type: row.type,
+    agreement: row.agreement,
+    main_country: row.main_country,
+    country: row.country || row.main_country,
+    city: row.city,
+    region: row.region,
+    lat: parseNumber_(row.lat),
+    lon: parseNumber_(row.lon),
+    address: row.address,
+    network_manager: row.network_manager,
+    ops_phone: row.ops_phone,
+    ops_email: row.ops_email,
+    website: row.website,
+    comments: row.comments,
+  });
+}
+
+function resolveProviderCoordinates_(provider, row) {
+  if (!provider || !provider.name) return provider;
+  const lat = parseNumber_(provider.lat);
+  const lon = parseNumber_(provider.lon);
+  if (hasUsableCoordinates_(lat, lon)) {
+    return provider;
+  }
+
+  const geocoded = geocodeProvider_(provider);
+  if (!geocoded) return provider;
+
+  writeResolvedCoordinates_(row, geocoded.lat, geocoded.lon);
+  return {
+    ...provider,
+    lat: geocoded.lat,
+    lon: geocoded.lon,
+  };
+}
+
+function hasUsableCoordinates_(lat, lon) {
+  return (
+    isFinite(lat) &&
+    isFinite(lon) &&
+    lat >= -90 &&
+    lat <= 90 &&
+    lon >= -180 &&
+    lon <= 180 &&
+    !(lat === 0 && lon === 0)
+  );
+}
+
+function geocodeProvider_(provider) {
+  const geocoder = Maps.newGeocoder();
+  const queries = buildGeocodeQueries_(provider);
+  for (let index = 0; index < queries.length; index += 1) {
+    try {
+      const response = geocoder.geocode(queries[index]);
+      const location = response &&
+        response.results &&
+        response.results[0] &&
+        response.results[0].geometry &&
+        response.results[0].geometry.location;
+      const lat = location && parseNumber_(location.lat);
+      const lon = location && parseNumber_(location.lng);
+      if (hasUsableCoordinates_(lat, lon)) {
+        return { lat, lon };
+      }
+    } catch (error) {
+      // Try the next broader query before giving up.
+    }
+  }
+  return null;
+}
+
+function buildGeocodeQueries_(provider) {
+  const address = String(provider.address || '').trim();
+  const city = String(provider.city || '').trim();
+  const country = String(provider.country || provider.main_country || '').trim();
+  const mainCountry = String(provider.main_country || '').trim();
+  const queries = [
+    [address, city, country],
+    [address, country],
+    [city, country],
+    [country],
+    [address, city, mainCountry],
+    [city, mainCountry],
+    [mainCountry],
+  ]
+    .map((parts) => parts.filter(Boolean).join(', '))
+    .filter(Boolean);
+  return Array.from(new Set(queries));
+}
+
+function writeResolvedCoordinates_(row, lat, lon) {
+  if (!row || !row.__row_number) return;
+  const sheet = getSheet_(PROVIDER_SHEET_NAME, PROVIDER_HEADERS);
+  const headers = getSheetHeaders_(sheet, PROVIDER_HEADERS);
+  const latColumn = headers.indexOf('lat') + 1;
+  const lonColumn = headers.indexOf('lon') + 1;
+  if (latColumn > 0) sheet.getRange(row.__row_number, latColumn).setValue(lat);
+  if (lonColumn > 0) sheet.getRange(row.__row_number, lonColumn).setValue(lon);
 }
 
 function valueOrBlank_(value) {
