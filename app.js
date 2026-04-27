@@ -1,24 +1,27 @@
 // JavaScript logic for the provider network map with category and status filters.
 
 (async function () {
+  const MANUAL_DATA_KEY = 'providerNetworkManualDataV1';
+  const manualData = loadManualData();
   const tpaProviders = typeof providers !== 'undefined' ? providers : [];
   const groundProviders = await getGroundProviders();
   const airProviders = await getAirProviders();
   const medicalEscortProviders = await getMedicalEscortProviders();
 
-  const allProviders = [...tpaProviders, ...groundProviders, ...airProviders, ...medicalEscortProviders]
-    .filter((provider) => Number.isFinite(Number(provider.lat)) && Number.isFinite(Number(provider.lon)))
-    .map((provider, index) => ({
-      ...provider,
-      lat: Number(provider.lat),
-      lon: Number(provider.lon),
-      type: provider.type || 'TPA',
-      _index: index,
-    }));
+  const loadedProviders = [
+    ...tpaProviders,
+    ...groundProviders,
+    ...airProviders,
+    ...medicalEscortProviders,
+    ...manualData.providers,
+  ];
+  let allProviders = normalizeProviders(loadedProviders);
 
   const fieldDefinitions = {
     TPA: [
       ['Type', 'type'],
+      ['Headquarters', 'address'],
+      ['City', 'city'],
       ['Main Country', 'main_country'],
       ['Additional Countries', 'additional_countries'],
       ['Ops Email', 'ops_email'],
@@ -83,6 +86,34 @@
       ['Notes', 'comments'],
       ['Agreement Status', 'agreement'],
     ],
+    'Hospital/Clinic': [
+      ['Type', 'type'],
+      ['Location', 'main_country'],
+      ['Country', 'country'],
+      ['City', 'city'],
+      ['Region', 'region'],
+      ['Contact', 'network_manager'],
+      ['Website', 'website'],
+      ['Phone', 'ops_phone'],
+      ['Email', 'ops_email'],
+      ['Address', 'address'],
+      ['Notes', 'comments'],
+      ['Agreement Status', 'agreement'],
+    ],
+    Generic: [
+      ['Type', 'type'],
+      ['Location', 'main_country'],
+      ['Country', 'country'],
+      ['City', 'city'],
+      ['Region', 'region'],
+      ['Contact', 'network_manager'],
+      ['Website', 'website'],
+      ['Phone', 'ops_phone'],
+      ['Email', 'ops_email'],
+      ['Address', 'address'],
+      ['Notes', 'comments'],
+      ['Agreement Status', 'agreement'],
+    ],
   };
 
   const categoryOrder = [
@@ -93,15 +124,11 @@
     'Hospital/Clinic',
   ];
 
-  const categories = [
-    ...categoryOrder.filter((category) => allProviders.some((p) => p.type === category)),
-    ...Array.from(new Set(allProviders.map((p) => p.type))).filter(
-      (category) => !categoryOrder.includes(category)
-    ),
-  ];
+  let categories = buildCategories();
 
   let currentStatusFilter = 'all';
   let currentCategoryFilter = 'all';
+  let modalSubmitHandler = null;
 
   function getGroundProviders() {
     if (typeof groundAmbulanceProvidersPromise !== 'undefined') {
@@ -194,7 +221,9 @@
     })
     .addTo(map);
 
-  const markers = allProviders.map((provider) => {
+  const markers = allProviders.map(createMarker);
+
+  function createMarker(provider) {
     const marker = L.marker([provider.lat, provider.lon], {
       icon: createProviderIcon(provider),
       riseOnHover: true,
@@ -203,12 +232,41 @@
     marker.on('click', () => highlightProvider(provider._index));
     marker.addTo(map);
     return marker;
-  });
+  }
 
   initializeCategoryFilters();
   initializeStatusFilters();
+  initializeManualControls();
   document.getElementById('searchInput').addEventListener('input', applyFilters);
   applyFilters();
+
+  function normalizeProviders(providerList) {
+    return providerList
+      .filter((provider) => Number.isFinite(Number(provider.lat)) && Number.isFinite(Number(provider.lon)))
+      .map((provider, index) => normalizeProvider(provider, index));
+  }
+
+  function normalizeProvider(provider, index) {
+    return {
+      ...provider,
+      lat: Number(provider.lat),
+      lon: Number(provider.lon),
+      type: cleanText(provider.type) || 'TPA',
+      _index: index,
+    };
+  }
+
+  function buildCategories() {
+    const categorySet = new Set([
+      ...categoryOrder,
+      ...manualData.categories,
+      ...allProviders.map((provider) => provider.type).filter(Boolean),
+    ]);
+    return [
+      ...categoryOrder.filter((category) => categorySet.has(category)),
+      ...Array.from(categorySet).filter((category) => !categoryOrder.includes(category)).sort(),
+    ];
+  }
 
   function computeMapCenter(providerList) {
     let sumLat = 0;
@@ -262,6 +320,230 @@
         applyFilters();
       });
     });
+  }
+
+  function initializeManualControls() {
+    const addCategoryButton = document.getElementById('addCategoryButton');
+    const addProviderButton = document.getElementById('addProviderButton');
+    const modal = document.getElementById('manualModal');
+    const form = document.getElementById('manualForm');
+    const cancelButton = document.getElementById('modalCancel');
+    const closeButton = document.querySelector('.modal-close');
+
+    if (!addCategoryButton || !addProviderButton || !modal || !form) return;
+
+    addCategoryButton.addEventListener('click', openCategoryModal);
+    addProviderButton.addEventListener('click', openProviderModal);
+    cancelButton.addEventListener('click', closeModal);
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!modalSubmitHandler) return;
+      try {
+        const formData = Object.fromEntries(new FormData(form).entries());
+        modalSubmitHandler(formData);
+        closeModal();
+      } catch (error) {
+        document.getElementById('modalError').textContent = error.message;
+      }
+    });
+  }
+
+  function openCategoryModal() {
+    openModal({
+      title: 'Add category',
+      submitLabel: 'Save category',
+      fields: `
+        <label class="form-field form-field-full">
+          <span>Category name</span>
+          <input name="category" type="text" required autocomplete="off" />
+        </label>
+      `,
+      onSubmit(data) {
+        const category = cleanText(data.category);
+        if (!category) throw new Error('Category name is required.');
+        if (!categories.includes(category)) {
+          manualData.categories.push(category);
+          manualData.categories = uniqueCleanValues(manualData.categories);
+          saveManualData();
+          categories = buildCategories();
+        }
+        currentCategoryFilter = category;
+        initializeCategoryFilters();
+        applyFilters();
+      },
+    });
+  }
+
+  function openProviderModal() {
+    const defaultCategory =
+      currentCategoryFilter !== 'all' && categories.includes(currentCategoryFilter)
+        ? currentCategoryFilter
+        : 'Hospital/Clinic';
+    const categoryOptions = categories
+      .map(
+        (category) =>
+          `<option value="${escapeAttribute(category)}"${
+            category === defaultCategory ? ' selected' : ''
+          }>${escapeHTML(category)}</option>`
+      )
+      .join('');
+
+    openModal({
+      title: 'Add provider',
+      submitLabel: 'Save provider',
+      fields: `
+        <label class="form-field">
+          <span>Category</span>
+          <select name="type" required>${categoryOptions}</select>
+        </label>
+        <label class="form-field">
+          <span>Agreement status</span>
+          <select name="agreement">
+            <option value="Agreement pending">Agreement pending</option>
+            <option value="Agreement signed">Agreement signed</option>
+          </select>
+        </label>
+        <label class="form-field form-field-full">
+          <span>Provider name</span>
+          <input name="name" type="text" required autocomplete="organization" />
+        </label>
+        <label class="form-field">
+          <span>Country or location</span>
+          <input name="main_country" type="text" autocomplete="country-name" />
+        </label>
+        <label class="form-field">
+          <span>City</span>
+          <input name="city" type="text" autocomplete="address-level2" />
+        </label>
+        <label class="form-field">
+          <span>Region</span>
+          <input name="region" type="text" />
+        </label>
+        <label class="form-field">
+          <span>Latitude</span>
+          <input name="lat" type="number" step="any" min="-90" max="90" required />
+        </label>
+        <label class="form-field">
+          <span>Longitude</span>
+          <input name="lon" type="number" step="any" min="-180" max="180" required />
+        </label>
+        <label class="form-field form-field-full">
+          <span>Address</span>
+          <input name="address" type="text" autocomplete="street-address" />
+        </label>
+        <label class="form-field">
+          <span>Contact</span>
+          <input name="network_manager" type="text" autocomplete="name" />
+        </label>
+        <label class="form-field">
+          <span>Phone</span>
+          <input name="ops_phone" type="tel" autocomplete="tel" />
+        </label>
+        <label class="form-field">
+          <span>Email</span>
+          <input name="ops_email" type="email" autocomplete="email" />
+        </label>
+        <label class="form-field">
+          <span>Website</span>
+          <input name="website" type="url" autocomplete="url" />
+        </label>
+        <label class="form-field form-field-full">
+          <span>Notes</span>
+          <textarea name="comments" rows="3"></textarea>
+        </label>
+      `,
+      onSubmit(data) {
+        const provider = buildManualProvider(data);
+        manualData.providers.push(provider);
+        saveManualData();
+        addProviderToMap(provider);
+      },
+    });
+  }
+
+  function openModal({ title, submitLabel, fields, onSubmit }) {
+    const modal = document.getElementById('manualModal');
+    const titleEl = document.getElementById('modalTitle');
+    const fieldsEl = document.getElementById('modalFields');
+    const errorEl = document.getElementById('modalError');
+    const submitButton = document.getElementById('modalSubmit');
+    const form = document.getElementById('manualForm');
+
+    titleEl.textContent = title;
+    fieldsEl.innerHTML = fields;
+    errorEl.textContent = '';
+    submitButton.textContent = submitLabel;
+    modalSubmitHandler = onSubmit;
+    form.reset();
+    modal.hidden = false;
+
+    const firstField = fieldsEl.querySelector('input, select, textarea');
+    if (firstField) firstField.focus();
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('manualModal');
+    const form = document.getElementById('manualForm');
+    if (form) form.reset();
+    if (modal) modal.hidden = true;
+    modalSubmitHandler = null;
+  }
+
+  function buildManualProvider(data) {
+    const name = cleanText(data.name);
+    const type = cleanText(data.type);
+    const lat = Number(data.lat);
+    const lon = Number(data.lon);
+
+    if (!name) throw new Error('Provider name is required.');
+    if (!type) throw new Error('Category is required.');
+    if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
+      throw new Error('Latitude must be between -90 and 90.');
+    }
+    if (!Number.isFinite(lon) || lon < -180 || lon > 180) {
+      throw new Error('Longitude must be between -180 and 180.');
+    }
+
+    const mainCountry = cleanText(data.main_country);
+    return compactObject({
+      id: `manual-${Date.now()}`,
+      source: 'manual',
+      name,
+      type,
+      agreement: cleanText(data.agreement) || 'Agreement pending',
+      main_country: mainCountry,
+      country: mainCountry,
+      city: cleanText(data.city),
+      region: cleanText(data.region),
+      lat,
+      lon,
+      address: cleanText(data.address),
+      network_manager: cleanText(data.network_manager),
+      ops_phone: cleanText(data.ops_phone),
+      ops_email: cleanText(data.ops_email),
+      website: cleanText(data.website),
+      comments: cleanText(data.comments),
+    });
+  }
+
+  function addProviderToMap(provider) {
+    const normalized = normalizeProvider(provider, allProviders.length);
+    allProviders.push(normalized);
+    markers.push(createMarker(normalized));
+    if (!categories.includes(normalized.type)) {
+      manualData.categories = uniqueCleanValues([...manualData.categories, normalized.type]);
+      saveManualData();
+      categories = buildCategories();
+      initializeCategoryFilters();
+    }
+    currentCategoryFilter = normalized.type;
+    initializeCategoryFilters();
+    applyFilters();
+    focusProvider(normalized._index);
   }
 
   function getColor(status) {
@@ -406,7 +688,7 @@
   }
 
   function buildPopup(provider) {
-    const definitions = fieldDefinitions[provider.type] || fieldDefinitions.TPA;
+    const definitions = fieldDefinitions[provider.type] || fieldDefinitions.Generic;
     const rows = definitions
       .map(([label, key]) => formatPopupRow(label, provider[key]))
       .filter(Boolean)
@@ -441,8 +723,66 @@
     return text !== '' && !['nan', 'none', 'n/a', 'na'].includes(text.toLowerCase());
   }
 
+  function cleanText(value) {
+    return String(value || '').trim();
+  }
+
+  function compactObject(record) {
+    return Object.fromEntries(
+      Object.entries(record).filter(([, value]) => value !== undefined && value !== null && value !== '')
+    );
+  }
+
+  function uniqueCleanValues(values) {
+    return Array.from(new Set(values.map(cleanText).filter(Boolean)));
+  }
+
+  function loadManualData() {
+    const empty = { categories: [], providers: [] };
+    const storage = getStorage();
+    if (!storage) return empty;
+
+    try {
+      const raw = storage.getItem(MANUAL_DATA_KEY);
+      if (!raw) return empty;
+      const parsed = JSON.parse(raw);
+      return {
+        categories: uniqueCleanValues(Array.isArray(parsed.categories) ? parsed.categories : []),
+        providers: Array.isArray(parsed.providers) ? parsed.providers : [],
+      };
+    } catch (error) {
+      return empty;
+    }
+  }
+
+  function saveManualData() {
+    const storage = getStorage();
+    if (!storage) return;
+    storage.setItem(
+      MANUAL_DATA_KEY,
+      JSON.stringify({
+        categories: uniqueCleanValues(manualData.categories),
+        providers: manualData.providers,
+      })
+    );
+  }
+
+  function getStorage() {
+    try {
+      if (typeof window !== 'undefined' && window.localStorage) return window.localStorage;
+      if (typeof localStorage !== 'undefined') return localStorage;
+    } catch (error) {
+      return null;
+    }
+    return null;
+  }
+
   function formatValue(value) {
     return escapeHTML(String(value)).replace(/\n/g, '<br/>');
+  }
+
+  function escapeAttribute(value) {
+    return escapeHTML(value).replace(/`/g, '&#96;');
   }
 
   function escapeHTML(value) {
