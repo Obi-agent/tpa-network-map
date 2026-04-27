@@ -90,6 +90,7 @@
       (event) => {
         if (!hasEndpoint() || event.target.id !== 'manualForm') return;
         event.preventDefault();
+        event.stopPropagation();
         event.stopImmediatePropagation();
 
         const form = event.target;
@@ -121,6 +122,7 @@
           submitted_at: new Date().toISOString(),
         });
         closeModal(form);
+        reloadWithoutLocalDrafts();
         return;
       }
 
@@ -132,6 +134,7 @@
           submitted_at: new Date().toISOString(),
         });
         closeModal(form);
+        reloadWithoutLocalDrafts();
       }
     } catch (error) {
       setModalError(error.message || 'Could not submit this request.');
@@ -246,6 +249,11 @@
     } catch (error) {
       console.warn('Could not clear local manual provider drafts.', error);
     }
+  }
+
+  function reloadWithoutLocalDrafts() {
+    clearLocalManualDrafts();
+    window.setTimeout(() => window.location.reload(), 50);
   }
 
   function cleanText(value) {
