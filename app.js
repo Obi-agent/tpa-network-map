@@ -265,22 +265,8 @@
   applyFilters();
 
   function normalizeProviders(providerList) {
-    const seen = new Set();
     return providerList
       .filter((provider) => Number.isFinite(Number(provider.lat)) && Number.isFinite(Number(provider.lon)))
-      .filter((provider) => {
-        const key = provider.id
-          ? `id:${provider.id}`
-          : [
-              provider.name,
-              provider.type,
-              Number(provider.lat).toFixed(6),
-              Number(provider.lon).toFixed(6),
-            ].join('|');
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      })
       .map((provider, index) => normalizeProvider(provider, index));
   }
 
