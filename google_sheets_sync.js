@@ -2,12 +2,14 @@
   if (typeof window === 'undefined') return;
 
   const appScriptPath = 'app.js';
+  const manualDataKey = 'providerNetworkManualDataV1';
   const config = {
     enabled: false,
     appsScriptUrl: '',
     ...(window.providerSheetsConfig ? window.providerSheetsConfig : {}),
   };
 
+  if (hasEndpoint()) clearLocalManualDrafts();
   initializeSubmissionHandoff();
   window.providerSheetsDataPromise = hasEndpoint()
     ? loadApprovedData().then((data) => {
@@ -58,11 +60,10 @@
     if (!approvedCategories.length) return;
 
     try {
-      const key = 'providerNetworkManualDataV1';
-      const stored = JSON.parse(window.localStorage.getItem(key) || '{"categories":[],"providers":[]}');
+      const stored = JSON.parse(window.localStorage.getItem(manualDataKey) || '{"categories":[],"providers":[]}');
       const categories = new Set([...(stored.categories || []), ...approvedCategories]);
       window.localStorage.setItem(
-        key,
+        manualDataKey,
         JSON.stringify({
           categories: Array.from(categories).filter(Boolean),
           providers: Array.isArray(stored.providers) ? stored.providers : [],
@@ -87,34 +88,59 @@
     document.addEventListener(
       'submit',
       (event) => {
-        if (event.target.id !== 'manualForm') return;
+        if (!hasEndpoint() || event.target.id !== 'manualForm') return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
         const form = event.target;
         const title = document.getElementById('modalTitle')?.textContent || '';
-        const data = Object.fromEntries(new FormData(form).entries());
-
-        if (title === 'Add category') {
-          const category = cleanText(data.category);
-          if (!category) return;
-          window.submitProviderNetworkSubmission({
-            submission_type: 'category',
-            category,
-            submitted_at: new Date().toISOString(),
-          });
-          return;
-        }
-
-        if (title === 'Add provider') {
-          const provider = buildSubmissionProvider(data);
-          if (!provider) return;
-          window.submitProviderNetworkSubmission({
-            submission_type: 'provider',
-            provider,
-            submitted_at: new Date().toISOString(),
-          });
-        }
+        handleReviewSubmission(form, title);
       },
       true
     );
+  }
+
+  async function handleReviewSubmission(form, title) {
+    const data = Object.fromEntries(new FormData(form).entries());
+    const submitButton = document.getElementById('modalSubmit');
+    const originalLabel = submitButton ? submitButton.textContent : '';
+
+    setModalError('');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting...';
+    }
+
+    try {
+      if (title === 'Add category') {
+        const category = cleanText(data.category);
+        if (!category) throw new Error('Category name is required.');
+        await window.submitProviderNetworkSubmission({
+          submission_type: 'category',
+          category,
+          submitted_at: new Date().toISOString(),
+        });
+        closeModal(form);
+        return;
+      }
+
+      if (title === 'Add provider') {
+        const provider = buildSubmissionProvider(data);
+        await window.submitProviderNetworkSubmission({
+          submission_type: 'provider',
+          provider,
+          submitted_at: new Date().toISOString(),
+        });
+        closeModal(form);
+      }
+    } catch (error) {
+      setModalError(error.message || 'Could not submit this request.');
+    } finally {
+      if (!document.getElementById('manualModal')?.hidden && submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalLabel;
+      }
+    }
   }
 
   function buildSubmissionProvider(data) {
@@ -123,8 +149,14 @@
     const lat = Number(data.lat);
     const lon = Number(data.lon);
 
-    if (!name || !type || !Number.isFinite(lat) || !Number.isFinite(lon)) return null;
-    if (lat < -90 || lat > 90 || lon < -180 || lon > 180) return null;
+    if (!name) throw new Error('Provider name is required.');
+    if (!type) throw new Error('Category is required.');
+    if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
+      throw new Error('Latitude must be between -90 and 90.');
+    }
+    if (!Number.isFinite(lon) || lon < -180 || lon > 180) {
+      throw new Error('Longitude must be between -180 and 180.');
+    }
 
     const mainCountry = cleanText(data.main_country);
     return compactObject({
@@ -195,6 +227,25 @@
   function setSubmitLabel(label) {
     const submitButton = document.getElementById('modalSubmit');
     if (submitButton) submitButton.textContent = label;
+  }
+
+  function setModalError(message) {
+    const error = document.getElementById('modalError');
+    if (error) error.textContent = message;
+  }
+
+  function closeModal(form) {
+    if (form) form.reset();
+    const modal = document.getElementById('manualModal');
+    if (modal) modal.hidden = true;
+  }
+
+  function clearLocalManualDrafts() {
+    try {
+      window.localStorage.setItem(manualDataKey, JSON.stringify({ categories: [], providers: [] }));
+    } catch (error) {
+      console.warn('Could not clear local manual provider drafts.', error);
+    }
   }
 
   function cleanText(value) {
