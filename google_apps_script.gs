@@ -9,6 +9,7 @@ const PROVIDER_HEADERS = [
   'review_status',
   'submitted_at',
   'approved_at',
+  'change_action',
   'provider_id',
   'name',
   'type',
@@ -26,6 +27,13 @@ const PROVIDER_HEADERS = [
   'website',
   'comments',
   'source',
+  'target_provider_id',
+  'target_provider_name',
+  'target_provider_type',
+  'target_provider_lat',
+  'target_provider_lon',
+  'target_provider_json',
+  'request_notes',
 ];
 
 const CATEGORY_HEADERS = [
@@ -44,6 +52,7 @@ function doGet(e) {
     : {
         ok: true,
         providers: getApprovedProviders_(),
+        changes: getApprovedProviderChanges_(),
         categories: getApprovedCategories_(),
       };
 
@@ -65,36 +74,92 @@ function doPost(e) {
     return respond_({ ok: true, type: 'provider' });
   }
 
+  if (submission.submission_type === 'provider_change') {
+    appendProviderChangeSubmission_(submission);
+    return respond_({ ok: true, type: 'provider_change' });
+  }
+
   return respond_({ ok: false, error: 'Unknown submission type' });
 }
 
 function appendProviderSubmission_(submission) {
   const provider = submission.provider || {};
   const sheet = getSheet_(PROVIDER_SHEET_NAME, PROVIDER_HEADERS);
-  sheet.appendRow(PROVIDER_HEADERS.map((header) => {
-    if (header === 'review_status') return 'Pending';
-    if (header === 'submitted_at') return submission.submitted_at || new Date().toISOString();
-    if (header === 'approved_at') return '';
-    if (header === 'provider_id') return provider.id || `manual-${Date.now()}`;
-    return provider[header] || '';
-  }));
+  appendRow_(sheet, {
+    review_status: 'Pending',
+    submitted_at: submission.submitted_at || new Date().toISOString(),
+    approved_at: '',
+    change_action: 'Add',
+    provider_id: provider.id || `manual-${Date.now()}`,
+    name: provider.name || '',
+    type: provider.type || '',
+    agreement: provider.agreement || '',
+    main_country: provider.main_country || '',
+    country: provider.country || '',
+    city: provider.city || '',
+    region: provider.region || '',
+    lat: valueOrBlank_(provider.lat),
+    lon: valueOrBlank_(provider.lon),
+    address: provider.address || '',
+    network_manager: provider.network_manager || '',
+    ops_phone: provider.ops_phone || '',
+    ops_email: provider.ops_email || '',
+    website: provider.website || '',
+    comments: provider.comments || '',
+    source: provider.source || '',
+  }, PROVIDER_HEADERS);
+}
+
+function appendProviderChangeSubmission_(submission) {
+  const provider = submission.provider || {};
+  const target = submission.target_provider || {};
+  const sheet = getSheet_(PROVIDER_SHEET_NAME, PROVIDER_HEADERS);
+  appendRow_(sheet, {
+    review_status: 'Pending',
+    submitted_at: submission.submitted_at || new Date().toISOString(),
+    approved_at: '',
+    change_action: submission.change_action || '',
+    provider_id: provider.id || target.id || '',
+    name: provider.name || '',
+    type: provider.type || '',
+    agreement: provider.agreement || '',
+    main_country: provider.main_country || '',
+    country: provider.country || '',
+    city: provider.city || '',
+    region: provider.region || '',
+    lat: valueOrBlank_(provider.lat),
+    lon: valueOrBlank_(provider.lon),
+    address: provider.address || '',
+    network_manager: provider.network_manager || '',
+    ops_phone: provider.ops_phone || '',
+    ops_email: provider.ops_email || '',
+    website: provider.website || '',
+    comments: provider.comments || '',
+    source: provider.source || '',
+    target_provider_id: target.id || '',
+    target_provider_name: target.name || '',
+    target_provider_type: target.type || '',
+    target_provider_lat: valueOrBlank_(target.lat),
+    target_provider_lon: valueOrBlank_(target.lon),
+    target_provider_json: JSON.stringify(target),
+    request_notes: submission.request_notes || '',
+  }, PROVIDER_HEADERS);
 }
 
 function appendCategorySubmission_(submission) {
   const sheet = getSheet_(CATEGORY_SHEET_NAME, CATEGORY_HEADERS);
-  sheet.appendRow(CATEGORY_HEADERS.map((header) => {
-    if (header === 'review_status') return 'Pending';
-    if (header === 'submitted_at') return submission.submitted_at || new Date().toISOString();
-    if (header === 'approved_at') return '';
-    if (header === 'category') return submission.category || '';
-    return '';
-  }));
+  appendRow_(sheet, {
+    review_status: 'Pending',
+    submitted_at: submission.submitted_at || new Date().toISOString(),
+    approved_at: '',
+    category: submission.category || '',
+  }, CATEGORY_HEADERS);
 }
 
 function getApprovedProviders_() {
   const rows = readObjects_(PROVIDER_SHEET_NAME, PROVIDER_HEADERS);
   return rows
-    .filter((row) => isApproved_(row.review_status))
+    .filter((row) => isApproved_(row.review_status) && isAddAction_(row.change_action))
     .map((row) => compact_({
       id: row.provider_id,
       source: 'google-sheets-approved',
@@ -105,8 +170,8 @@ function getApprovedProviders_() {
       country: row.country || row.main_country,
       city: row.city,
       region: row.region,
-      lat: Number(row.lat),
-      lon: Number(row.lon),
+      lat: parseNumber_(row.lat),
+      lon: parseNumber_(row.lon),
       address: row.address,
       network_manager: row.network_manager,
       ops_phone: row.ops_phone,
@@ -115,6 +180,48 @@ function getApprovedProviders_() {
       comments: row.comments,
     }))
     .filter((provider) => provider.name && isFinite(provider.lat) && isFinite(provider.lon));
+}
+
+function getApprovedProviderChanges_() {
+  const rows = readObjects_(PROVIDER_SHEET_NAME, PROVIDER_HEADERS);
+  return rows
+    .filter((row) => isApproved_(row.review_status) && isChangeAction_(row.change_action))
+    .map((row) => {
+      const target = parseJson_(row.target_provider_json) || compact_({
+        id: row.target_provider_id,
+        name: row.target_provider_name,
+        type: row.target_provider_type,
+        lat: row.target_provider_lat,
+        lon: row.target_provider_lon,
+      });
+      const provider = compact_({
+        id: row.provider_id || target.id,
+        source: 'google-sheets-approved-edit',
+        name: row.name,
+        type: row.type,
+        agreement: row.agreement,
+        main_country: row.main_country,
+        country: row.country || row.main_country,
+        city: row.city,
+        region: row.region,
+        lat: parseNumber_(row.lat),
+        lon: parseNumber_(row.lon),
+        address: row.address,
+        network_manager: row.network_manager,
+        ops_phone: row.ops_phone,
+        ops_email: row.ops_email,
+        website: row.website,
+        comments: row.comments,
+      });
+      return compact_({
+        change_action: String(row.change_action || '').trim().toLowerCase(),
+        target_provider: target,
+        provider,
+        approved_at: row.approved_at,
+        request_notes: row.request_notes,
+      });
+    })
+    .filter((change) => change.target_provider && change.target_provider.name);
 }
 
 function getApprovedCategories_() {
@@ -130,10 +237,12 @@ function getApprovedCategories_() {
 function readObjects_(sheetName, headers) {
   const sheet = getSheet_(sheetName, headers);
   const values = sheet.getDataRange().getValues();
+  const actualHeaders = getSheetHeaders_(sheet, headers);
   return values.slice(1).map((row) => {
     const record = {};
-    headers.forEach((header, index) => {
-      record[header] = row[index];
+    headers.forEach((header) => {
+      const index = actualHeaders.indexOf(header);
+      record[header] = index === -1 ? '' : row[index];
     });
     return record;
   });
@@ -147,14 +256,36 @@ function ensureWorkbook_() {
 function getSheet_(name, headers) {
   const spreadsheet = getSpreadsheet_();
   const sheet = spreadsheet.getSheetByName(name) || spreadsheet.insertSheet(name);
-  const existingHeaders = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
+  const width = Math.max(sheet.getLastColumn(), headers.length);
+  const existingHeaders = sheet.getRange(1, 1, 1, width).getValues()[0];
   const hasHeaders = existingHeaders.some((value) => String(value || '').trim() !== '');
   if (!hasHeaders) {
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
+  } else {
+    const normalized = existingHeaders.map((value) => String(value || '').trim());
+    const missing = headers.filter((header) => !normalized.includes(header));
+    if (missing.length) {
+      const startColumn = normalized.filter(Boolean).length + 1;
+      sheet.getRange(1, startColumn, 1, missing.length).setValues([missing]);
+      sheet.getRange(1, startColumn, 1, missing.length).setFontWeight('bold');
+    }
   }
   return sheet;
+}
+
+function getSheetHeaders_(sheet, fallbackHeaders) {
+  const width = Math.max(sheet.getLastColumn(), fallbackHeaders.length);
+  return sheet
+    .getRange(1, 1, 1, width)
+    .getValues()[0]
+    .map((header) => String(header || '').trim());
+}
+
+function appendRow_(sheet, valuesByHeader, fallbackHeaders) {
+  const headers = getSheetHeaders_(sheet, fallbackHeaders).filter(Boolean);
+  sheet.appendRow(headers.map((header) => valuesByHeader[header] !== undefined ? valuesByHeader[header] : ''));
 }
 
 function getSpreadsheet_() {
@@ -179,10 +310,42 @@ function isApproved_(value) {
   return String(value || '').trim().toLowerCase() === 'approved';
 }
 
+function isAddAction_(value) {
+  const action = String(value || '').trim().toLowerCase();
+  return action === '' || action === 'add';
+}
+
+function isChangeAction_(value) {
+  const action = String(value || '').trim().toLowerCase();
+  return action === 'edit' || action === 'delete';
+}
+
+function parseJson_(value) {
+  try {
+    return value ? JSON.parse(value) : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function parseNumber_(value) {
+  if (value === '' || value === null || value === undefined) return NaN;
+  return Number(value);
+}
+
+function valueOrBlank_(value) {
+  return value === null || value === undefined ? '' : value;
+}
+
 function compact_(record) {
   const clean = {};
   Object.keys(record).forEach((key) => {
-    if (record[key] !== '' && record[key] !== null && record[key] !== undefined) {
+    if (
+      record[key] !== '' &&
+      record[key] !== null &&
+      record[key] !== undefined &&
+      !(typeof record[key] === 'number' && !isFinite(record[key]))
+    ) {
       clean[key] = record[key];
     }
   });
