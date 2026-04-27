@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260427-phonefix';
+  const appScriptPath = 'app.js?v=20260427-phonefix2';
   const manualDataKey = 'providerNetworkManualDataV1';
   const config = {
     enabled: false,
