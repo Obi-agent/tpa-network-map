@@ -13,7 +13,7 @@ The Apps Script in `google_apps_script.gs` will create these tabs automatically 
 
 Reviewers approve rows by changing `review_status` to `Approved`. Rows left as `Pending` stay out of the public map. Rows marked `Rejected` are ignored.
 
-## Apps Script Bridge
+## Apps Script Bridge: Bound Script
 
 1. In the Google Sheet, open `Extensions > Apps Script`.
 2. Paste the contents of `google_apps_script.gs`.
@@ -22,6 +22,22 @@ Reviewers approve rows by changing `review_status` to `Approved`. Rows left as `
    - Execute as: `Me`
    - Who has access: `Anyone`
 5. Copy the web app `/exec` URL.
+
+## Apps Script Bridge: Standalone Fallback
+
+Use this if `Extensions > Apps Script` does not open from the Sheet.
+
+1. Open `https://script.google.com/create`.
+2. Paste the contents of `google_apps_script.gs`.
+3. Copy the spreadsheet ID from your Google Sheet URL:
+
+   `https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit`
+
+4. Paste that ID into `SPREADSHEET_ID` near the top of the script.
+5. Save, then deploy it as a web app:
+   - Execute as: `Me`
+   - Who has access: `Anyone`
+6. Copy the web app `/exec` URL.
 
 ## Map Configuration
 
