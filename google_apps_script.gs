@@ -1,3 +1,7 @@
+// Leave blank when this script is bound to the Google Sheet.
+// For a standalone script from script.google.com/create, paste the spreadsheet ID here.
+const SPREADSHEET_ID = '';
+
 const PROVIDER_SHEET_NAME = 'Provider Submissions';
 const CATEGORY_SHEET_NAME = 'Category Submissions';
 
@@ -141,7 +145,7 @@ function ensureWorkbook_() {
 }
 
 function getSheet_(name, headers) {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spreadsheet = getSpreadsheet_();
   const sheet = spreadsheet.getSheetByName(name) || spreadsheet.insertSheet(name);
   const existingHeaders = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
   const hasHeaders = existingHeaders.some((value) => String(value || '').trim() !== '');
@@ -151,6 +155,11 @@ function getSheet_(name, headers) {
     sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
   }
   return sheet;
+}
+
+function getSpreadsheet_() {
+  if (SPREADSHEET_ID) return SpreadsheetApp.openById(SPREADSHEET_ID);
+  return SpreadsheetApp.getActiveSpreadsheet();
 }
 
 function respond_(payload, callback) {
