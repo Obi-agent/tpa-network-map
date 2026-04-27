@@ -19,6 +19,8 @@ Provider rows use `change_action` to decide what happens after approval:
 - `Edit` updates the matching provider.
 - `Delete` hides the matching provider from the public map.
 
+If provider latitude/longitude are blank, or accidentally set to `0` / `0`, the Apps Script tries to geocode the provider from its address, city, and country after approval.
+
 ## Apps Script Bridge: Bound Script
 
 1. In the Google Sheet, open `Extensions > Apps Script`.
@@ -61,4 +63,5 @@ Once enabled, the map will:
 - Load only approved provider/category rows from the Sheet.
 - Send Add Provider/Add Category submissions into the pending Sheet tabs.
 - Send provider edit/deletion requests into the pending provider Sheet.
+- Geocode approved provider rows that do not have usable coordinates.
 - Keep pending and rejected requests out of the public map.
