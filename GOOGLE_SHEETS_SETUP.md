@@ -1,6 +1,6 @@
 # Google Sheets Approval Workflow
 
-This version uses Google Sheets as the review console and source of truth for approved manual additions.
+This version uses Google Sheets as the review console and source of truth for approved manual additions and provider change requests.
 
 ## Workbook
 
@@ -12,6 +12,12 @@ The Apps Script in `google_apps_script.gs` will create these tabs automatically 
 - `Category Submissions`
 
 Reviewers approve rows by changing `review_status` to `Approved`. Rows left as `Pending` stay out of the public map. Rows marked `Rejected` are ignored.
+
+Provider rows use `change_action` to decide what happens after approval:
+
+- `Add` publishes a new provider.
+- `Edit` updates the matching provider.
+- `Delete` hides the matching provider from the public map.
 
 ## Apps Script Bridge: Bound Script
 
@@ -53,5 +59,6 @@ window.providerSheetsConfig = {
 Once enabled, the map will:
 
 - Load only approved provider/category rows from the Sheet.
-- Send new Add Provider/Add Category submissions into the pending Sheet tabs.
-- Continue showing a local preview immediately after submission.
+- Send Add Provider/Add Category submissions into the pending Sheet tabs.
+- Send provider edit/deletion requests into the pending provider Sheet.
+- Keep pending and rejected requests out of the public map.
