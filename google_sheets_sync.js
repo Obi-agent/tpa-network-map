@@ -262,9 +262,9 @@
       window[callbackName] = (payload) => {
         cleanup();
         resolve({
-          providers: Array.isArray(payload?.providers) ? payload.providers : [],
+          providers: Array.isArray(payload?.providers) ? payload.providers.map(sanitizeRecord) : [],
           categories: Array.isArray(payload?.categories) ? payload.categories : [],
-          changes: Array.isArray(payload?.changes) ? payload.changes : [],
+          changes: Array.isArray(payload?.changes) ? payload.changes.map(sanitizeChange) : [],
         });
       };
 
@@ -323,6 +323,34 @@
 
   function cleanText(value) {
     return String(value || '').trim();
+  }
+
+  function sanitizeChange(change) {
+    if (!change || typeof change !== 'object') return change;
+    return {
+      ...change,
+      target_provider: sanitizeRecord(change.target_provider),
+      provider: sanitizeRecord(change.provider),
+    };
+  }
+
+  function sanitizeRecord(record) {
+    if (!record || typeof record !== 'object') return record;
+    return Object.fromEntries(
+      Object.entries(record).map(([key, value]) => [key, isSheetError(value) ? '' : value])
+    );
+  }
+
+  function isSheetError(value) {
+    return [
+      '#error!',
+      '#value!',
+      '#ref!',
+      '#name?',
+      '#div/0!',
+      '#n/a',
+      '#num!',
+    ].includes(String(value || '').trim().toLowerCase());
   }
 
   function compactObject(record) {
