@@ -21,6 +21,8 @@ Provider rows use `change_action` to decide what happens after approval:
 
 If provider latitude/longitude are blank, or accidentally set to `0` / `0`, the Apps Script tries to geocode the provider from its address, city, and country after approval.
 
+Phone numbers that start with `+` are stored as plain text so Google Sheets does not interpret them as formulas.
+
 ## Apps Script Bridge: Bound Script
 
 1. In the Google Sheet, open `Extensions > Apps Script`.
