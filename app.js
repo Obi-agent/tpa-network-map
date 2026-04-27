@@ -3,6 +3,7 @@
 (async function () {
   const MANUAL_DATA_KEY = 'providerNetworkManualDataV1';
   const manualData = loadManualData();
+  const sheetsData = await getSheetsData();
   const tpaProviders = typeof providers !== 'undefined' ? providers : [];
   const groundProviders = await getGroundProviders();
   const airProviders = await getAirProviders();
@@ -13,9 +14,10 @@
     ...groundProviders,
     ...airProviders,
     ...medicalEscortProviders,
+    ...sheetsData.providers,
     ...manualData.providers,
   ];
-  let allProviders = normalizeProviders(loadedProviders);
+  let allProviders = normalizeProviders(applyApprovedProviderChanges(loadedProviders, sheetsData.changes));
 
   const fieldDefinitions = {
     TPA: [
@@ -160,6 +162,28 @@
     return Promise.resolve([]);
   }
 
+  async function getSheetsData() {
+    if (
+      typeof window === 'undefined' ||
+      !window.providerSheetsDataPromise ||
+      typeof window.providerSheetsDataPromise.then !== 'function'
+    ) {
+      return { providers: [], categories: [], changes: [] };
+    }
+
+    try {
+      const data = await window.providerSheetsDataPromise;
+      return {
+        providers: Array.isArray(data?.providers) ? data.providers : [],
+        categories: Array.isArray(data?.categories) ? data.categories : [],
+        changes: Array.isArray(data?.changes) ? data.changes : [],
+      };
+    } catch (error) {
+      console.warn('Could not load Google Sheets provider data.', error);
+      return { providers: [], categories: [], changes: [] };
+    }
+  }
+
   const worldBounds = L.latLngBounds([[-85, -180], [85, 180]]);
   const mapCenter = computeMapCenter(allProviders);
   const map = L.map('map', {
@@ -241,8 +265,22 @@
   applyFilters();
 
   function normalizeProviders(providerList) {
+    const seen = new Set();
     return providerList
       .filter((provider) => Number.isFinite(Number(provider.lat)) && Number.isFinite(Number(provider.lon)))
+      .filter((provider) => {
+        const key = provider.id
+          ? `id:${provider.id}`
+          : [
+              provider.name,
+              provider.type,
+              Number(provider.lat).toFixed(6),
+              Number(provider.lon).toFixed(6),
+            ].join('|');
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
       .map((provider, index) => normalizeProvider(provider, index));
   }
 
@@ -259,6 +297,7 @@
   function buildCategories() {
     const categorySet = new Set([
       ...categoryOrder,
+      ...sheetsData.categories,
       ...manualData.categories,
       ...allProviders.map((provider) => provider.type).filter(Boolean),
     ]);
@@ -334,6 +373,7 @@
 
     addCategoryButton.addEventListener('click', openCategoryModal);
     addProviderButton.addEventListener('click', openProviderModal);
+    document.addEventListener('click', handleProviderReviewAction);
     cancelButton.addEventListener('click', closeModal);
     closeButton.addEventListener('click', closeModal);
     modal.addEventListener('click', (event) => {
@@ -355,7 +395,7 @@
   function openCategoryModal() {
     openModal({
       title: 'Add category',
-      submitLabel: 'Save category',
+      submitLabel: 'Submit category',
       fields: `
         <label class="form-field form-field-full">
           <span>Category name</span>
@@ -374,6 +414,11 @@
         currentCategoryFilter = category;
         initializeCategoryFilters();
         applyFilters();
+        submitReviewItem({
+          submission_type: 'category',
+          category,
+          submitted_at: new Date().toISOString(),
+        });
       },
     });
   }
@@ -383,86 +428,177 @@
       currentCategoryFilter !== 'all' && categories.includes(currentCategoryFilter)
         ? currentCategoryFilter
         : 'Hospital/Clinic';
-    const categoryOptions = categories
-      .map(
-        (category) =>
-          `<option value="${escapeAttribute(category)}"${
-            category === defaultCategory ? ' selected' : ''
-          }>${escapeHTML(category)}</option>`
-      )
-      .join('');
 
     openModal({
       title: 'Add provider',
-      submitLabel: 'Save provider',
-      fields: `
-        <label class="form-field">
-          <span>Category</span>
-          <select name="type" required>${categoryOptions}</select>
-        </label>
-        <label class="form-field">
-          <span>Agreement status</span>
-          <select name="agreement">
-            <option value="Agreement pending">Agreement pending</option>
-            <option value="Agreement signed">Agreement signed</option>
-          </select>
-        </label>
-        <label class="form-field form-field-full">
-          <span>Provider name</span>
-          <input name="name" type="text" required autocomplete="organization" />
-        </label>
-        <label class="form-field">
-          <span>Country or location</span>
-          <input name="main_country" type="text" autocomplete="country-name" />
-        </label>
-        <label class="form-field">
-          <span>City</span>
-          <input name="city" type="text" autocomplete="address-level2" />
-        </label>
-        <label class="form-field">
-          <span>Region</span>
-          <input name="region" type="text" />
-        </label>
-        <label class="form-field">
-          <span>Latitude</span>
-          <input name="lat" type="number" step="any" min="-90" max="90" required />
-        </label>
-        <label class="form-field">
-          <span>Longitude</span>
-          <input name="lon" type="number" step="any" min="-180" max="180" required />
-        </label>
-        <label class="form-field form-field-full">
-          <span>Address</span>
-          <input name="address" type="text" autocomplete="street-address" />
-        </label>
-        <label class="form-field">
-          <span>Contact</span>
-          <input name="network_manager" type="text" autocomplete="name" />
-        </label>
-        <label class="form-field">
-          <span>Phone</span>
-          <input name="ops_phone" type="tel" autocomplete="tel" />
-        </label>
-        <label class="form-field">
-          <span>Email</span>
-          <input name="ops_email" type="email" autocomplete="email" />
-        </label>
-        <label class="form-field">
-          <span>Website</span>
-          <input name="website" type="url" autocomplete="url" />
-        </label>
-        <label class="form-field form-field-full">
-          <span>Notes</span>
-          <textarea name="comments" rows="3"></textarea>
-        </label>
-      `,
+      submitLabel: 'Submit for approval',
+      fields: buildProviderFields({ type: defaultCategory }),
       onSubmit(data) {
         const provider = buildManualProvider(data);
         manualData.providers.push(provider);
         saveManualData();
         addProviderToMap(provider);
+        submitReviewItem({
+          submission_type: 'provider',
+          provider,
+          submitted_at: new Date().toISOString(),
+        });
       },
     });
+  }
+
+  function handleProviderReviewAction(event) {
+    const button = event.target.closest('[data-provider-review-action]');
+    if (!button) return;
+
+    const provider = allProviders[Number(button.dataset.providerIndex)];
+    if (!provider) return;
+
+    if (button.dataset.providerReviewAction === 'edit') {
+      openProviderEditRequest(provider);
+    } else if (button.dataset.providerReviewAction === 'delete') {
+      openProviderDeletionRequest(provider);
+    }
+  }
+
+  function openProviderEditRequest(provider) {
+    const snapshot = snapshotReviewProvider(provider);
+    openModal({
+      title: 'Request provider edit',
+      submitLabel: 'Submit edit request',
+      fields: `
+        <input name="change_action" type="hidden" value="edit" />
+        <input name="target_provider_json" type="hidden" value="${escapeAttribute(JSON.stringify(snapshot))}" />
+        <input name="provider_id" type="hidden" value="${escapeAttribute(provider.id || '')}" />
+        ${buildProviderFields(provider, true)}
+      `,
+      onSubmit(data) {
+        submitReviewItem({
+          submission_type: 'provider_change',
+          change_action: 'edit',
+          target_provider: snapshot,
+          provider: buildManualProvider(data),
+          request_notes: cleanText(data.request_notes),
+          submitted_at: new Date().toISOString(),
+        });
+      },
+    });
+  }
+
+  function openProviderDeletionRequest(provider) {
+    const snapshot = snapshotReviewProvider(provider);
+    openModal({
+      title: 'Request provider deletion',
+      submitLabel: 'Submit deletion request',
+      fields: `
+        <input name="change_action" type="hidden" value="delete" />
+        <input name="target_provider_json" type="hidden" value="${escapeAttribute(JSON.stringify(snapshot))}" />
+        <div class="provider-change-summary form-field-full">
+          <span>${escapeHTML(provider.name)}</span>
+          <small>${escapeHTML([provider.type, provider.main_country || provider.region].filter(Boolean).join(' - '))}</small>
+        </div>
+        <label class="form-field form-field-full">
+          <span>Request notes</span>
+          <textarea name="request_notes" rows="3"></textarea>
+        </label>
+      `,
+      onSubmit(data) {
+        submitReviewItem({
+          submission_type: 'provider_change',
+          change_action: 'delete',
+          target_provider: snapshot,
+          request_notes: cleanText(data.request_notes),
+          submitted_at: new Date().toISOString(),
+        });
+      },
+    });
+  }
+
+  function buildProviderFields(defaults = {}, includeRequestNotes = false) {
+    const selectedType = cleanText(defaults.type) || 'Hospital/Clinic';
+    const selectedAgreement = cleanText(defaults.agreement) || 'Agreement pending';
+    const categoryOptions = categories
+      .map(
+        (category) =>
+          `<option value="${escapeAttribute(category)}"${
+            category === selectedType ? ' selected' : ''
+          }>${escapeHTML(category)}</option>`
+      )
+      .join('');
+
+    return `
+      <label class="form-field">
+        <span>Category</span>
+        <select name="type" required>${categoryOptions}</select>
+      </label>
+      <label class="form-field">
+        <span>Agreement status</span>
+        <select name="agreement">
+          <option value="Agreement pending"${
+            selectedAgreement === 'Agreement pending' ? ' selected' : ''
+          }>Agreement pending</option>
+          <option value="Agreement signed"${
+            selectedAgreement === 'Agreement signed' ? ' selected' : ''
+          }>Agreement signed</option>
+        </select>
+      </label>
+      <label class="form-field form-field-full">
+        <span>Provider name</span>
+        <input name="name" type="text" required autocomplete="organization" value="${escapeAttribute(defaults.name || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Country or location</span>
+        <input name="main_country" type="text" autocomplete="country-name" value="${escapeAttribute(defaults.main_country || defaults.country || '')}" />
+      </label>
+      <label class="form-field">
+        <span>City</span>
+        <input name="city" type="text" autocomplete="address-level2" value="${escapeAttribute(defaults.city || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Region</span>
+        <input name="region" type="text" value="${escapeAttribute(defaults.region || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Latitude</span>
+        <input name="lat" type="number" step="any" min="-90" max="90" required value="${escapeAttribute(defaults.lat ?? '')}" />
+      </label>
+      <label class="form-field">
+        <span>Longitude</span>
+        <input name="lon" type="number" step="any" min="-180" max="180" required value="${escapeAttribute(defaults.lon ?? '')}" />
+      </label>
+      <label class="form-field form-field-full">
+        <span>Address</span>
+        <input name="address" type="text" autocomplete="street-address" value="${escapeAttribute(defaults.address || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Contact</span>
+        <input name="network_manager" type="text" autocomplete="name" value="${escapeAttribute(defaults.network_manager || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Phone</span>
+        <input name="ops_phone" type="tel" autocomplete="tel" value="${escapeAttribute(defaults.ops_phone || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Email</span>
+        <input name="ops_email" type="email" autocomplete="email" value="${escapeAttribute(defaults.ops_email || '')}" />
+      </label>
+      <label class="form-field">
+        <span>Website</span>
+        <input name="website" type="url" autocomplete="url" value="${escapeAttribute(defaults.website || '')}" />
+      </label>
+      <label class="form-field form-field-full">
+        <span>Notes</span>
+        <textarea name="comments" rows="3">${escapeHTML(defaults.comments || '')}</textarea>
+      </label>
+      ${
+        includeRequestNotes
+          ? `<label class="form-field form-field-full">
+              <span>Request notes</span>
+              <textarea name="request_notes" rows="3"></textarea>
+            </label>`
+          : ''
+      }
+    `;
   }
 
   function openModal({ title, submitLabel, fields, onSubmit }) {
@@ -510,7 +646,7 @@
 
     const mainCountry = cleanText(data.main_country);
     return compactObject({
-      id: `manual-${Date.now()}`,
+      id: cleanText(data.provider_id) || `manual-${Date.now()}`,
       source: 'manual',
       name,
       type,
@@ -544,6 +680,19 @@
     initializeCategoryFilters();
     applyFilters();
     focusProvider(normalized._index);
+  }
+
+  function submitReviewItem(submission) {
+    if (
+      typeof window === 'undefined' ||
+      typeof window.submitProviderNetworkSubmission !== 'function'
+    ) {
+      return;
+    }
+
+    window.submitProviderNetworkSubmission(submission).catch((error) => {
+      console.warn('Could not send provider submission to Google Sheets.', error);
+    });
   }
 
   function getColor(status) {
@@ -693,7 +842,13 @@
       .map(([label, key]) => formatPopupRow(label, provider[key]))
       .filter(Boolean)
       .join('');
-    return `<div class='popup-content'><strong>${escapeHTML(provider.name)}</strong>${rows}</div>`;
+    const reviewActions = `
+      <div class="provider-review-actions">
+        <button type="button" data-provider-review-action="edit" data-provider-index="${provider._index}">Request edit</button>
+        <button type="button" class="danger" data-provider-review-action="delete" data-provider-index="${provider._index}">Request deletion</button>
+      </div>
+    `;
+    return `<div class='popup-content'><strong>${escapeHTML(provider.name)}</strong>${rows}${reviewActions}</div>`;
   }
 
   function createProviderIcon(provider) {
@@ -735,6 +890,79 @@
 
   function uniqueCleanValues(values) {
     return Array.from(new Set(values.map(cleanText).filter(Boolean)));
+  }
+
+  function applyApprovedProviderChanges(providerList, changes) {
+    if (!Array.isArray(changes) || changes.length === 0) return providerList;
+    return changes.reduce((currentList, change) => {
+      const action = cleanText(change.change_action).toLowerCase();
+      const target = change.target_provider || {};
+      const index = currentList.findIndex((provider) => isSameReviewProvider(provider, target));
+      if (index === -1) return currentList;
+
+      if (action === 'delete') {
+        return currentList.filter((_, providerIndex) => providerIndex !== index);
+      }
+
+      if (action === 'edit' && change.provider) {
+        const updated = currentList.slice();
+        updated[index] = compactObject({
+          ...updated[index],
+          ...change.provider,
+          id: updated[index].id || change.provider.id,
+          source: change.provider.source || updated[index].source,
+        });
+        return updated;
+      }
+
+      return currentList;
+    }, providerList);
+  }
+
+  function isSameReviewProvider(provider, target) {
+    if (!provider || !target) return false;
+    const providerId = cleanText(provider.id);
+    const targetId = cleanText(target.id);
+    if (providerId && targetId && providerId === targetId) return true;
+
+    const sameName = normalizeReviewText(provider.name) === normalizeReviewText(target.name);
+    const sameType = normalizeReviewText(provider.type) === normalizeReviewText(target.type);
+    const sameLat = isCloseCoordinate(provider.lat, target.lat);
+    const sameLon = isCloseCoordinate(provider.lon, target.lon);
+    return sameName && sameType && sameLat && sameLon;
+  }
+
+  function snapshotReviewProvider(provider) {
+    return compactObject({
+      id: provider.id,
+      source: provider.source,
+      name: provider.name,
+      type: provider.type,
+      agreement: provider.agreement,
+      main_country: provider.main_country,
+      country: provider.country,
+      city: provider.city,
+      region: provider.region,
+      lat: provider.lat,
+      lon: provider.lon,
+      address: provider.address,
+      network_manager: provider.network_manager,
+      ops_phone: provider.ops_phone,
+      ops_email: provider.ops_email,
+      website: provider.website,
+      comments: provider.comments,
+    });
+  }
+
+  function normalizeReviewText(value) {
+    return cleanText(value).toLowerCase().replace(/\s+/g, ' ');
+  }
+
+  function isCloseCoordinate(left, right) {
+    const leftNumber = Number(left);
+    const rightNumber = Number(right);
+    if (!Number.isFinite(leftNumber) || !Number.isFinite(rightNumber)) return false;
+    return Math.abs(leftNumber - rightNumber) < 0.000001;
   }
 
   function loadManualData() {
