@@ -223,14 +223,25 @@ function getApprovedCategories_() {
 function readObjects_(sheetName, headers) {
   const sheet = getSheet_(sheetName, headers);
   const values = sheet.getDataRange().getValues();
+  const formulas = sheet.getDataRange().getFormulas();
   const actualHeaders = getSheetHeaders_(sheet, headers);
   return values.slice(1).map((row, rowIndex) => {
     const record = {};
+    const sheetRow = rowIndex + 2;
     headers.forEach((header) => {
       const index = actualHeaders.indexOf(header);
-      record[header] = index === -1 ? '' : row[index];
+      if (index === -1) {
+        record[header] = '';
+        return;
+      }
+
+      const normalized = normalizeSheetCell_(row[index], formulas[rowIndex + 1] && formulas[rowIndex + 1][index]);
+      record[header] = normalized.value;
+      if (normalized.recovered) {
+        writeTextCell_(sheet, sheetRow, index + 1, normalized.value);
+      }
     });
-    record.__row_number = rowIndex + 2;
+    record.__row_number = sheetRow;
     return record;
   });
 }
@@ -272,7 +283,11 @@ function getSheetHeaders_(sheet, fallbackHeaders) {
 
 function appendRow_(sheet, valuesByHeader, fallbackHeaders) {
   const headers = getSheetHeaders_(sheet, fallbackHeaders).filter(Boolean);
-  sheet.appendRow(headers.map((header) => valuesByHeader[header] !== undefined ? valuesByHeader[header] : ''));
+  const values = headers.map((header) => valuesByHeader[header] !== undefined ? valuesByHeader[header] : '');
+  const rowNumber = sheet.getLastRow() + 1;
+  const range = sheet.getRange(rowNumber, 1, 1, headers.length);
+  range.setNumberFormat('@');
+  range.setValues([values]);
 }
 
 function getSpreadsheet_() {
@@ -318,6 +333,34 @@ function parseJson_(value) {
 function parseNumber_(value) {
   if (value === '' || value === null || value === undefined) return NaN;
   return Number(value);
+}
+
+function normalizeSheetCell_(value, formula) {
+  const formulaText = String(formula || '').trim();
+  if (formulaText.indexOf('=+') === 0) {
+    return { value: formulaText.slice(1), recovered: true };
+  }
+  if (isSheetError_(value)) {
+    return { value: '', recovered: false };
+  }
+  return { value, recovered: false };
+}
+
+function isSheetError_(value) {
+  const text = String(value || '').trim().toUpperCase();
+  return [
+    '#ERROR!',
+    '#VALUE!',
+    '#REF!',
+    '#NAME?',
+    '#DIV/0!',
+    '#N/A',
+    '#NUM!',
+  ].includes(text);
+}
+
+function writeTextCell_(sheet, row, column, value) {
+  sheet.getRange(row, column).setNumberFormat('@').setValue(value);
 }
 
 function buildApprovedProvider_(row, source) {
