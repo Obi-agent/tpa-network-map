@@ -13,6 +13,9 @@
     ? loadApprovedData().then((data) => {
         applyApprovedData(data);
         return data;
+      }).catch((error) => {
+        console.warn('Could not load approved Google Sheets data.', error);
+        return { providers: [], categories: [] };
       })
     : Promise.resolve({ providers: [], categories: [] });
   window.providerSheetsDataPromise.finally(loadMapApp);
