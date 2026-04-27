@@ -17,9 +17,9 @@
         return data;
       }).catch((error) => {
         console.warn('Could not load approved Google Sheets data.', error);
-        return { providers: [], categories: [] };
+        return { providers: [], categories: [], changes: [] };
       })
-    : Promise.resolve({ providers: [], categories: [] });
+    : Promise.resolve({ providers: [], categories: [], changes: [] });
   window.providerSheetsDataPromise.finally(loadMapApp);
 
   window.submitProviderNetworkSubmission = async function submitProviderNetworkSubmission(submission) {
@@ -45,18 +45,7 @@
   }
 
   function applyApprovedData(data) {
-    const approvedProviders = Array.isArray(data?.providers) ? data.providers : [];
     const approvedCategories = Array.isArray(data?.categories) ? data.categories : [];
-
-    if (approvedProviders.length && Array.isArray(window.providers)) {
-      const existing = new Set(window.providers.map((provider) => provider.id).filter(Boolean));
-      approvedProviders.forEach((provider) => {
-        if (provider.id && existing.has(provider.id)) return;
-        window.providers.push(provider);
-        if (provider.id) existing.add(provider.id);
-      });
-    }
-
     if (!approvedCategories.length) return;
 
     try {
@@ -82,6 +71,14 @@
       }
       if (event.target.closest('#addCategoryButton')) {
         window.setTimeout(() => setSubmitLabel('Submit category'), 0);
+      }
+      const providerAction = event.target.closest('[data-provider-review-action]');
+      if (providerAction) {
+        const label =
+          providerAction.dataset.providerReviewAction === 'delete'
+            ? 'Submit deletion request'
+            : 'Submit edit request';
+        window.setTimeout(() => setSubmitLabel(label), 0);
       }
     });
 
@@ -135,7 +132,41 @@
         });
         closeModal(form);
         reloadWithoutLocalDrafts();
+        return;
       }
+
+      if (title === 'Request provider edit') {
+        const targetProvider = parseTargetProvider(data);
+        const provider = buildSubmissionProvider(data);
+        provider.source = 'google-sheets-submission-edit';
+        await window.submitProviderNetworkSubmission({
+          submission_type: 'provider_change',
+          change_action: 'edit',
+          target_provider: targetProvider,
+          provider,
+          request_notes: cleanText(data.request_notes),
+          submitted_at: new Date().toISOString(),
+        });
+        closeModal(form);
+        reloadWithoutLocalDrafts();
+        return;
+      }
+
+      if (title === 'Request provider deletion') {
+        const targetProvider = parseTargetProvider(data);
+        await window.submitProviderNetworkSubmission({
+          submission_type: 'provider_change',
+          change_action: 'delete',
+          target_provider: targetProvider,
+          request_notes: cleanText(data.request_notes),
+          submitted_at: new Date().toISOString(),
+        });
+        closeModal(form);
+        reloadWithoutLocalDrafts();
+        return;
+      }
+
+      throw new Error('This request type is not supported.');
     } catch (error) {
       setModalError(error.message || 'Could not submit this request.');
     } finally {
@@ -163,7 +194,7 @@
 
     const mainCountry = cleanText(data.main_country);
     return compactObject({
-      id: `manual-${Date.now()}`,
+      id: cleanText(data.provider_id) || `manual-${Date.now()}`,
       source: 'google-sheets-submission',
       name,
       type,
@@ -181,6 +212,16 @@
       website: cleanText(data.website),
       comments: cleanText(data.comments),
     });
+  }
+
+  function parseTargetProvider(data) {
+    try {
+      const target = JSON.parse(data.target_provider_json || '{}');
+      if (!target.name) throw new Error();
+      return target;
+    } catch (error) {
+      throw new Error('Could not identify the provider for this request.');
+    }
   }
 
   function loadMapApp() {
@@ -207,6 +248,7 @@
         resolve({
           providers: Array.isArray(payload?.providers) ? payload.providers : [],
           categories: Array.isArray(payload?.categories) ? payload.categories : [],
+          changes: Array.isArray(payload?.changes) ? payload.changes : [],
         });
       };
 
