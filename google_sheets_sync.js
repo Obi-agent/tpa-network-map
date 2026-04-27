@@ -67,7 +67,10 @@
     document.addEventListener('click', (event) => {
       if (!hasEndpoint()) return;
       if (event.target.closest('#addProviderButton')) {
-        window.setTimeout(() => setSubmitLabel('Submit for review'), 0);
+        window.setTimeout(() => {
+          setSubmitLabel('Submit for review');
+          allowOptionalCoordinates();
+        }, 0);
       }
       if (event.target.closest('#addCategoryButton')) {
         window.setTimeout(() => setSubmitLabel('Submit category'), 0);
@@ -78,7 +81,10 @@
           providerAction.dataset.providerReviewAction === 'delete'
             ? 'Submit deletion request'
             : 'Submit edit request';
-        window.setTimeout(() => setSubmitLabel(label), 0);
+        window.setTimeout(() => {
+          setSubmitLabel(label);
+          allowOptionalCoordinates();
+        }, 0);
       }
     });
 
@@ -180,15 +186,20 @@
   function buildSubmissionProvider(data) {
     const name = cleanText(data.name);
     const type = cleanText(data.type);
-    const lat = Number(data.lat);
-    const lon = Number(data.lon);
+    const lat = parseCoordinateInput(data.lat);
+    const lon = parseCoordinateInput(data.lon);
+    const hasLat = Number.isFinite(lat);
+    const hasLon = Number.isFinite(lon);
 
     if (!name) throw new Error('Provider name is required.');
     if (!type) throw new Error('Category is required.');
-    if (!Number.isFinite(lat) || lat < -90 || lat > 90) {
+    if (hasLat !== hasLon) {
+      throw new Error('Latitude and longitude must both be supplied, or both left blank.');
+    }
+    if (hasLat && (lat < -90 || lat > 90)) {
       throw new Error('Latitude must be between -90 and 90.');
     }
-    if (!Number.isFinite(lon) || lon < -180 || lon > 180) {
+    if (hasLon && (lon < -180 || lon > 180)) {
       throw new Error('Longitude must be between -180 and 180.');
     }
 
@@ -203,8 +214,8 @@
       country: mainCountry,
       city: cleanText(data.city),
       region: cleanText(data.region),
-      lat,
-      lon,
+      lat: hasLat ? lat : null,
+      lon: hasLon ? lon : null,
       address: cleanText(data.address),
       network_manager: cleanText(data.network_manager),
       ops_phone: cleanText(data.ops_phone),
@@ -212,6 +223,11 @@
       website: cleanText(data.website),
       comments: cleanText(data.comments),
     });
+  }
+
+  function parseCoordinateInput(value) {
+    const text = cleanText(value);
+    return text ? Number(text) : NaN;
   }
 
   function parseTargetProvider(data) {
@@ -272,6 +288,13 @@
   function setSubmitLabel(label) {
     const submitButton = document.getElementById('modalSubmit');
     if (submitButton) submitButton.textContent = label;
+  }
+
+  function allowOptionalCoordinates() {
+    const lat = document.querySelector('input[name="lat"]');
+    const lon = document.querySelector('input[name="lon"]');
+    if (lat) lat.required = false;
+    if (lon) lon.required = false;
   }
 
   function setModalError(message) {
