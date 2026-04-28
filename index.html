@@ -10,11 +10,15 @@
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""
   />
-  <link rel="stylesheet" href="styles.css?v=20260427-phonefix2" />
+  <link rel="stylesheet" href="styles.css?v=20260428-loginpoc" />
 </head>
-<body>
+<body class="auth-pending">
+  <div id="authGateStatus" class="auth-gate-status" role="status">Checking access...</div>
   <aside id="sidebar">
-    <h2>Provider Network</h2>
+    <div class="sidebar-heading">
+      <h2>Provider Network</h2>
+      <button id="logoutButton" type="button">Sign out</button>
+    </div>
     <p id="summaryText"></p>
     <div class="manual-actions">
       <button id="addCategoryButton" type="button" title="Add category">
@@ -50,17 +54,8 @@
       </div>
     </form>
   </div>
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
-  <script src="data.js?v=20260427-phonefix2"></script>
-  <script src="ground_ambulance.js?v=20260427-phonefix2"></script>
-  <script src="air_ambulance.js?v=20260427-phonefix2"></script>
-  <script src="medical_escort.js?v=20260427-phonefix2"></script>
-  <script src="worldwide_hq_overrides.js?v=20260427-phonefix2"></script>
-  <script src="sheets_config.js?v=20260427-phonefix2"></script>
-  <script src="google_sheets_sync.js?v=20260427-phonefix2"></script>
+  <script src="sheets_config.js?v=20260428-loginpoc"></script>
+  <script src="auth_client.js?v=20260428-loginpoc"></script>
+  <script src="auth_gate.js?v=20260428-loginpoc"></script>
 </body>
 </html>
