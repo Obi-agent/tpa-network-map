@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260428-submitter';
+  const appScriptPath = 'app.js?v=20260428-submitter2';
   const manualDataKey = 'providerNetworkManualDataV1';
   const config = {
     enabled: false,
@@ -25,6 +25,9 @@
   window.submitProviderNetworkSubmission = async function submitProviderNetworkSubmission(submission) {
     if (!hasEndpoint()) return { ok: false, skipped: true };
     const session = getActiveSession();
+    if (!session || !session.token) {
+      throw new Error('Your login session could not be confirmed. Please sign out, sign in again, and resubmit.');
+    }
     const auditedSubmission = compactObject({
       ...submission,
       auth_token: session?.token || '',
