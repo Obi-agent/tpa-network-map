@@ -1,49 +1,124 @@
 (function initializeLoginPage() {
-  const form = document.getElementById('loginForm');
-  const error = document.getElementById('loginError');
-  const button = document.getElementById('loginButton');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const loginError = document.getElementById('loginError');
+  const registerError = document.getElementById('registerError');
+  const registerStatus = document.getElementById('registerStatus');
+  const loginButton = document.getElementById('loginButton');
+  const registerButton = document.getElementById('registerButton');
+  const signInTab = document.getElementById('signInTab');
+  const registerTab = document.getElementById('registerTab');
+  const copy = document.getElementById('loginCopy');
 
   showSignedOutMessage();
 
-  if (!window.providerAuth || !form) {
-    setError('Login client is not available.');
+  if (!window.providerAuth || !loginForm || !registerForm) {
+    setLoginError('Login client is not available.');
     return;
   }
 
   if (!window.providerAuth.isAuthRequired()) {
-    setError('Login is not enabled yet. The map is still using open proof-of-concept access.');
+    setLoginError('Login is not enabled yet. The map is still using open proof-of-concept access.');
   }
 
-  form.addEventListener('submit', async (event) => {
+  signInTab?.addEventListener('click', () => showMode('login'));
+  registerTab?.addEventListener('click', () => showMode('register'));
+
+  loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    setError('');
-    setBusy(true);
+    setLoginError('');
+    setLoginBusy(true);
 
     try {
-      const formData = new FormData(form);
+      const formData = new FormData(loginForm);
       await window.providerAuth.login(formData.get('email'), formData.get('password'));
       window.location.href = getSafeNextUrl();
     } catch (loginError) {
-      setError(loginError.message || 'Could not sign in.');
+      setLoginError(loginError.message || 'Could not sign in.');
     } finally {
-      setBusy(false);
+      setLoginBusy(false);
     }
   });
 
-  function setBusy(isBusy) {
-    if (!button) return;
-    button.disabled = isBusy;
-    button.textContent = isBusy ? 'Checking...' : 'Sign in';
+  registerForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    setRegisterError('');
+    setRegisterStatus('');
+
+    const formData = new FormData(registerForm);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const password = String(formData.get('password') || '');
+    const confirmPassword = String(formData.get('confirm_password') || '');
+    const notes = formData.get('notes');
+
+    if (password.length < 8) {
+      setRegisterError('Password must be at least 8 characters.');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setRegisterError('Passwords do not match.');
+      return;
+    }
+
+    setRegisterBusy(true);
+    try {
+      await window.providerAuth.register(name, email, password, notes);
+      registerForm.reset();
+      setRegisterStatus('Request sent. Your access will work after an administrator marks it Active.');
+    } catch (registrationError) {
+      setRegisterError(registrationError.message || 'Could not submit this access request.');
+    } finally {
+      setRegisterBusy(false);
+    }
+  });
+
+  function showMode(mode) {
+    const isRegister = mode === 'register';
+    loginForm.hidden = isRegister;
+    registerForm.hidden = !isRegister;
+    signInTab?.classList.toggle('active', !isRegister);
+    registerTab?.classList.toggle('active', isRegister);
+    signInTab?.setAttribute('aria-selected', String(!isRegister));
+    registerTab?.setAttribute('aria-selected', String(isRegister));
+    if (copy) {
+      copy.textContent = isRegister
+        ? 'Submit your details for administrator approval.'
+        : 'Use your approved email and password to continue.';
+    }
+    setLoginError('');
+    setRegisterError('');
+    setRegisterStatus('');
   }
 
-  function setError(message) {
-    if (error) error.textContent = message;
+  function setLoginBusy(isBusy) {
+    if (!loginButton) return;
+    loginButton.disabled = isBusy;
+    loginButton.textContent = isBusy ? 'Checking...' : 'Sign in';
+  }
+
+  function setRegisterBusy(isBusy) {
+    if (!registerButton) return;
+    registerButton.disabled = isBusy;
+    registerButton.textContent = isBusy ? 'Sending...' : 'Request access';
+  }
+
+  function setLoginError(message) {
+    if (loginError) loginError.textContent = message;
+  }
+
+  function setRegisterError(message) {
+    if (registerError) registerError.textContent = message;
+  }
+
+  function setRegisterStatus(message) {
+    if (registerStatus) registerStatus.textContent = message;
   }
 
   function showSignedOutMessage() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('signed_out') === '1') {
-      setError('You have been signed out.');
+      setLoginError('You have been signed out.');
     }
   }
 
