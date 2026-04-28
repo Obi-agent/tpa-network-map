@@ -1,4 +1,6 @@
 window.providerSheetsConfig = {
   enabled: true,
-  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbw7eiC_PVkhevczu_y-w8KHF7RtFzSKugnqvmmLUbzpihXh_spRsi3cWoWOjCTT3MTp/exec',
+  authEnabled: true,
+  sessionDurationHours: 8,
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbykvJRKFG9VL4ud0XJa9wDSW1NJTEnhGa1NAIT3LJY1OBfXFvYXpjEC7-W9fC0NWTls/exec',
 };
