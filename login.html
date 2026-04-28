@@ -4,14 +4,64 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Provider Network Login</title>
-  <link rel="stylesheet" href="styles.css?v=20260428-loginpoc" />
+  <link rel="stylesheet" href="styles.css?v=20260428-selfreg" />
+  <style>
+    .login-shell {
+      width: min(100%, 500px);
+    }
+
+    .login-tabs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem;
+      margin: 0 0 1rem;
+    }
+
+    .login-tabs button {
+      min-height: 38px;
+      border: 1px solid #c7ced8;
+      border-radius: 4px;
+      background: #fff;
+      color: #344054;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .login-tabs button.active,
+    .login-tabs button:hover,
+    .login-tabs button:focus-visible {
+      border-color: #1f6f61;
+      background: #e9f6f3;
+      color: #15544a;
+    }
+
+    .login-form[hidden] {
+      display: none;
+    }
+
+    .login-success {
+      min-height: 1.2rem;
+      margin: 0;
+      color: #1f6f61;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body class="login-page">
   <main class="login-shell">
     <section class="login-panel" aria-labelledby="loginTitle">
       <p class="login-kicker">Provider Network</p>
-      <h1 id="loginTitle">Sign in</h1>
-      <p class="login-copy">Use your approved email and password to continue.</p>
+      <h1 id="loginTitle">Network access</h1>
+      <p id="loginCopy" class="login-copy">Use your approved email and password to continue.</p>
+      <div class="login-tabs" role="tablist" aria-label="Access options">
+        <button id="signInTab" class="active" type="button" role="tab" aria-selected="true" aria-controls="loginForm">
+          Sign in
+        </button>
+        <button id="registerTab" type="button" role="tab" aria-selected="false" aria-controls="registerForm">
+          Request access
+        </button>
+      </div>
       <form id="loginForm" class="login-form" novalidate>
         <label class="form-field form-field-full">
           <span>Email</span>
@@ -24,10 +74,35 @@
         <p id="loginError" class="login-error" role="alert"></p>
         <button id="loginButton" type="submit" class="login-submit">Sign in</button>
       </form>
+      <form id="registerForm" class="login-form" hidden novalidate>
+        <label class="form-field form-field-full">
+          <span>Full name</span>
+          <input id="registerName" name="name" type="text" autocomplete="name" required />
+        </label>
+        <label class="form-field form-field-full">
+          <span>Email</span>
+          <input id="registerEmail" name="email" type="email" autocomplete="username" required />
+        </label>
+        <label class="form-field form-field-full">
+          <span>Password</span>
+          <input id="registerPassword" name="password" type="password" autocomplete="new-password" required minlength="8" />
+        </label>
+        <label class="form-field form-field-full">
+          <span>Confirm password</span>
+          <input id="registerConfirmPassword" name="confirm_password" type="password" autocomplete="new-password" required minlength="8" />
+        </label>
+        <label class="form-field form-field-full">
+          <span>Notes</span>
+          <textarea id="registerNotes" name="notes" rows="3"></textarea>
+        </label>
+        <p id="registerStatus" class="login-success" role="status"></p>
+        <p id="registerError" class="login-error" role="alert"></p>
+        <button id="registerButton" type="submit" class="login-submit">Request access</button>
+      </form>
     </section>
   </main>
-  <script src="sheets_config.js?v=20260428-loginpoc"></script>
-  <script src="auth_client.js?v=20260428-loginpoc"></script>
-  <script src="login.js?v=20260428-loginpoc"></script>
+  <script src="sheets_config.js?v=20260428-selfreg"></script>
+  <script src="auth_client.js?v=20260428-selfreg"></script>
+  <script src="login.js?v=20260428-selfreg"></script>
 </body>
 </html>
