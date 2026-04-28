@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260427-phonefix2';
+  const appScriptPath = 'app.js?v=20260428-submitter';
   const manualDataKey = 'providerNetworkManualDataV1';
   const config = {
     enabled: false,
@@ -24,6 +24,12 @@
 
   window.submitProviderNetworkSubmission = async function submitProviderNetworkSubmission(submission) {
     if (!hasEndpoint()) return { ok: false, skipped: true };
+    const session = getActiveSession();
+    const auditedSubmission = compactObject({
+      ...submission,
+      auth_token: session?.token || '',
+      submitted_by: formatSessionUser(session),
+    });
 
     await fetch(config.appsScriptUrl, {
       method: 'POST',
@@ -33,7 +39,7 @@
       },
       body: JSON.stringify({
         action: 'submit',
-        submission,
+        submission: auditedSubmission,
       }),
     });
 
@@ -283,6 +289,19 @@
       typeof config.appsScriptUrl === 'string' &&
       config.appsScriptUrl.trim() !== ''
     );
+  }
+
+  function getActiveSession() {
+    if (!window.providerAuth || typeof window.providerAuth.getStoredSession !== 'function') return null;
+    return window.providerAuth.getStoredSession();
+  }
+
+  function formatSessionUser(session) {
+    if (!session) return '';
+    const name = cleanText(session.name);
+    const email = cleanText(session.email);
+    if (name && email) return `${name} <${email}>`;
+    return email || name;
   }
 
   function setSubmitLabel(label) {
