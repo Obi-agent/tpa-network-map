@@ -1,7 +1,7 @@
 (function initializeAuthGate() {
   if (typeof window === 'undefined') return;
 
-  const assetVersion = '20260428-submitter';
+  const assetVersion = '20260428-submitter2';
   const mapScripts = [
     {
       src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
