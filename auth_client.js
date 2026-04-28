@@ -55,6 +55,34 @@
     return payload;
   }
 
+  async function register(name, email, password, notes) {
+    if (!isAuthRequired()) {
+      throw new Error('Login is not enabled yet.');
+    }
+    if (!hasEndpoint()) {
+      throw new Error('Login service is not configured.');
+    }
+
+    const cleanName = String(name || '').trim();
+    const normalizedEmail = normalizeEmail(email);
+    const cleanPassword = String(password || '');
+    if (!cleanName || !normalizedEmail || !cleanPassword) {
+      throw new Error('Name, email, and password are required.');
+    }
+
+    const passwordHash = await hashPassword(normalizedEmail, cleanPassword);
+    const config = getConfig();
+    const payload = await loadJsonp(
+      `${config.appsScriptUrl}?action=register&name=${encodeURIComponent(cleanName)}&email=${encodeURIComponent(normalizedEmail)}&password_hash=${encodeURIComponent(passwordHash)}&notes=${encodeURIComponent(String(notes || '').trim())}`
+    );
+
+    if (!payload || payload.ok !== true || payload.pending !== true) {
+      throw new Error(payload?.error || 'Could not submit this access request.');
+    }
+
+    return payload;
+  }
+
   async function validateSession() {
     if (!isAuthRequired()) {
       return { ok: true, bypassed: true };
@@ -188,6 +216,7 @@
     login,
     logout,
     normalizeEmail,
+    register,
     validateSession,
   };
 })();
