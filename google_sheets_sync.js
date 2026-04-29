@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260428-submitter2';
+  const appScriptPath = 'app.js?v=20260429-austria-gop';
   const manualDataKey = 'providerNetworkManualDataV1';
   const config = {
     enabled: false,
