@@ -8,12 +8,14 @@
   const groundProviders = await getGroundProviders();
   const airProviders = await getAirProviders();
   const medicalEscortProviders = await getMedicalEscortProviders();
+  const hospitalProviders = await getHospitalProviders();
 
   const loadedProviders = [
     ...tpaProviders,
     ...groundProviders,
     ...airProviders,
     ...medicalEscortProviders,
+    ...hospitalProviders,
     ...sheetsData.providers,
     ...manualData.providers,
   ];
@@ -158,6 +160,16 @@
     }
     if (typeof medicalEscortProviders !== 'undefined') {
       return Promise.resolve(medicalEscortProviders);
+    }
+    return Promise.resolve([]);
+  }
+
+  function getHospitalProviders() {
+    if (typeof hospitalClinicProvidersPromise !== 'undefined') {
+      return hospitalClinicProvidersPromise;
+    }
+    if (typeof hospitalClinicProviders !== 'undefined') {
+      return Promise.resolve(hospitalClinicProviders);
     }
     return Promise.resolve([]);
   }
@@ -334,6 +346,7 @@
     const buttons = {
       filterAll: 'all',
       filterSigned: 'signed',
+      filterGop: 'gop',
       filterPending: 'pending',
     };
     Object.entries(buttons).forEach(([id, value]) => {
@@ -526,6 +539,9 @@
           <option value="Agreement signed"${
             selectedAgreement === 'Agreement signed' ? ' selected' : ''
           }>Agreement signed</option>
+          <option value="GOP accepted - no DBA"${
+            selectedAgreement === 'GOP accepted - no DBA' ? ' selected' : ''
+          }>GOP accepted - no DBA</option>
         </select>
       </label>
       <label class="form-field form-field-full">
@@ -546,11 +562,11 @@
       </label>
       <label class="form-field">
         <span>Latitude</span>
-        <input name="lat" type="number" step="any" min="-90" max="90" required value="${escapeAttribute(defaults.lat ?? '')}" />
+        <input name="lat" type="number" step="any" min="-90" max="90" value="${escapeAttribute(defaults.lat ?? '')}" />
       </label>
       <label class="form-field">
         <span>Longitude</span>
-        <input name="lon" type="number" step="any" min="-180" max="180" required value="${escapeAttribute(defaults.lon ?? '')}" />
+        <input name="lon" type="number" step="any" min="-180" max="180" value="${escapeAttribute(defaults.lon ?? '')}" />
       </label>
       <label class="form-field form-field-full">
         <span>Address</span>
@@ -618,8 +634,8 @@
   function buildManualProvider(data) {
     const name = cleanText(data.name);
     const type = cleanText(data.type);
-    const lat = Number(data.lat);
-    const lon = Number(data.lon);
+    const lat = parseCoordinateInput(data.lat);
+    const lon = parseCoordinateInput(data.lon);
 
     if (!name) throw new Error('Provider name is required.');
     if (!type) throw new Error('Category is required.');
@@ -652,6 +668,11 @@
     });
   }
 
+  function parseCoordinateInput(value) {
+    const text = cleanText(value);
+    return text ? Number(text) : NaN;
+  }
+
   function addProviderToMap(provider) {
     const normalized = normalizeProvider(provider, allProviders.length);
     allProviders.push(normalized);
@@ -682,26 +703,47 @@
   }
 
   function getColor(status) {
-    if (!status || typeof status !== 'string') return 'orange';
+    const bucket = getAgreementBucket(status);
+    if (bucket === 'signed') return 'green';
+    if (bucket === 'gop') return 'purple';
+    return 'orange';
+  }
+
+  function getAgreementBucket(status) {
+    if (!status || typeof status !== 'string') return 'pending';
     const normalized = status.toLowerCase();
     if (
       normalized.includes('signed') &&
       !normalized.includes('waiting') &&
       !normalized.includes('await')
     ) {
-      return 'green';
+      return 'signed';
     }
-    return 'orange';
+    if (
+      normalized.includes('gop') &&
+      normalized.includes('accepted') &&
+      !normalized.includes('not accepted') &&
+      !normalized.includes('no gop')
+    ) {
+      return 'gop';
+    }
+    return 'pending';
   }
 
   function isSigned(provider) {
-    return getColor(provider.agreement) === 'green';
+    return getAgreementBucket(provider.agreement) === 'signed';
+  }
+
+  function isGopAccepted(provider) {
+    const bucket = getAgreementBucket(provider.agreement);
+    return bucket === 'signed' || bucket === 'gop';
   }
 
   function matchesProvider(provider, searchQuery) {
     if (currentCategoryFilter !== 'all' && provider.type !== currentCategoryFilter) return false;
     if (currentStatusFilter === 'signed' && !isSigned(provider)) return false;
-    if (currentStatusFilter === 'pending' && isSigned(provider)) return false;
+    if (currentStatusFilter === 'gop' && !isGopAccepted(provider)) return false;
+    if (currentStatusFilter === 'pending' && getAgreementBucket(provider.agreement) !== 'pending') return false;
     if (!searchQuery) return true;
 
     const searchable = [
@@ -747,17 +789,19 @@
 
   function summarize(providerList) {
     const signed = providerList.filter(isSigned).length;
+    const gop = providerList.filter((provider) => getAgreementBucket(provider.agreement) === 'gop').length;
     return {
       total: providerList.length,
       signed,
-      pending: providerList.length - signed,
+      gop,
+      pending: providerList.length - signed - gop,
     };
   }
 
   function updateSummary(visibleProviders) {
     const total = summarize(allProviders);
     const visible = summarize(visibleProviders);
-    let text = `Total providers: ${total.total} - Signed: ${total.signed} - Pending: ${total.pending}`;
+    let text = `Total providers: ${total.total} - Signed: ${total.signed} - GOP/no DBA: ${total.gop} - Pending: ${total.pending}`;
     if (visible.total !== total.total) {
       text += ` - Showing: ${visible.total}`;
     }
@@ -838,7 +882,7 @@
   }
 
   function createProviderIcon(provider) {
-    const statusClass = isSigned(provider) ? 'marker-signed' : 'marker-pending';
+    const statusClass = `marker-${getAgreementBucket(provider.agreement)}`;
     const categoryClass = categoryClassName(provider.type);
     return L.divIcon({
       className: 'provider-marker-shell',
@@ -861,7 +905,22 @@
   function hasValue(value) {
     if (value === undefined || value === null) return false;
     const text = String(value).trim();
-    return text !== '' && !['nan', 'none', 'n/a', 'na'].includes(text.toLowerCase());
+    return (
+      text !== '' &&
+      ![
+        'nan',
+        'none',
+        'n/a',
+        'na',
+        '#error!',
+        '#value!',
+        '#ref!',
+        '#name?',
+        '#div/0!',
+        '#n/a',
+        '#num!',
+      ].includes(text.toLowerCase())
+    );
   }
 
   function cleanText(value) {
