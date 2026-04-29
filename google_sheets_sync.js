@@ -1,8 +1,9 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260429-austria-gop';
+  const appScriptPath = 'app.js?v=20260429-fast-submit';
   const manualDataKey = 'providerNetworkManualDataV1';
+  let submissionNoticeTimer = null;
   const config = {
     enabled: false,
     appsScriptUrl: '',
@@ -113,82 +114,80 @@
     );
   }
 
-  async function handleReviewSubmission(form, title) {
+  function handleReviewSubmission(form, title) {
     const data = Object.fromEntries(new FormData(form).entries());
-    const submitButton = document.getElementById('modalSubmit');
-    const originalLabel = submitButton ? submitButton.textContent : '';
 
     setModalError('');
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
-    }
 
     try {
+      ensureActiveSession();
+      let submission;
+
       if (title === 'Add category') {
         const category = cleanText(data.category);
         if (!category) throw new Error('Category name is required.');
-        await window.submitProviderNetworkSubmission({
+        submission = {
           submission_type: 'category',
           category,
           submitted_at: new Date().toISOString(),
-        });
-        closeModal(form);
-        reloadWithoutLocalDrafts();
-        return;
-      }
-
-      if (title === 'Add provider') {
+        };
+      } else if (title === 'Add provider') {
         const provider = buildSubmissionProvider(data);
-        await window.submitProviderNetworkSubmission({
+        submission = {
           submission_type: 'provider',
           provider,
           submitted_at: new Date().toISOString(),
-        });
-        closeModal(form);
-        reloadWithoutLocalDrafts();
-        return;
-      }
-
-      if (title === 'Request provider edit') {
+        };
+      } else if (title === 'Request provider edit') {
         const targetProvider = parseTargetProvider(data);
         const provider = buildSubmissionProvider(data);
         provider.source = 'google-sheets-submission-edit';
-        await window.submitProviderNetworkSubmission({
+        submission = {
           submission_type: 'provider_change',
           change_action: 'edit',
           target_provider: targetProvider,
           provider,
           request_notes: cleanText(data.request_notes),
           submitted_at: new Date().toISOString(),
-        });
-        closeModal(form);
-        reloadWithoutLocalDrafts();
-        return;
-      }
-
-      if (title === 'Request provider deletion') {
+        };
+      } else if (title === 'Request provider deletion') {
         const targetProvider = parseTargetProvider(data);
-        await window.submitProviderNetworkSubmission({
+        submission = {
           submission_type: 'provider_change',
           change_action: 'delete',
           target_provider: targetProvider,
           request_notes: cleanText(data.request_notes),
           submitted_at: new Date().toISOString(),
-        });
-        closeModal(form);
-        reloadWithoutLocalDrafts();
-        return;
+        };
+      } else {
+        throw new Error('This request type is not supported.');
       }
 
-      throw new Error('This request type is not supported.');
+      closeModal(form);
+      clearLocalManualDrafts();
+      queueReviewSubmission(submission);
+      showSubmissionNotice('Request sent for approval.');
     } catch (error) {
       setModalError(error.message || 'Could not submit this request.');
-    } finally {
-      if (!document.getElementById('manualModal')?.hidden && submitButton) {
-        submitButton.disabled = false;
-        submitButton.textContent = originalLabel;
-      }
+    }
+  }
+
+  function ensureActiveSession() {
+    const session = getActiveSession();
+    if (!session || !session.token) {
+      throw new Error('Your login session could not be confirmed. Please sign out, sign in again, and resubmit.');
+    }
+  }
+
+  function queueReviewSubmission(submission) {
+    try {
+      Promise.resolve(window.submitProviderNetworkSubmission(submission)).catch((error) => {
+        console.warn('Could not send provider submission to Google Sheets.', error);
+        showSubmissionNotice('Request could not be sent. Please try again.', 'error');
+      });
+    } catch (error) {
+      console.warn('Could not send provider submission to Google Sheets.', error);
+      showSubmissionNotice('Request could not be sent. Please try again.', 'error');
     }
   }
 
@@ -328,6 +327,8 @@
     if (form) form.reset();
     const modal = document.getElementById('manualModal');
     if (modal) modal.hidden = true;
+    const submitButton = document.getElementById('modalSubmit');
+    if (submitButton) submitButton.disabled = false;
   }
 
   function clearLocalManualDrafts() {
@@ -338,13 +339,32 @@
     }
   }
 
-  function reloadWithoutLocalDrafts() {
-    clearLocalManualDrafts();
-    window.setTimeout(() => window.location.reload(), 50);
-  }
-
   function cleanText(value) {
     return String(value || '').trim();
+  }
+
+  function showSubmissionNotice(message, type = 'success') {
+    let notice = document.getElementById('submissionNotice');
+    if (!notice) {
+      notice = document.createElement('div');
+      notice.id = 'submissionNotice';
+      notice.className = 'submission-notice';
+      notice.setAttribute('role', 'status');
+      notice.setAttribute('aria-live', 'polite');
+      document.body.appendChild(notice);
+    }
+
+    window.clearTimeout(submissionNoticeTimer);
+    notice.textContent = message;
+    notice.className = `submission-notice ${type === 'error' ? 'error' : 'success'}`;
+    notice.hidden = false;
+    window.requestAnimationFrame(() => notice.classList.add('visible'));
+    submissionNoticeTimer = window.setTimeout(() => {
+      notice.classList.remove('visible');
+      window.setTimeout(() => {
+        if (!notice.classList.contains('visible')) notice.hidden = true;
+      }, 180);
+    }, 3600);
   }
 
   function sanitizeChange(change) {
