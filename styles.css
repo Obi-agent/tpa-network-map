@@ -427,6 +427,35 @@ mark {
   background: #15544a;
 }
 
+.submission-notice {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 12000;
+  width: min(360px, calc(100vw - 2rem));
+  padding: 0.8rem 0.95rem;
+  border-radius: 6px;
+  background: #1f6f61;
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.24);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.submission-notice.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.submission-notice.error {
+  background: #b42318;
+}
+
 .provider-marker-shell {
   background: transparent;
   border: 0;
