@@ -475,6 +475,11 @@ mark {
   --marker-color-dark: #0f6b43;
 }
 
+.marker-gop {
+  --marker-color: #8b5cf6;
+  --marker-color-dark: #5b21b6;
+}
+
 .marker-pending {
   --marker-color: #f59e0b;
   --marker-color-dark: #b45309;
@@ -489,7 +494,7 @@ mark {
 }
 
 .login-shell {
-  width: min(100%, 460px);
+  width: min(100%, 500px);
   padding: 1rem;
   box-sizing: border-box;
 }
@@ -528,15 +533,52 @@ mark {
   line-height: 1.45;
 }
 
+.login-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+}
+
+.login-tabs button {
+  min-height: 38px;
+  border: 1px solid #c7ced8;
+  border-radius: 4px;
+  background: #fff;
+  color: #344054;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-tabs button.active,
+.login-tabs button:hover,
+.login-tabs button:focus-visible {
+  border-color: #1f6f61;
+  background: #e9f6f3;
+  color: #15544a;
+}
+
 .login-form {
   display: grid;
   gap: 0.85rem;
+}
+
+.login-form[hidden] {
+  display: none;
 }
 
 .login-error {
   min-height: 1.2rem;
   margin: 0;
   color: #b42318;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.login-success {
+  min-height: 1.2rem;
+  margin: 0;
+  color: #1f6f61;
   font-size: 0.84rem;
   font-weight: 700;
 }
