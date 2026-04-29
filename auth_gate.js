@@ -1,7 +1,7 @@
 (function initializeAuthGate() {
   if (typeof window === 'undefined') return;
 
-  const assetVersion = '20260428-submitter2';
+  const assetVersion = '20260429-austria-gop';
   const mapScripts = [
     {
       src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
@@ -12,6 +12,7 @@
     { src: `ground_ambulance.js?v=${assetVersion}` },
     { src: `air_ambulance.js?v=${assetVersion}` },
     { src: `medical_escort.js?v=${assetVersion}` },
+    { src: `austria_hospitals.js?v=${assetVersion}` },
     { src: `worldwide_hq_overrides.js?v=${assetVersion}` },
     { src: `google_sheets_sync.js?v=${assetVersion}` },
   ];
