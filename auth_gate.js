@@ -1,7 +1,7 @@
 (function initializeAuthGate() {
   if (typeof window === 'undefined') return;
 
-  const assetVersion = '20260429-austria-gop';
+  const assetVersion = '20260429-fast-submit';
   const mapScripts = [
     {
       src: 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
