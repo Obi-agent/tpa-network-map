@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260429-fast-submit';
+  const appScriptPath = 'app.js?v=20260514-no-login';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
@@ -26,13 +26,11 @@
   window.submitProviderNetworkSubmission = async function submitProviderNetworkSubmission(submission) {
     if (!hasEndpoint()) return { ok: false, skipped: true };
     const session = getActiveSession();
-    if (!session || !session.token) {
-      throw new Error('Your login session could not be confirmed. Please sign out, sign in again, and resubmit.');
-    }
+    const submittedBy = formatSessionUser(session) || 'Map user (no login)';
     const auditedSubmission = compactObject({
       ...submission,
       auth_token: session?.token || '',
-      submitted_by: formatSessionUser(session),
+      submitted_by: submittedBy,
     });
 
     await fetch(config.appsScriptUrl, {
@@ -120,7 +118,6 @@
     setModalError('');
 
     try {
-      ensureActiveSession();
       let submission;
 
       if (title === 'Add category') {
@@ -169,13 +166,6 @@
       showSubmissionNotice('Request sent for approval.');
     } catch (error) {
       setModalError(error.message || 'Could not submit this request.');
-    }
-  }
-
-  function ensureActiveSession() {
-    const session = getActiveSession();
-    if (!session || !session.token) {
-      throw new Error('Your login session could not be confirmed. Please sign out, sign in again, and resubmit.');
     }
   }
 
