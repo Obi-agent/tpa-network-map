@@ -1118,6 +1118,24 @@ const providers = [
     "type": "TPA",
     "lat": -15,
     "lon": -60
+  },
+  {
+    "name": "ALBANIAN INTERCARE SERVICES GROUP",
+    "main_country": "Albania",
+    "additional_countries": "Albania, Bosnia and Herzegovina, Kosovo, Montenegro, North Macedonia, Serbia",
+    "ops_email": "ops@albintercare.com\nais@albintercare.com",
+    "ops_phone": "Tel: +355692745474\nTel: +355 4 480 3800",
+    "network_manager": "Network Manager referral",
+    "manager_phone": "nan",
+    "manager_email": "nan",
+    "agreement": "AGREEMENT SIGNED",
+    "type": "TPA",
+    "address": "Rruga Gjinbue Shpata, pal AV, shk 7, ap 35, Tirana, Albania",
+    "city": "Tirana",
+    "website": "https://www.albintercare.com",
+    "comments": "New signed TPA in the Balkans. Provider details supplied by Network Manager on 08/06/2026.",
+    "lat": 41.3210688,
+    "lon": 19.8115609
   }
 ];
-const summary = {total:80, signed:26, pending:54};
+const summary = {total:81, signed:27, pending:54};
