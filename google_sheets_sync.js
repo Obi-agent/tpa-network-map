@@ -1,13 +1,70 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260619-health-check';
+  const appScriptPath = 'app.js?v=20260619-sheets-fallback';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
     enabled: false,
     appsScriptUrl: '',
     ...(window.providerSheetsConfig ? window.providerSheetsConfig : {}),
+  };
+  // Last known approved sheet data keeps browsers that block Apps Script from dropping approved providers.
+  const fallbackApprovedData = {
+    providers: [
+      {
+        id: 'manual-1777301718029',
+        source: 'google-sheets-approved-fallback',
+        name: 'Albert Einstein Israelite Hospital',
+        type: 'Hospital/Clinic',
+        agreement: 'Agreement pending',
+        main_country: 'Brazil',
+        country: 'Brazil',
+        city: 'Sao Paulo',
+        region: 'SP',
+        lat: -23.6000507,
+        lon: -46.7152458,
+        address: 'Av. Albert Einstein, 627/701 - Morumbi, São Paulo - SP, 05652-900, Brazil',
+        network_manager: 'International Department',
+        ops_phone: '(55) 11 2151 1301',
+        ops_email: 'international@einstein.br / contact@einstein.br',
+        website: 'https://www.einstein.br/estrutura/unidades/morumbi',
+        comments: 'Serves Sao Paulo (capital city of the State of Sao Paulo).',
+      },
+      {
+        id: 'manual-1781698836775',
+        source: 'google-sheets-approved-fallback',
+        name: 'Renova Hospital',
+        type: 'Hospital/Clinic',
+        agreement: 'Agreement signed',
+        main_country: 'Nepal',
+        country: 'Nepal',
+        city: 'Pokhara',
+        lat: 28.2141417,
+        lon: 83.95774999999999,
+        address: 'Lakeside - 06, Hallan Chowk, Pokhara 33700',
+        ops_phone: '+977 9813377736',
+        ops_email: 'ips@renovahospital.com / admin@renovahospital.com / info@renovahospital.com',
+      },
+      {
+        id: 'manual-1781699198876',
+        source: 'google-sheets-approved-fallback',
+        name: 'CIWEC Hospital',
+        type: 'Hospital/Clinic',
+        agreement: 'Agreement signed',
+        main_country: 'Nepal',
+        country: 'Nepal',
+        city: 'Pokhara',
+        lat: 28.2095831,
+        lon: 83.9855674,
+        address: '14th Street, Mansarovar Path, Lakeside, Pokhara-6',
+        ops_phone: '+977 61 453082 / 457053 / Mobile +977 9856013130',
+        ops_email: 'pkrbookings@ciwec-clinic.com / pkradministrator@ciwec-clinic.com',
+        website: 'ciwechospital.com',
+      },
+    ],
+    categories: [],
+    changes: [],
   };
 
   if (hasEndpoint()) clearLocalManualDrafts();
@@ -17,8 +74,8 @@
         applyApprovedData(data);
         return data;
       }).catch((error) => {
-        console.warn('Could not load approved Google Sheets data.', error);
-        return { providers: [], categories: [], changes: [] };
+        console.warn('Could not load approved Google Sheets data. Using last published fallback data.', error);
+        return cloneApprovedData(fallbackApprovedData);
       })
     : Promise.resolve({ providers: [], categories: [], changes: [] });
   window.providerSheetsDataPromise.finally(loadMapApp);
@@ -69,6 +126,10 @@
     } catch (error) {
       console.warn('Could not apply approved Google Sheets categories.', error);
     }
+  }
+
+  function cloneApprovedData(data) {
+    return JSON.parse(JSON.stringify(data || { providers: [], categories: [], changes: [] }));
   }
 
   function initializeSubmissionHandoff() {
