@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260514-no-login';
+  const appScriptPath = 'app.js?v=20260619-health-check';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
