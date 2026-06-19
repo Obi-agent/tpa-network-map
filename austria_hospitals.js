@@ -265,10 +265,10 @@ const hospitalClinicProviders = [
     website: "https://clinicatraumacentro.com/",
     comments: "TraumaCentro SAS / NIT 901094037-3. Provider details supplied by Network Manager on 08/06/2026.",
   },
-  // Sheet 1 Hospitals import - 2026-06-19
+  // Austria hospital import - 2026-06-19
   {
     "id": "austria-klagenfurt-am-woerthersee-lkh-klagenfurt-kabeg-group",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "LKH Klagenfurt - KABEG Group",
     "type": "Hospital/Clinic",
     "agreement": "GOP accepted - no DBA",
@@ -282,11 +282,11 @@ const hospitalClinicProviders = [
     "ops_phone": "tel +43 463 538-0",
     "ops_email": "klinikum.klagenfurt@kabeg.at",
     "website": "https://www.klinikum-klagenfurt.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - but will accept our GOP: klinikum.klagenfurt@kabeg.at EHIC will be accepted too MAIN FOCUS: General healthcare / general medical care Source: Sheet 1 - Hospitals.xlsx row 4."
+    "comments": "Owner/type: PUBLIC. PUBLIC - but will accept our GOP: klinikum.klagenfurt@kabeg.at EHIC will be accepted too MAIN FOCUS: General healthcare / general medical care"
   },
   {
     "id": "austria-ramsau-im-zillertal-orthopaetdie-zillertal-not-opened-yet-grand-opening-autumn-2026",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Orthopaetdie Zillertal (not opened yet) - GRAND OPENING AUTUMN 2026",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -299,11 +299,11 @@ const hospitalClinicProviders = [
     "address": "Ramsau 160, 6284 Ramsau im Zillertal, Austria",
     "ops_phone": "0043 664 61827220 Dr.",
     "ops_email": "Askackov@gmail.com",
-    "comments": "Owner/type: PRIVATE. Opening hours: not known - opening hours TBA. PRIVATE - Clinic not opend yet - (opening in Winter Seaoson 2026/27) They will accept our GOP: Askackov@gmail.com (new e-mail Adress will be given once the clinic has been opened) MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 10."
+    "comments": "Owner/type: PRIVATE. Opening hours: not known - opening hours TBA. PRIVATE - Clinic not opend yet - (opening in Winter Seaoson 2026/27) They will accept our GOP: Askackov@gmail.com (new e-mail Adress will be given once the clinic has been opened) MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-ischgl-sportchirurgie-ischgl-dr-schenk",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Sportchirurgie Ischgl Dr. Schenk",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -317,11 +317,11 @@ const hospitalClinicProviders = [
     "ops_phone": "0 5444 50027",
     "ops_email": "info@sport-chirurgie-ischgl.at",
     "website": "https://www.dr-schenk.at/klinik/sport-chirurgie-ischgl/",
-    "comments": "Owner/type: PRIVATE. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 13."
+    "comments": "Owner/type: PRIVATE. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-telfs-ordination-dr-markus-kopriva-aerztehaus-telfs",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Ordination Dr. Markus Kopriva (Aerztehaus Telfs)",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -334,11 +334,11 @@ const hospitalClinicProviders = [
     "address": "Marktplatz 7/2 Telfs, 6410 Telfs, Austria",
     "ops_phone": "0043 5262 65175 / contact Janna: 0043 664 401 88 30",
     "ops_email": "info@ordination-kopriva.at",
-    "comments": "Owner/type: PRIVATE. \"PRIVATE: GOP accepted: please send email to info@ordination-kopriva.at & call Janna from the reception immediately to coordinate the appointment (0043 664 401 88 30) Accident & Sports Trauma Center - X-ray and MRI diagnostics available on site, including surgical treatment and trauma surgery. -> contract signed on 08JUN2026\" MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 14."
+    "comments": "Owner/type: PRIVATE. \"PRIVATE: GOP accepted: please send email to info@ordination-kopriva.at & call Janna from the reception immediately to coordinate the appointment (0043 664 401 88 30) Accident & Sports Trauma Center - X-ray and MRI diagnostics available on site, including surgical treatment and trauma surgery. -> contract signed on 08JUN2026\" MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-gerlos-unfallpraxis-gerlos",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Unfallpraxis Gerlos",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -352,11 +352,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05284 94104",
     "ops_email": "info@unfallpraxis-gerlos.at",
     "website": "https://www.unfallpraxis-gerlos.at/",
-    "comments": "Owner/type: PRIVATE. Opening hours: MO-SO 09:00-18:00. PRIVATE - contract signed May 2026 They accept our GOP - info@unfallpraxis-gerlos.at Please always call them as they might be very busy in the high season: 0043 (0) 5284 94104 MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 17."
+    "comments": "Owner/type: PRIVATE. Opening hours: MO-SO 09:00-18:00. PRIVATE - contract signed May 2026 They accept our GOP - info@unfallpraxis-gerlos.at Please always call them as they might be very busy in the high season: 0043 (0) 5284 94104 MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-innsbruck-unfallpraxis-dr-christian-dallapozza",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Unfallpraxis Dr. Christian Dallapozza",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -370,11 +370,11 @@ const hospitalClinicProviders = [
     "ops_phone": "Tel. +43 (0) 512 9010 3090",
     "ops_email": "info@unfallpraxis-dallapozza.at",
     "website": "https://www.unfallpraxis-dallapozza.at/",
-    "comments": "Owner/type: PRIVATE. Opening hours: Montag: 08 - 13 und 16 - 18 Uhr Dienstag: 08 - 12 Uhr Mittwoch nur nach Vereinbarung Donnerstag: 08 - 13 und 16 - 18 Uhr Freitag: 08 - 12 Uhr von 8 - 11 Uhr: Ambulanzbetrieb fuer Frischverletzte Patienten. PRIVATE - contract signed May 2026 They accept our GOP - info@unfallpraxis-dallapozza.at -> Appointment needed! no ER (Private doc) MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 18."
+    "comments": "Owner/type: PRIVATE. Opening hours: Montag: 08 - 13 und 16 - 18 Uhr Dienstag: 08 - 12 Uhr Mittwoch nur nach Vereinbarung Donnerstag: 08 - 13 und 16 - 18 Uhr Freitag: 08 - 12 Uhr von 8 - 11 Uhr: Ambulanzbetrieb fuer Frischverletzte Patienten. PRIVATE - contract signed May 2026 They accept our GOP - info@unfallpraxis-dallapozza.at -> Appointment needed! no ER (Private doc) MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-hall-in-tirol-hall-in-tirol-lkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hall in Tirol LKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -388,11 +388,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05223 508 0",
     "ops_email": "hall.office@tirol-kliniken.at",
     "website": "https://www.tirol-kliniken.at/page.cfm?vpath=standorte/landeskrankenhaus-hall",
-    "comments": "Owner/type: PUBLIC. PUBLIC: OUTPATIENT: Emergency treatment only - no pre-arranged appointments possible / no GOP acceptance. Patient must pay all costs upfront. Medical reports (MR) will be handed directly to the patient upon discharge. INPATIENT: Admission possible with GOP. Appointment/admission must be arranged in advance with the relevant department. However, due to limited capacity, the hospital usually cannot accommodate international patients and cases are often referred to Innsbruck or Schwaz instead. MR & MEDEX can be requested after discharge; however, the process is usually complicated and time-consuming. MAIN FOCUS: general hospital & Accident an... Source: Sheet 1 - Hospitals.xlsx row 19."
+    "comments": "Owner/type: PUBLIC. PUBLIC: OUTPATIENT: Emergency treatment only - no pre-arranged appointments possible / no GOP acceptance. Patient must pay all costs upfront. Medical reports (MR) will be handed directly to the patient upon discharge. INPATIENT: Admission possible with GOP. Appointment/admission must be arranged in advance with the relevant department. However, due to limited capacity, the hospital usually cannot accommodate international patients and cases are often referred to Innsbruck or Schwaz instead. MR & MEDEX can be requested after discharge; however, the process is usually complicated and time-consuming. MAIN FOCUS: general hospital & Accident an..."
   },
   {
     "id": "austria-schwaz-schwaz-bkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Schwaz BKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -406,11 +406,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05242 600 0",
     "ops_email": "aufnahme@kh-schwaz.at / info@kh-schwaz.at",
     "website": "https://www.kh-schwaz.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - GOP will be accepted. No agreement signed. Please request MR & MEDEX from aufnahme@kh-schwaz.at GOP to aufnahme@kh-schwaz.at MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 20."
+    "comments": "Owner/type: PUBLIC. PUBLIC - GOP will be accepted. No agreement signed. Please request MR & MEDEX from aufnahme@kh-schwaz.at GOP to aufnahme@kh-schwaz.at MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-wald-im-pinzgau-unfallpraxis-koenigsleiten-dr-kopriva",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Unfallpraxis Koenigsleiten, Dr. Kopriva",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -424,11 +424,11 @@ const hospitalClinicProviders = [
     "ops_phone": "06564 94144",
     "ops_email": "info@unfallpraxis-koenigsleiten.at",
     "website": "https://www.unfallpraxis-koenigsleiten.at/",
-    "comments": "Owner/type: PRIVATE. Opening hours: MO-SO 09:00-18:00. PRIVATE: GOP accepted: please send email to info@unfallpraxis-koenigsleiten.at & call them immediately to coordinate the appointment (no agreement signed but will accept our GOP) - Same owner -> of the Private Center in Telfs (Dr. Markus Kopriva) MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 21."
+    "comments": "Owner/type: PRIVATE. Opening hours: MO-SO 09:00-18:00. PRIVATE: GOP accepted: please send email to info@unfallpraxis-koenigsleiten.at & call them immediately to coordinate the appointment (no agreement signed but will accept our GOP) - Same owner -> of the Private Center in Telfs (Dr. Markus Kopriva) MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-saalfelden-am-steinernen-meer-privatklinik-ritzensee",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Privatklinik Ritzensee",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -442,11 +442,11 @@ const hospitalClinicProviders = [
     "ops_phone": "T: +43 (0) 6582 794 / to escalate: bettina.kerschbaumer@privatklinik-ritzensee.at - +43 (0) 6582/794-4004",
     "ops_email": "office@privatklinik-ritzensee.at / trauma@privatklinik-ritzensee.at / pkr.radiologie@privatklinik-ritzensee.at / pkr.aufnahme@privatklinik-ritzensee.at",
     "website": "https://www.privatklinik-ritzensee.at/kontakt/",
-    "comments": "Owner/type: PRIVATE. Opening hours: Montag-Donnerstag: 08:00 - 17:00; Freitag: 07:30 - 13.00 Uhr. PRIVATE OUTPATIENT / FIRST ASSESSMENT: 1/ Before referring the patient to the hospital, please contact the in-house practice: Ordination Dr. Guntmar Gradl Tel.: +43 (0)6582/794-3013 (If possible, preferably German-speaking communication) Additionally, please send an email to: trauma@privatklinik-ritzensee.at Opening hours: Mon-Thu: 08:00-17:00 & Fri: 07:30-13:00 2/ After receiving the estimated costs, the GOP must be sent to: trauma@privatklinik-ritzensee.at office@privatklinik-ritzensee.at pkr.radiologie@privatklinik-ritzensee.at --> Medical reports and invoices can be requested accordingly after treatment: trauma@privatklinik-ritzensee.a... Source: Sheet 1 - Hospitals.xlsx row 22."
+    "comments": "Owner/type: PRIVATE. Opening hours: Montag-Donnerstag: 08:00 - 17:00; Freitag: 07:30 - 13.00 Uhr. PRIVATE OUTPATIENT / FIRST ASSESSMENT: 1/ Before referring the patient to the hospital, please contact the in-house practice: Ordination Dr. Guntmar Gradl Tel.: +43 (0)6582/794-3013 (If possible, preferably German-speaking communication) Additionally, please send an email to: trauma@privatklinik-ritzensee.at Opening hours: Mon-Thu: 08:00-17:00 & Fri: 07:30-13:00 2/ After receiving the estimated costs, the GOP must be sent to: trauma@privatklinik-ritzensee.at office@privatklinik-ritzensee.at pkr.radiologie@privatklinik-ritzensee.at --> Medical reports and invoices can be requested accordingly after treatment: trauma@privatklinik-ritzensee.a..."
   },
   {
     "id": "austria-schwarzach-im-pongau-kardinal-schwarzenberg-klinikum",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Kardinal Schwarzenberg Klinikum",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -460,11 +460,11 @@ const hospitalClinicProviders = [
     "ops_phone": "TEL 43 6415 7101-0 / ppa. Hermann Hirscher  Verwaltungsdirektor  Leitung Finanz- und Rechnungswesen  TEL  +43 6415 7101-2266  MAIL  hermann.hirscher@ks-klinikum.at",
     "ops_email": "aufnahme.postfach@ks-klinikum.at / postfach.patientenverrechnung@ks-klinikum.at",
     "website": "https://www.ks-klinikum.at/de/",
-    "comments": "Owner/type: PUBLIC. PUBLIC: OUTPATIENT: pay and & claim only / MR will be given directly to the PAT (no GOP will be accepted) --> the hospital will accept all kind of credit cards INPATIENT: (no agreement signed) but they will accept our GOP: pls send it to: aufnahme.postfach@ks-klinikum.at & postfach.patientenverrechnung@ks-klinikum.at (office is only available during normal busniess hours) --> MR will be ready 2 days after admission --> no medical updates will be doncw --> only DCMR MEDEX: Invoice will be ready - 3 weeks after discharge MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 23."
+    "comments": "Owner/type: PUBLIC. PUBLIC: OUTPATIENT: pay and & claim only / MR will be given directly to the PAT (no GOP will be accepted) --> the hospital will accept all kind of credit cards INPATIENT: (no agreement signed) but they will accept our GOP: pls send it to: aufnahme.postfach@ks-klinikum.at & postfach.patientenverrechnung@ks-klinikum.at (office is only available during normal busniess hours) --> MR will be ready 2 days after admission --> no medical updates will be doncw --> only DCMR MEDEX: Invoice will be ready - 3 weeks after discharge MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-saalbach-saalmed-saalbach-hinterglemm",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Saalmed Saalbach/Hinterglemm",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -478,11 +478,11 @@ const hospitalClinicProviders = [
     "ops_phone": "06541 6287",
     "ops_email": "office@saalmed.at",
     "website": "http://www.saalmed.at",
-    "comments": "Owner/type: PRIVATE. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 25."
+    "comments": "Owner/type: PRIVATE. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-radstadt-krankenanstalt-dr-aufmesser-radstadt",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Krankenanstalt Dr. Aufmesser Radstadt",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -496,11 +496,11 @@ const hospitalClinicProviders = [
     "ops_phone": "Tel.: +43 6452 7501",
     "ops_email": "radstadt@aufmesser.at / buero@aufmesser.at",
     "website": "https://www.aufmesser.at/sportklinik/",
-    "comments": "Owner/type: PRIVATE. Opening hours: MO: 07:30-11:30 und 16-18 Uhr DI: 07:30-11:30 und 16-18 Uhr MI: 07:30-11:30 und 14-16 Uhr DO: 07:30-11:30 und 14-16 Uhr FR: 07:30-11:30 Uhr. PRIVATE - no agreement signed but they accept our GOP MR & MEDEX can be requested: buero@aufmesser.at GOP need to be sent to: buero@aufmesser.at MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 26."
+    "comments": "Owner/type: PRIVATE. Opening hours: MO: 07:30-11:30 und 16-18 Uhr DI: 07:30-11:30 und 16-18 Uhr MI: 07:30-11:30 und 14-16 Uhr DO: 07:30-11:30 und 14-16 Uhr FR: 07:30-11:30 Uhr. PRIVATE - no agreement signed but they accept our GOP MR & MEDEX can be requested: buero@aufmesser.at GOP need to be sent to: buero@aufmesser.at MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-obertauern-krankenanstalt-dr-aufmesser-obertauern",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Krankenanstalt Dr. Aufmesser Obertauern",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -514,11 +514,11 @@ const hospitalClinicProviders = [
     "ops_phone": "Telefon: +43-6456-7298",
     "ops_email": "obertauern@aufmesser.at / buero@aufmesser.at",
     "website": "https://www.aufmesser.at/impressum/",
-    "comments": "Owner/type: PRIVATE. Opening hours: MO bis SA: 9:00 - 12:00 Uhr & 14:00 - 17:00 Uhr SO & Feiertag: 10:00 - 12:00 Uhr & 14:00 - 17:00 Uhr. PRIVATE - no agreement signed but they accept our GOP MR & MEDEX can be requested: buero@aufmesser.at GOP need to be sent to: buero@aufmesser.at MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 27."
+    "comments": "Owner/type: PRIVATE. Opening hours: MO bis SA: 9:00 - 12:00 Uhr & 14:00 - 17:00 Uhr SO & Feiertag: 10:00 - 12:00 Uhr & 14:00 - 17:00 Uhr. PRIVATE - no agreement signed but they accept our GOP MR & MEDEX can be requested: buero@aufmesser.at GOP need to be sent to: buero@aufmesser.at MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-oberndorf-bei-salzburg-oberndorf-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Oberndorf KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement signed",
@@ -532,11 +532,11 @@ const hospitalClinicProviders = [
     "ops_phone": "06272 4334 601",
     "ops_email": "info@kh-oberndorf.at / j.silberer@kh-oberndorf.at / B.Bruckmoser@kh-oberndorf.at",
     "website": "https://www.krankenhaus-oberndorf.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - will accept our GOP / no agreement signed - GOP: please send GOP to b.bruckmoser@kh-oberndorf.at & j.silberer@kh-oberndorf.at MR & MEDEX can be requested through b.bruckmoser@kh-oberndorf.at & j.silberer@kh-oberndorf.at MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 28."
+    "comments": "Owner/type: PUBLIC. PUBLIC - will accept our GOP / no agreement signed - GOP: please send GOP to b.bruckmoser@kh-oberndorf.at & j.silberer@kh-oberndorf.at MR & MEDEX can be requested through b.bruckmoser@kh-oberndorf.at & j.silberer@kh-oberndorf.at MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-salzburg-landeskrankenhaus-salzburg-salk-gruppe",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Landeskrankenhaus Salzburg (SALK-Gruppe)",
     "type": "Hospital/Clinic",
     "agreement": "GOP accepted - no DBA",
@@ -550,11 +550,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05 7255 58838",
     "ops_email": "invoice@salk.at / krankengeschichtenanforderung@salk.at / ambulanzabarechnung@salk.at / abrechnung@salk.at",
     "website": "https://salk.at/Landeskrankenhaus.html",
-    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 29."
+    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-hallein-hallein-lkl-salk-gruppe",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hallein LKL (SALK-Gruppe)",
     "type": "Hospital/Clinic",
     "agreement": "GOP accepted - no DBA",
@@ -568,11 +568,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05 72 55 44",
     "ops_email": "invoice@salk.at / krankengeschichtenanforderung@salk.at / ambulanzabarechnung@salk.at / abrechnung@salk.at",
     "website": "https://salk.at/Landesklinik_Hallein.html",
-    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 30."
+    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-tamsweg-landesklinik-tamsweg-salk-gruppe",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Landesklinik Tamsweg (SALK-Gruppe)",
     "type": "Hospital/Clinic",
     "agreement": "GOP accepted - no DBA",
@@ -586,11 +586,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05 7255-47",
     "ops_email": "invoice@salk.at / krankengeschichtenanforderung@salk.at / ambulanzabarechnung@salk.at / abrechnung@salk.at",
     "website": "https://salk.at/landesklinik-tamsweg/",
-    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 31."
+    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-st-veit-im-pongau-st-veit-lkl-salk-gruppe",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "St Veit LKL (SALK-Gruppe)",
     "type": "Hospital/Clinic",
     "agreement": "GOP accepted - no DBA",
@@ -604,11 +604,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05 7255 46",
     "ops_email": "invoice@salk.at / krankengeschichtenanforderung@salk.at / ambulanzabarechnung@salk.at / abrechnung@salk.at",
     "website": "https://salk.at/Landesklinik_St_Veit.html",
-    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 32."
+    "comments": "Owner/type: PUBLIC. PUBLIC OUTPATIENT: The patient has to pay the costs directly. However, we can request a copy of the invoice: ambulanzabarechnung@salk.at MR: krankengeschichtenanforderung@salk.at INPATIENT: They will accept our GOP. Billing contact: GOP & MEDEX: abrechnung@salk.at MR: abrechnung@salk.at & krankengeschichtenanforderung@salk.at Please note that in all cases, they require a signed release of medical information form in advance before they are able to share any medical information with us. MAIN FOCUS: general hospital & Accident and sports trauma"
   },
   {
     "id": "austria-lech-am-arlberg-dr-rhomberg-unfallsanatorium",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Dr. Rhomberg Unfallsanatorium",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -621,11 +621,11 @@ const hospitalClinicProviders = [
     "address": "Oberstubenbach 439, 6764 Lech am Arlberg, Austria",
     "ops_phone": "05583 2234",
     "website": "https://www.drrhomberg.at",
-    "comments": "Owner/type: PRIVATE. Opening hours: Montag bis Freitag: von 9.00 Uhr bis 17.00 Uhr Samstag, Sonntag und Feiertag von 10.00 Uhr bis 17.00 Uhr. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 33."
+    "comments": "Owner/type: PRIVATE. Opening hours: Montag bis Freitag: von 9.00 Uhr bis 17.00 Uhr Samstag, Sonntag und Feiertag von 10.00 Uhr bis 17.00 Uhr. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-rankweil-rankweil-lkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Rankweil LKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -639,11 +639,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05522 403 0",
     "ops_email": "office@lkhr.at",
     "website": "https://www.landeskrankenhaus.at/gesundheitsunternehmen/standorte/lkh-rankweil",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 34."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-schruns-chirurgie-sport-dr-schenk-sanatorium-dr-schenk-gmbh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Chirurgie & Sport Dr. Schenk - Sanatorium Dr. Schenk GmbH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -657,11 +657,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05556 74 000",
     "ops_email": "anmeldung@dr-schenk.at",
     "website": "https://www.dr-schenk.at/klinik/sport-chirurgie-ischgl/",
-    "comments": "Owner/type: PRIVATE. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 35."
+    "comments": "Owner/type: PRIVATE. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-graz-graz-lkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Graz LKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -675,11 +675,11 @@ const hospitalClinicProviders = [
     "ops_phone": "0316 385 0",
     "ops_email": "sekretariatfmpm@uniklinikum.kages.at",
     "website": "https://www.uniklinikumgraz.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 36."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-landstrasse-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Landstrasse KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -692,11 +692,11 @@ const hospitalClinicProviders = [
     "address": "Juchgasse 25, 1030 Wien, Austria",
     "ops_phone": "01 711 65 0",
     "website": "https://klinik-landstrasse.gesundheitsverbund.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 37."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-favoriten-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Favoriten KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -709,11 +709,11 @@ const hospitalClinicProviders = [
     "address": "Kundratstrasse 3, 1100 Wien, Austria",
     "ops_phone": "01 601 91 0",
     "website": "https://klinik-favoriten.gesundheitsverbund.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 38."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-hietzing-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hietzing KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -726,11 +726,11 @@ const hospitalClinicProviders = [
     "address": "Wolkersbergenstrasse 1, 1130 Wien, Austria",
     "ops_phone": "01 801 10 0",
     "website": "https://klinik-hietzing.gesundheitsverbund.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 39."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-hanusch-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hanusch KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -743,11 +743,11 @@ const hospitalClinicProviders = [
     "address": "Heinrich-Collin-Strasse 30, 1140 Wien, Austria",
     "ops_phone": "01 910 21 0",
     "website": "https://www.gesundheitskasse.at/cdscontent/?contentid=10007.875760&portal=oegkhanuschkrankenhausportal",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 40."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-floridsdorf-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Floridsdorf KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -760,11 +760,11 @@ const hospitalClinicProviders = [
     "address": "Bruenner Strasse 73, 1210 Wien, Austria",
     "ops_phone": "01 277 00 0",
     "website": "https://klinik-floridsdorf.gesundheitsverbund.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 41."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-donaustadt-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Donaustadt KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -777,11 +777,11 @@ const hospitalClinicProviders = [
     "address": "Langobardenstrasse 122, 1220 Wien, Austria",
     "ops_phone": "01 288 02 0",
     "website": "https://klinik-donaustadt.gesundheitsverbund.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 42."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wien-akh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "AKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -794,11 +794,11 @@ const hospitalClinicProviders = [
     "address": "Waehringer Guertel 18-20, 1090 Wien, 1090 Wien, Austria",
     "ops_phone": "43(0)1404000",
     "website": "https://www.akhwien.at/default.aspx?pid=80",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 43."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-kittsee-kittsee-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Kittsee KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -811,11 +811,11 @@ const hospitalClinicProviders = [
     "address": "Hauptplatz 3, 2421 Kittsee, Austria",
     "ops_phone": "05 7979 35000",
     "website": "https://www.gesundheit-burgenland.at/kittsee",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 44."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-eisenstadt-eisenstadt-bbr-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Eisenstadt BBR KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -828,11 +828,11 @@ const hospitalClinicProviders = [
     "address": "Johannes von Gott-Platz 1, 7000 Eisenstadt, Austria",
     "ops_phone": "02682 601 0",
     "website": "https://www.barmherzige-brueder.at/portal/eisenstadt/home",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 45."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-oberpullendorf-oberpullendorf-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Oberpullendorf KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -845,11 +845,11 @@ const hospitalClinicProviders = [
     "address": "Spitalstrasse 32, 7350 Oberpullendorf, Austria",
     "ops_phone": "05 7979 34000",
     "website": "https://www.gesundheit-burgenland.at/oberpullendorf",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 46."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-oberwart-oberwart-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Oberwart KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -862,11 +862,11 @@ const hospitalClinicProviders = [
     "address": "Dornburggasse 90, 7400 Oberwart, Austria",
     "ops_phone": "05 7979 32000",
     "website": "https://www.gesundheit-burgenland.at/oberwart",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 47."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-guessing-guessing-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Guessing KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -879,11 +879,11 @@ const hospitalClinicProviders = [
     "address": "Grazer Strasse 13, 7540 Guessing, Austria",
     "ops_phone": "05 7979 31000",
     "website": "https://www.gesundheit-burgenland.at/guessing",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 48."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-hollabrunn-hollabrunn-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hollabrunn LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -896,11 +896,11 @@ const hospitalClinicProviders = [
     "address": "Robert Loeffler-Strasse 20, 2020 Hollabrunn, Austria",
     "ops_phone": "02952 2275 0",
     "website": "https://hollabrunn.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 49."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-hainburg-an-der-donau-hainburg-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hainburg LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -913,11 +913,11 @@ const hospitalClinicProviders = [
     "address": "Hofmeisterstrasse 70, 2410 Hainburg an der Donau, Austria",
     "ops_phone": "02165 90501 203",
     "website": "https://hainburg.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 50."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-neunkirchen-neunkirchen-univkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Neunkirchen UnivKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -930,11 +930,11 @@ const hospitalClinicProviders = [
     "address": "Peischinger Strasse 19, 2620 Neunkirchen, Austria",
     "ops_phone": "02635 602",
     "website": "https://neunkirchen.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 51."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wiener-neustadt-wiener-neustadt-univkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Wiener Neustadt UnivKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -947,11 +947,11 @@ const hospitalClinicProviders = [
     "address": "Matthias Corviniusring 3-5, 2700 Wiener Neustadt, Austria",
     "ops_phone": "02622 321 0",
     "website": "https://wienerneustadt.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 52."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-grimmenstein-hochegg-univkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Hochegg UnivKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -964,11 +964,11 @@ const hospitalClinicProviders = [
     "address": "Hocheggerstrasse 88, 2840 Grimmenstein, Austria",
     "ops_phone": "02644 6300 0",
     "website": "https://hochegg.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 53."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-scheibbs-scheibbs-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Scheibbs LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -981,11 +981,11 @@ const hospitalClinicProviders = [
     "address": "Eisenwurzenstrasse 26, 3270 Scheibbs, Austria",
     "ops_phone": "07482 404 0",
     "website": "https://scheibbs.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 54."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-amstetten-amstetten-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Amstetten LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -998,11 +998,11 @@ const hospitalClinicProviders = [
     "address": "Krankenhausstrasse 21, 3300 Amstetten, Austria",
     "ops_phone": "07472 9004 0",
     "website": "https://amstetten.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 55."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-waidhofen-an-der-ybbs-waidhofen-ybbs-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Waidhofen/Ybbs LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1015,11 +1015,11 @@ const hospitalClinicProviders = [
     "address": "Ybbsitzer Strasse 112, 3340 Waidhofen an der Ybbs, Austria",
     "ops_phone": "07442 9004 0",
     "website": "https://waidhofen-ybbs.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 56."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-melk-melk-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Melk LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1032,11 +1032,11 @@ const hospitalClinicProviders = [
     "address": "Krankenhausstrasse 11, 3390 Melk, Austria",
     "ops_phone": "02752 9004",
     "website": "https://melk.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 57."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-klosterneuburg-klosterneuburg-lkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Klosterneuburg LKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1049,11 +1049,11 @@ const hospitalClinicProviders = [
     "address": "Kreutzergasse 12-14, 3400 Klosterneuburg, Austria",
     "ops_phone": "02243 9004 0",
     "website": "https://klosterneuburg.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 58."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-tulln-an-der-donau-tulln-univkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Tulln UnivKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1066,11 +1066,11 @@ const hospitalClinicProviders = [
     "address": "Alter Ziegelweg 10, 3430 Tulln an der Donau, Austria",
     "ops_phone": "02272 601",
     "website": "https://tulln.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 59."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-krems-an-der-donau-krems-univkl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Krems UnivKL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1083,11 +1083,11 @@ const hospitalClinicProviders = [
     "address": "Mitterweg 10, 3500 Krems an der Donau, Austria",
     "ops_phone": "02732 804 0",
     "website": "https://krems.lknoe.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 60."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-linz-linz-bbr-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Linz BBR KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1100,11 +1100,11 @@ const hospitalClinicProviders = [
     "address": "Seilerstaette 2, 4020 Linz, Austria",
     "ops_phone": "0732 7897 0",
     "website": "https://www.barmherzige-brueder.at/portal/linz/home",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 61."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-rohrbach-in-oberoesterreich-rohrbach-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Rohrbach KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1117,11 +1117,11 @@ const hospitalClinicProviders = [
     "address": "Krankenhausstrasse 1, 4150 Rohrbach in Oberoesterreich, Austria",
     "ops_phone": "050 554 77 0",
     "website": "https://www.ooeg.at/ro/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 62."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-freistadt-freistadt-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Freistadt KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1134,11 +1134,11 @@ const hospitalClinicProviders = [
     "address": "Krankenhausstrasse 1, 4240 Freistadt, Austria",
     "ops_phone": "050 554 76 0",
     "website": "https://www.ooeg.at/fr/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 63."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-schaerding-schaerding-kl",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Schaerding KL",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1151,11 +1151,11 @@ const hospitalClinicProviders = [
     "address": "Alfred-Kubin-Strasse 2, 4780 Schaerding, Austria",
     "ops_phone": "050 554 78 0",
     "website": "https://www.ooeg.at/sd/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 64."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-ried-im-innkreis-ried-innkr-bhs-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Ried/Innkr BHS KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1168,11 +1168,11 @@ const hospitalClinicProviders = [
     "address": "Schlossberg 1, 4910 Ried im Innkreis, Austria",
     "ops_phone": "07752 602 0",
     "website": "https://www.bhsried.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 65."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-braunau-am-inn-braunau-st-josef-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Braunau St Josef KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1185,11 +1185,11 @@ const hospitalClinicProviders = [
     "address": "Ringstrasse 60, 5280 Braunau am Inn, Austria",
     "ops_phone": "07722 804 0",
     "website": "https://khbr.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 66."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-kitzbuehel-tagesklinik-kitzbuehel",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Tagesklinik Kitzbuehel",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1203,11 +1203,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05356 66866",
     "ops_email": "info@tk-kitz.net",
     "website": "https://www.tk-kitz.net/Tagesklinik-fuer-Unfallchirurgie-GmbH-Home_pid,59554,type,news.html",
-    "comments": "Owner/type: PRIVATE. Opening hours: MO - FR 10 - 16 Uhr // SA, SO & FT 13 - 16 Uhr. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 67."
+    "comments": "Owner/type: PRIVATE. Opening hours: MO - FR 10 - 16 Uhr // SA, SO & FT 13 - 16 Uhr. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-flirsch-dr-christian-klimmer",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Dr. Christian Klimmer",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1221,11 +1221,11 @@ const hospitalClinicProviders = [
     "ops_phone": "Tel. 0 54 47 . 94 100",
     "ops_email": "ordination@doktor-klimmer.at",
     "website": "https://www.doktor-klimmer.at/",
-    "comments": "Owner/type: PUBLIC. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 68."
+    "comments": "Owner/type: PUBLIC. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-st-anton-am-arlberg-sportklinik-arlberg",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Sportklinik Arlberg",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1239,11 +1239,11 @@ const hospitalClinicProviders = [
     "ops_phone": "T: + 43 (0) 5446 42 666",
     "ops_email": "info@sportklinik-arlberg.at",
     "website": "http://www.sportklinik.arlberg.at",
-    "comments": "Owner/type: PRIVATE. Opening hours: MO - FR 08:00 - 20:00 Uhr SA, SO, Feiertag 09:00 - 17:00 Uhr. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma Source: Sheet 1 - Hospitals.xlsx row 69."
+    "comments": "Owner/type: PRIVATE. Opening hours: MO - FR 08:00 - 20:00 Uhr SA, SO, Feiertag 09:00 - 17:00 Uhr. PRIVATE - PAY & CLAIM ONLY MAIN FOCUS: Accident and sports trauma"
   },
   {
     "id": "austria-reutte-reutte-bkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Reutte BKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1257,11 +1257,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05672 601 0",
     "ops_email": "info@bkh-reutte.at",
     "website": "https://www.bkh-reutte.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 70."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-lienz-lienz-bkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Lienz BKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1275,11 +1275,11 @@ const hospitalClinicProviders = [
     "ops_phone": "04852 606 0",
     "ops_email": "verwaltung@kh-lienz.at",
     "website": "https://www.kh-lienz.at/de/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 71."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-dornbirn-dornbirn-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Dornbirn KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1293,11 +1293,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05572 303 0",
     "ops_email": "gerhard.amann@dornbirn.at",
     "website": "https://krankenhaus.dornbirn.at",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 72."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-bregenz-bregenz-lkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Bregenz LKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1311,11 +1311,11 @@ const hospitalClinicProviders = [
     "ops_phone": "05574 401 0",
     "ops_email": "office@lkhb.at",
     "website": "https://www.landeskrankenhaus.at/gesundheitsunternehmen/standorte/lkh-bregenz",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 73."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-st-veit-an-der-glan-st-veit-glan-bbr-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "St Veit/Glan BBR KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1329,11 +1329,11 @@ const hospitalClinicProviders = [
     "ops_phone": "04212 499 0",
     "ops_email": "krankenhaus@bbstveit.at",
     "website": "https://www.barmherzige-brueder.at/portal/stveit/home",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 74."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-friesach-friesach-do-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Friesach DO KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1346,11 +1346,11 @@ const hospitalClinicProviders = [
     "address": "St. Veiter Strasse 12, 9360 Friesach, Austria",
     "ops_phone": "04268 2691 0",
     "website": "https://www.dokh.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 75."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-wolfsberg-wolfsberg-lkh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Wolfsberg LKH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1363,11 +1363,11 @@ const hospitalClinicProviders = [
     "address": "Paul Hackhoferstrasse 9, 9400 Wolfsberg, Austria",
     "ops_phone": "04352 533 0",
     "website": "https://www.lkh-wo.at/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 76."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
   {
     "id": "austria-spittal-an-der-drau-spittal-drau-kh",
-    "source": "sheet-1-hospitals-2026-06-19",
+    "source": "austria-hospital-import-2026-06-19",
     "name": "Spittal/Drau KH",
     "type": "Hospital/Clinic",
     "agreement": "Agreement pending",
@@ -1381,6 +1381,6 @@ const hospitalClinicProviders = [
     "ops_phone": "04762 622 0",
     "ops_email": "office@khspittal.com",
     "website": "https://www.khspittal.com/",
-    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care. Source: Sheet 1 - Hospitals.xlsx row 77."
+    "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care."
   },
 ];

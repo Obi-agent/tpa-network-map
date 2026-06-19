@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260619-sheet1-hospitals';
+  const appScriptPath = 'app.js?v=20260619-sheet1-notes-clean';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
