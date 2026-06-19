@@ -165,13 +165,17 @@
   }
 
   function getHospitalProviders() {
+    const sources = [];
     if (typeof hospitalClinicProvidersPromise !== 'undefined') {
-      return hospitalClinicProvidersPromise;
+      sources.push(hospitalClinicProvidersPromise);
+    } else if (typeof hospitalClinicProviders !== 'undefined') {
+      sources.push(Promise.resolve(hospitalClinicProviders));
     }
-    if (typeof hospitalClinicProviders !== 'undefined') {
-      return Promise.resolve(hospitalClinicProviders);
+    if (typeof germanyHospitalClinicProviders !== 'undefined') {
+      sources.push(Promise.resolve(germanyHospitalClinicProviders));
     }
-    return Promise.resolve([]);
+    if (!sources.length) return Promise.resolve([]);
+    return Promise.all(sources).then((groups) => groups.flat());
   }
 
   async function getSheetsData() {
