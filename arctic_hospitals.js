@@ -1,0 +1,21 @@
+const arcticHospitalClinicProviders = [
+  {
+    id: "arctic-svalbard-longyearbyen-hospital",
+    source: "arctic-provider-import-2026-06-21",
+    name: "Longyearbyen Hospital",
+    type: "Hospital/Clinic",
+    agreement: "GOP accepted - no DBA",
+    main_country: "Svalbard & Jan Mayen",
+    country: "Svalbard & Jan Mayen",
+    city: "Longyearbyen",
+    region: "Svalbard",
+    lat: 78.2200333,
+    lon: 15.6448656,
+    address: "Longyearbyen 9170, Svalbard & Jan Mayen",
+    network_manager: "Kristin Furu Grotting",
+    ops_phone: "+47 77 62 60 00; +47 76 17 33 00; +47 976 55 755 (Kristin)",
+    ops_email: "kristin.furu.grotting@unn.no",
+    website: "https://www.unn.no/avdelinger/prehospital-klinikk/longyearbyen-sykehus/",
+    comments: "GOP accepted without signed DBA. Opening hours: Mon-Fri 09:00-12:00 and 13:00-15:30.",
+  },
+];

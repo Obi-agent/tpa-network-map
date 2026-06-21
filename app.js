@@ -174,6 +174,9 @@
     if (typeof germanyHospitalClinicProviders !== 'undefined') {
       sources.push(Promise.resolve(germanyHospitalClinicProviders));
     }
+    if (typeof arcticHospitalClinicProviders !== 'undefined') {
+      sources.push(Promise.resolve(arcticHospitalClinicProviders));
+    }
     if (!sources.length) return Promise.resolve([]);
     return Promise.all(sources).then((groups) => groups.flat());
   }
