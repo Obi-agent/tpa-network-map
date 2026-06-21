@@ -264,6 +264,17 @@
     })
     .addTo(map);
 
+  const markerClusterLayer =
+    typeof L.markerClusterGroup === 'function'
+      ? L.markerClusterGroup({
+          showCoverageOnHover: false,
+          spiderfyOnMaxZoom: true,
+          disableClusteringAtZoom: 8,
+          maxClusterRadius: (zoom) => (zoom < 4 ? 78 : zoom < 6 ? 58 : 42),
+          iconCreateFunction: createClusterIcon,
+        }).addTo(map)
+      : null;
+
   const markers = allProviders.map(createMarker);
 
   function createMarker(provider) {
@@ -271,9 +282,9 @@
       icon: createProviderIcon(provider),
       riseOnHover: true,
     });
+    marker.provider = provider;
     marker.bindPopup(buildPopup(provider));
     marker.on('click', () => highlightProvider(provider._index));
-    marker.addTo(map);
     return marker;
   }
 
@@ -784,7 +795,13 @@
       const marker = markers[provider._index];
       if (visible) {
         visibleProviders.push(provider);
-        if (!map.hasLayer || !map.hasLayer(marker)) marker.addTo(map);
+        if (markerClusterLayer) {
+          if (!markerClusterLayer.hasLayer(marker)) markerClusterLayer.addLayer(marker);
+        } else if (!map.hasLayer || !map.hasLayer(marker)) {
+          marker.addTo(map);
+        }
+      } else if (markerClusterLayer) {
+        if (markerClusterLayer.hasLayer(marker)) markerClusterLayer.removeLayer(marker);
       } else if (map.hasLayer && map.hasLayer(marker)) {
         map.removeLayer(marker);
       }
@@ -849,6 +866,13 @@
     const target = [provider.lat, provider.lon];
     const zoom = Math.max(map.getMinZoom(), getFocusZoom(provider));
     map.flyTo(target, zoom, { duration: 0.65 });
+    if (markerClusterLayer) {
+      markerClusterLayer.zoomToShowLayer(markers[index], () => {
+        highlightProvider(index);
+        markers[index].openPopup();
+      });
+      return;
+    }
     markers[index].openPopup();
   }
 
@@ -897,6 +921,38 @@
       iconSize: [30, 38],
       iconAnchor: [15, 34],
       popupAnchor: [0, -31],
+    });
+  }
+
+  function createClusterIcon(cluster) {
+    const childMarkers = cluster.getAllChildMarkers();
+    const counts = childMarkers.reduce(
+      (result, marker) => {
+        const bucket = getAgreementBucket(marker.provider && marker.provider.agreement);
+        result[bucket] = (result[bucket] || 0) + 1;
+        return result;
+      },
+      { signed: 0, gop: 0, pending: 0 }
+    );
+    const total = childMarkers.length;
+    const presentBuckets = ['signed', 'gop', 'pending'].filter((bucket) => counts[bucket] > 0);
+    const dominant = presentBuckets.reduce(
+      (best, bucket) => (counts[bucket] > counts[best] ? bucket : best),
+      presentBuckets[0] || 'pending'
+    );
+    const signedStop = Math.round((counts.signed / total) * 100);
+    const gopStop = Math.round(((counts.signed + counts.gop) / total) * 100);
+    const mixedBackground =
+      presentBuckets.length > 1
+        ? `background: conic-gradient(#22a06b 0 ${signedStop}%, #8b5cf6 ${signedStop}% ${gopStop}%, #f59e0b ${gopStop}% 100%);`
+        : '';
+    const sizeClass = total >= 100 ? 'cluster-large' : total >= 25 ? 'cluster-medium' : 'cluster-small';
+
+    return L.divIcon({
+      className: 'provider-cluster-shell',
+      html: `<span class="provider-cluster marker-${dominant} ${sizeClass}" style="${mixedBackground}"><span>${total}</span></span>`,
+      iconSize: [46, 46],
+      iconAnchor: [23, 23],
     });
   }
 
