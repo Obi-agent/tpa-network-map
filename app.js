@@ -130,7 +130,7 @@
 
   let categories = buildCategories();
 
-  let currentStatusFilter = 'signed';
+  let currentStatusFilter = 'gop';
   let currentCategoryFilter = 'all';
   let modalSubmitHandler = null;
 
