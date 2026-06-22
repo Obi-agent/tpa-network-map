@@ -3,23 +3,22 @@
 (async function () {
   const MANUAL_DATA_KEY = 'providerNetworkManualDataV1';
   const manualData = loadManualData();
-  const sheetsData = await getSheetsData();
+  let sheetsData = getInitialSheetsData();
   const tpaProviders = typeof providers !== 'undefined' ? providers : [];
   const groundProviders = await getGroundProviders();
   const airProviders = await getAirProviders();
   const medicalEscortProviders = await getMedicalEscortProviders();
   const hospitalProviders = await getHospitalProviders();
 
-  const loadedProviders = [
+  const baseProviders = [
     ...tpaProviders,
     ...groundProviders,
     ...airProviders,
     ...medicalEscortProviders,
     ...hospitalProviders,
-    ...sheetsData.providers,
-    ...manualData.providers,
   ];
-  let allProviders = normalizeProviders(applyApprovedProviderChanges(loadedProviders, sheetsData.changes));
+  let sheetsDataSignature = getSheetsDataSignature(sheetsData);
+  let allProviders = buildAllProviders();
 
   const fieldDefinitions = {
     TPA: [
@@ -181,26 +180,30 @@
     return Promise.all(sources).then((groups) => groups.flat());
   }
 
-  async function getSheetsData() {
-    if (
-      typeof window === 'undefined' ||
-      !window.providerSheetsDataPromise ||
-      typeof window.providerSheetsDataPromise.then !== 'function'
-    ) {
-      return { providers: [], categories: [], changes: [] };
-    }
+  function getInitialSheetsData() {
+    if (typeof window === 'undefined') return normalizeSheetsData();
+    return normalizeSheetsData(window.providerSheetsLatestData);
+  }
 
-    try {
-      const data = await window.providerSheetsDataPromise;
-      return {
-        providers: Array.isArray(data?.providers) ? data.providers : [],
-        categories: Array.isArray(data?.categories) ? data.categories : [],
-        changes: Array.isArray(data?.changes) ? data.changes : [],
-      };
-    } catch (error) {
-      console.warn('Could not load Google Sheets provider data.', error);
-      return { providers: [], categories: [], changes: [] };
-    }
+  function normalizeSheetsData(data = {}) {
+    return {
+      providers: Array.isArray(data?.providers) ? data.providers : [],
+      categories: Array.isArray(data?.categories) ? data.categories : [],
+      changes: Array.isArray(data?.changes) ? data.changes : [],
+    };
+  }
+
+  function getSheetsDataSignature(data) {
+    return JSON.stringify(normalizeSheetsData(data));
+  }
+
+  function buildAllProviders() {
+    const loadedProviders = [
+      ...baseProviders,
+      ...sheetsData.providers,
+      ...manualData.providers,
+    ];
+    return normalizeProviders(applyApprovedProviderChanges(loadedProviders, sheetsData.changes));
   }
 
   const worldBounds = L.latLngBounds([[-85, -180], [85, 180]]);
@@ -275,7 +278,7 @@
         }).addTo(map)
       : null;
 
-  const markers = allProviders.map(createMarker);
+  let markers = allProviders.map(createMarker);
 
   function createMarker(provider) {
     const marker = L.marker([provider.lat, provider.lon], {
@@ -288,11 +291,62 @@
     return marker;
   }
 
+  function initializeSheetsRefresh() {
+    if (typeof window === 'undefined') return;
+    window.applyProviderSheetsData = applyProviderSheetsData;
+    window.addEventListener('providerSheetsDataUpdated', (event) => {
+      applyProviderSheetsData(event.detail);
+    });
+
+    if (
+      window.providerSheetsDataPromise &&
+      typeof window.providerSheetsDataPromise.then === 'function'
+    ) {
+      window.providerSheetsDataPromise.then(applyProviderSheetsData).catch((error) => {
+        console.warn('Could not refresh Google Sheets provider data.', error);
+      });
+    }
+
+    if (window.providerSheetsLatestData) {
+      applyProviderSheetsData(window.providerSheetsLatestData);
+    }
+  }
+
+  function applyProviderSheetsData(data) {
+    const nextSheetsData = normalizeSheetsData(data);
+    const nextSignature = getSheetsDataSignature(nextSheetsData);
+    if (nextSignature === sheetsDataSignature) return;
+
+    sheetsData = nextSheetsData;
+    sheetsDataSignature = nextSignature;
+    allProviders = buildAllProviders();
+    categories = buildCategories();
+    if (currentCategoryFilter !== 'all' && !categories.includes(currentCategoryFilter)) {
+      currentCategoryFilter = 'all';
+    }
+
+    rebuildMarkers();
+    initializeCategoryFilters();
+    applyFilters();
+  }
+
+  function rebuildMarkers() {
+    if (markerClusterLayer) {
+      markerClusterLayer.clearLayers();
+    } else {
+      markers.forEach((marker) => {
+        if (map.hasLayer && map.hasLayer(marker)) map.removeLayer(marker);
+      });
+    }
+    markers = allProviders.map(createMarker);
+  }
+
   initializeCategoryFilters();
   initializeStatusFilters();
   initializeManualControls();
   document.getElementById('searchInput').addEventListener('input', applyFilters);
   applyFilters();
+  initializeSheetsRefresh();
 
   function normalizeProviders(providerList) {
     return providerList

@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260622-clustering';
+  const appScriptPath = 'app.js?v=20260623-sheets-refresh';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
@@ -79,6 +79,21 @@
         website: 'https://www.zahnarzt-in-viersen.de/',
         comments: 'Accepts our GOP / no contract / Lisa June 2026',
       },
+      {
+        id: 'manual-1782170110913',
+        source: 'google-sheets-approved-fallback',
+        name: 'Air Medic',
+        type: 'Air Ambulance',
+        agreement: 'Agreement signed',
+        main_country: 'Canada',
+        country: 'Canada',
+        lat: 45.5189662,
+        lon: -73.411671,
+        address: 'Saint-Hubert Airport , 4980 Airport Road, Saint-Hubert, QC J3Y 8Y9',
+        ops_phone: '+1-877-999-3322 / +1 239-672-3664 (cell) / +1 450-766-0770 ext. 680',
+        ops_email: 'repatriation@airmedic.net',
+        website: 'https://www.airmedic.net/',
+      },
     ],
     categories: [],
     changes: [
@@ -118,18 +133,26 @@
     ],
   };
 
+  let lastRefreshStartedAt = 0;
+  let latestApprovedData = hasEndpoint()
+    ? cloneApprovedData(fallbackApprovedData)
+    : { providers: [], categories: [], changes: [] };
+  let latestApprovedDataSignature = '';
+
   if (hasEndpoint()) clearLocalManualDrafts();
+  publishApprovedData(latestApprovedData);
   initializeSubmissionHandoff();
-  window.providerSheetsDataPromise = hasEndpoint()
-    ? loadApprovedData().then((data) => {
-        applyApprovedData(data);
-        return data;
-      }).catch((error) => {
-        console.warn('Could not load approved Google Sheets data. Using last published fallback data.', error);
-        return cloneApprovedData(fallbackApprovedData);
-      })
-    : Promise.resolve({ providers: [], categories: [], changes: [] });
-  window.providerSheetsDataPromise.finally(loadMapApp);
+  loadMapApp();
+
+  window.providerSheetsDataPromise = Promise.resolve(latestApprovedData);
+  if (hasEndpoint()) {
+    refreshApprovedData();
+    window.setInterval(() => refreshApprovedData(), 120000);
+    window.addEventListener('focus', () => refreshApprovedData(30000));
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) refreshApprovedData(30000);
+    });
+  }
 
   window.submitProviderNetworkSubmission = async function submitProviderNetworkSubmission(submission) {
     if (!hasEndpoint()) return { ok: false, skipped: true };
@@ -157,7 +180,40 @@
   };
 
   async function loadApprovedData() {
-    return loadJsonp(`${config.appsScriptUrl}?action=data`);
+    return loadJsonp(`${config.appsScriptUrl}?action=data`, 45000);
+  }
+
+  function refreshApprovedData(throttleMs = 0) {
+    if (!hasEndpoint()) return window.providerSheetsDataPromise;
+    const now = Date.now();
+    if (throttleMs && now - lastRefreshStartedAt < throttleMs) {
+      return window.providerSheetsDataPromise;
+    }
+    lastRefreshStartedAt = now;
+    window.providerSheetsDataPromise = loadApprovedData()
+      .then((data) => {
+        publishApprovedData(data);
+        return data;
+      })
+      .catch((error) => {
+        console.warn('Could not refresh approved Google Sheets data. Keeping last available data.', error);
+        return latestApprovedData;
+      });
+    return window.providerSheetsDataPromise;
+  }
+
+  function publishApprovedData(data) {
+    const approvedData = cloneApprovedData(data);
+    const signature = JSON.stringify(approvedData);
+    latestApprovedData = approvedData;
+    window.providerSheetsLatestData = approvedData;
+    applyApprovedData(approvedData);
+    if (signature === latestApprovedDataSignature) return;
+    latestApprovedDataSignature = signature;
+    window.dispatchEvent(new CustomEvent('providerSheetsDataUpdated', { detail: approvedData }));
+    if (typeof window.applyProviderSheetsData === 'function') {
+      window.applyProviderSheetsData(approvedData);
+    }
   }
 
   function applyApprovedData(data) {
@@ -357,19 +413,29 @@
     document.body.appendChild(script);
   }
 
-  function loadJsonp(url) {
+  function loadJsonp(url, timeoutMs = 45000) {
     return new Promise((resolve, reject) => {
       const callbackName = `providerSheetsCallback_${Date.now()}_${Math.floor(
         Math.random() * 100000
       )}`;
       const separator = url.includes('?') ? '&' : '?';
       const script = document.createElement('script');
+      let settled = false;
+      const timer = window.setTimeout(() => {
+        if (settled) return;
+        settled = true;
+        cleanup();
+        reject(new Error('Google Sheets data request timed out.'));
+      }, timeoutMs);
       const cleanup = () => {
+        window.clearTimeout(timer);
         delete window[callbackName];
         script.remove();
       };
 
       window[callbackName] = (payload) => {
+        if (settled) return;
+        settled = true;
         cleanup();
         resolve({
           providers: Array.isArray(payload?.providers) ? payload.providers.map(sanitizeRecord) : [],
@@ -379,6 +445,8 @@
       };
 
       script.onerror = () => {
+        if (settled) return;
+        settled = true;
         cleanup();
         reject(new Error('Google Sheets data request failed.'));
       };
