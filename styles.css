@@ -125,6 +125,27 @@ body {
   color: #fff;
 }
 
+#filterSigned.active,
+#filterSigned.active:hover {
+  border-color: #22a06b;
+  background-color: #22a06b;
+  color: #fff;
+}
+
+#filterGop.active,
+#filterGop.active:hover {
+  border-color: #8b5cf6;
+  background-color: #8b5cf6;
+  color: #fff;
+}
+
+#filterPending.active,
+#filterPending.active:hover {
+  border-color: #f59e0b;
+  background-color: #f59e0b;
+  color: #1f2937;
+}
+
 .search-box {
   margin-bottom: 0.65rem;
 }
@@ -564,6 +585,21 @@ mark {
 .cluster-large {
   --cluster-size: 56px;
   font-size: 0.9rem;
+}
+
+.provider-cluster.marker-signed {
+  --marker-color: #22a06b;
+  --marker-color-dark: #0f6b43;
+}
+
+.provider-cluster.marker-gop {
+  --marker-color: #8b5cf6;
+  --marker-color-dark: #5b21b6;
+}
+
+.provider-cluster.marker-pending {
+  --marker-color: #f59e0b;
+  --marker-color-dark: #b45309;
 }
 
 .login-page {
