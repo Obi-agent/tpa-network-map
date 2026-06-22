@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260623-sheets-refresh';
+  const appScriptPath = 'app.js?v=20260623-dental-category';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
@@ -66,7 +66,7 @@
         id: 'manual-1781901530993',
         source: 'google-sheets-approved-fallback',
         name: 'Dentist Dr. Holger Maßen',
-        type: 'Hospital/Clinic',
+        type: 'Dental',
         agreement: 'GOP accepted - no DBA',
         main_country: 'Germany',
         country: 'Germany',

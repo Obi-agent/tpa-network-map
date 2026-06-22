@@ -17,6 +17,11 @@
     ...medicalEscortProviders,
     ...hospitalProviders,
   ];
+  const dentalProviderNames = new Set([
+    'dentist dr. holger massen',
+    'zahnklinik medeco berlin-wedding',
+    'zahnklinik medeco berlin-neukoelln',
+  ]);
   let sheetsDataSignature = getSheetsDataSignature(sheetsData);
   let allProviders = buildAllProviders();
 
@@ -103,6 +108,20 @@
       ['Notes', 'comments'],
       ['Agreement Status', 'agreement'],
     ],
+    Dental: [
+      ['Type', 'type'],
+      ['Location', 'main_country'],
+      ['Country', 'country'],
+      ['City', 'city'],
+      ['Region', 'region'],
+      ['Contact', 'network_manager'],
+      ['Website', 'website'],
+      ['Phone', 'ops_phone'],
+      ['Email', 'ops_email'],
+      ['Address', 'address'],
+      ['Notes', 'comments'],
+      ['Agreement Status', 'agreement'],
+    ],
     Generic: [
       ['Type', 'type'],
       ['Location', 'main_country'],
@@ -125,6 +144,7 @@
     'Air Ambulance',
     'Medical Escort',
     'Hospital/Clinic',
+    'Dental',
   ];
 
   let categories = buildCategories();
@@ -359,9 +379,18 @@
       ...provider,
       lat: Number(provider.lat),
       lon: Number(provider.lon),
-      type: cleanText(provider.type) || 'TPA',
+      type: getProviderType(provider),
       _index: index,
     };
+  }
+
+  function getProviderType(provider) {
+    if (dentalProviderNames.has(normalizeProviderName(provider.name))) return 'Dental';
+    return cleanText(provider.type) || 'TPA';
+  }
+
+  function normalizeProviderName(name) {
+    return cleanText(name).toLowerCase().replace(/ß/g, 'ss').replace(/\s+/g, ' ');
   }
 
   function buildCategories() {
