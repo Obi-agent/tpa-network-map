@@ -134,6 +134,7 @@
   };
 
   let lastRefreshStartedAt = 0;
+  let refreshRetryTimer = null;
   let latestApprovedData = hasEndpoint()
     ? cloneApprovedData(fallbackApprovedData)
     : { providers: [], categories: [], changes: [] };
@@ -192,14 +193,26 @@
     lastRefreshStartedAt = now;
     window.providerSheetsDataPromise = loadApprovedData()
       .then((data) => {
+        if (refreshRetryTimer) {
+          window.clearTimeout(refreshRetryTimer);
+          refreshRetryTimer = null;
+        }
         publishApprovedData(data);
         return data;
       })
-      .catch((error) => {
-        console.warn('Could not refresh approved Google Sheets data. Keeping last available data.', error);
+      .catch(() => {
+        queueApprovedDataRetry();
         return latestApprovedData;
       });
     return window.providerSheetsDataPromise;
+  }
+
+  function queueApprovedDataRetry() {
+    if (refreshRetryTimer) return;
+    refreshRetryTimer = window.setTimeout(() => {
+      refreshRetryTimer = null;
+      refreshApprovedData();
+    }, 15000);
   }
 
   function publishApprovedData(data) {
