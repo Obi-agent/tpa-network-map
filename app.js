@@ -1097,17 +1097,35 @@
 
       if (action === 'edit' && change.provider) {
         const updated = currentList.slice();
-        updated[index] = compactObject({
+        updated[index] = addApprovedRequestNotesIfNeeded(compactObject({
           ...updated[index],
           ...change.provider,
           id: updated[index].id || change.provider.id,
           source: change.provider.source || updated[index].source,
-        });
+        }), change);
         return updated;
       }
 
       return currentList;
     }, providerList);
+  }
+
+  function addApprovedRequestNotesIfNeeded(provider, change) {
+    const requestNotes = cleanText(change && change.request_notes);
+    const changeSummary = cleanText(change && change.change_summary).toLowerCase();
+    if (!requestNotes || !changeSummary.includes('no field changes detected')) {
+      return provider;
+    }
+
+    const existingComments = cleanText(provider.comments);
+    if (existingComments.toLowerCase().includes(requestNotes.toLowerCase())) {
+      return provider;
+    }
+
+    return compactObject({
+      ...provider,
+      comments: [existingComments, requestNotes].filter(Boolean).join('\n\n'),
+    });
   }
 
   function isSameReviewProvider(provider, target) {

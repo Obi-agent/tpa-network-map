@@ -1,7 +1,7 @@
 (function initializeGoogleSheetsSync() {
   if (typeof window === 'undefined') return;
 
-  const appScriptPath = 'app.js?v=20260623-dental-category';
+  const appScriptPath = 'app.js?v=20260701-approved-request-notes';
   const manualDataKey = 'providerNetworkManualDataV1';
   let submissionNoticeTimer = null;
   const config = {
