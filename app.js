@@ -22,6 +22,23 @@
     'zahnklinik medeco berlin-wedding',
     'zahnklinik medeco berlin-neukoelln',
   ]);
+  const approvedEditComparableFields = [
+    'name',
+    'type',
+    'agreement',
+    'main_country',
+    'country',
+    'city',
+    'region',
+    'lat',
+    'lon',
+    'address',
+    'network_manager',
+    'ops_phone',
+    'ops_email',
+    'website',
+    'comments',
+  ];
   let sheetsDataSignature = getSheetsDataSignature(sheetsData);
   let allProviders = buildAllProviders();
 
@@ -1112,8 +1129,7 @@
 
   function addApprovedRequestNotesIfNeeded(provider, change) {
     const requestNotes = cleanText(change && change.request_notes);
-    const changeSummary = cleanText(change && change.change_summary).toLowerCase();
-    if (!requestNotes || !changeSummary.includes('no field changes detected')) {
+    if (!requestNotes || !isDetailsOnlyApprovedEdit(change)) {
       return provider;
     }
 
@@ -1126,6 +1142,30 @@
       ...provider,
       comments: [existingComments, requestNotes].filter(Boolean).join('\n\n'),
     });
+  }
+
+  function isDetailsOnlyApprovedEdit(change) {
+    const changeSummary = cleanText(change && change.change_summary).toLowerCase();
+    if (changeSummary.includes('no field changes detected')) return true;
+
+    const action = cleanText(change && change.change_action).toLowerCase();
+    if (action !== 'edit' || !change.provider || !change.target_provider) return false;
+
+    return !approvedEditComparableFields.some((field) =>
+      approvedEditFieldChanged(change.provider[field], change.target_provider[field], field)
+    );
+  }
+
+  function approvedEditFieldChanged(left, right, field) {
+    if (field === 'lat' || field === 'lon') {
+      const leftNumber = Number(left);
+      const rightNumber = Number(right);
+      if (!Number.isFinite(leftNumber) && !Number.isFinite(rightNumber)) return false;
+      if (!Number.isFinite(leftNumber) || !Number.isFinite(rightNumber)) return true;
+      return Math.abs(leftNumber - rightNumber) >= 0.000001;
+    }
+
+    return normalizeReviewText(left) !== normalizeReviewText(right);
   }
 
   function isSameReviewProvider(provider, target) {

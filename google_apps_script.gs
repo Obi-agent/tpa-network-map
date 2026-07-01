@@ -10,6 +10,7 @@ const PROVIDER_HEADERS = [
   'submitted_at',
   'approved_at',
   'change_action',
+  'change_summary',
   'provider_id',
   'name',
   'type',
@@ -42,6 +43,23 @@ const CATEGORY_HEADERS = [
   'approved_at',
   'category',
   'notes',
+];
+
+const PROVIDER_CHANGE_FIELDS = [
+  { key: 'name', label: 'Provider name' },
+  { key: 'type', label: 'Category' },
+  { key: 'agreement', label: 'Agreement status' },
+  { key: 'main_country', label: 'Country/location' },
+  { key: 'city', label: 'City' },
+  { key: 'region', label: 'Region' },
+  { key: 'lat', label: 'Latitude' },
+  { key: 'lon', label: 'Longitude' },
+  { key: 'address', label: 'Address' },
+  { key: 'network_manager', label: 'Contact' },
+  { key: 'ops_phone', label: 'Phone' },
+  { key: 'ops_email', label: 'Email' },
+  { key: 'website', label: 'Website' },
+  { key: 'comments', label: 'Notes' },
 ];
 
 function doGet(e) {
@@ -90,6 +108,7 @@ function appendProviderSubmission_(submission) {
     submitted_at: submission.submitted_at || new Date().toISOString(),
     approved_at: '',
     change_action: 'Add',
+    change_summary: buildProviderChangeSummary_('Add', provider, null),
     provider_id: provider.id || `manual-${Date.now()}`,
     name: provider.name || '',
     type: provider.type || '',
@@ -119,6 +138,7 @@ function appendProviderChangeSubmission_(submission) {
     submitted_at: submission.submitted_at || new Date().toISOString(),
     approved_at: '',
     change_action: submission.change_action || '',
+    change_summary: buildProviderChangeSummary_(submission.change_action || '', provider, target),
     provider_id: provider.id || target.id || '',
     name: provider.name || '',
     type: provider.type || '',
@@ -154,6 +174,93 @@ function appendCategorySubmission_(submission) {
     approved_at: '',
     category: submission.category || '',
   }, CATEGORY_HEADERS);
+}
+
+function buildProviderChangeSummary_(action, provider, target) {
+  const normalizedAction = String(action || '').trim().toLowerCase();
+  if (normalizedAction === 'delete') {
+    return `Deletion requested for: ${formatProviderIdentity_(target || provider)}`;
+  }
+
+  if (normalizedAction === 'edit') {
+    const before = target || {};
+    const after = provider || {};
+    const changes = PROVIDER_CHANGE_FIELDS
+      .map((field) => formatProviderFieldChange_(field, before, after))
+      .filter(Boolean);
+    return changes.length ? changes.join('\n') : 'No field changes detected; see request notes.';
+  }
+
+  return buildProviderAddSummary_(provider || {});
+}
+
+function buildProviderAddSummary_(provider) {
+  const lines = [
+    `New provider requested: ${formatProviderIdentity_(provider)}`,
+    provider.agreement ? `Agreement status: ${formatProviderChangeValue_(provider.agreement)}` : '',
+    provider.address ? `Address: ${formatProviderChangeValue_(provider.address)}` : '',
+    provider.ops_phone ? `Phone: ${formatProviderChangeValue_(provider.ops_phone)}` : '',
+    provider.ops_email ? `Email: ${formatProviderChangeValue_(provider.ops_email)}` : '',
+  ].filter(Boolean);
+  return lines.join('\n');
+}
+
+function formatProviderFieldChange_(field, before, after) {
+  const beforeValue = getProviderSummaryValue_(before, field.key);
+  const afterValue = getProviderSummaryValue_(after, field.key);
+  if (providerSummaryValuesEqual_(field.key, beforeValue, afterValue)) return '';
+  return `${field.label}: ${formatProviderChangeValue_(beforeValue)} -> ${formatProviderChangeValue_(afterValue)}`;
+}
+
+function getProviderSummaryValue_(provider, key) {
+  if (!provider) return '';
+  if (key === 'main_country') {
+    return provider.main_country || provider.country || '';
+  }
+  return provider[key];
+}
+
+function providerSummaryValuesEqual_(key, beforeValue, afterValue) {
+  const beforeText = normalizeProviderSummaryValue_(beforeValue);
+  const afterText = normalizeProviderSummaryValue_(afterValue);
+  if (!beforeText && !afterText) return true;
+
+  if (key === 'lat' || key === 'lon') {
+    const beforeNumber = Number(beforeText);
+    const afterNumber = Number(afterText);
+    if (isFinite(beforeNumber) && isFinite(afterNumber)) {
+      return Math.abs(beforeNumber - afterNumber) < 0.000001;
+    }
+  }
+
+  return beforeText === afterText;
+}
+
+function normalizeProviderSummaryValue_(value) {
+  return String(value === null || value === undefined ? '' : value)
+    .trim()
+    .replace(/\s+/g, ' ');
+}
+
+function formatProviderChangeValue_(value) {
+  const text = normalizeProviderSummaryValue_(value);
+  if (!text) return '(blank)';
+  const trimmed = text.length > 220 ? `${text.slice(0, 217)}...` : text;
+  return `"${trimmed}"`;
+}
+
+function formatProviderIdentity_(provider) {
+  const record = provider || {};
+  const name = normalizeProviderSummaryValue_(record.name) || 'Unknown provider';
+  const location = getProviderSummaryValue_(record, 'main_country');
+  const details = [
+    record.type,
+    record.city,
+    location,
+  ]
+    .map((value) => normalizeProviderSummaryValue_(value))
+    .filter(Boolean);
+  return details.length ? `${name} (${details.join(', ')})` : name;
 }
 
 function getApprovedProviders_() {
@@ -201,6 +308,7 @@ function getApprovedProviderChanges_() {
       }
       return compact_({
         change_action: action,
+        change_summary: row.change_summary,
         target_provider: target,
         provider,
         approved_at: row.approved_at,
