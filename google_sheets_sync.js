@@ -10,7 +10,7 @@
     ...(window.providerSheetsConfig ? window.providerSheetsConfig : {}),
   };
   // Last known approved sheet data keeps browsers that block Apps Script from dropping approved providers.
-  const fallbackApprovedData = {
+  const embeddedFallbackApprovedData = {
     providers: [
       {
         id: 'manual-1777301718029',
@@ -132,6 +132,11 @@
       },
     ],
   };
+
+  const fallbackApprovedData =
+    window.providerSheetsFallbackData && typeof window.providerSheetsFallbackData === 'object'
+      ? window.providerSheetsFallbackData
+      : embeddedFallbackApprovedData;
 
   let lastRefreshStartedAt = 0;
   let refreshRetryTimer = null;
