@@ -181,7 +181,9 @@
   };
 
   async function loadApprovedData() {
-    return loadJsonp(`${config.appsScriptUrl}?action=data`, 45000);
+    const url = `${config.appsScriptUrl}?action=data`;
+    if (typeof window.fetch !== 'function') return loadJsonp(url, 45000);
+    return loadCorsJson(url, 45000);
   }
 
   function refreshApprovedData(throttleMs = 0) {
@@ -426,6 +428,29 @@
     document.body.appendChild(script);
   }
 
+  async function loadCorsJson(url, timeoutMs = 45000) {
+    const separator = url.includes('?') ? '&' : '?';
+    const controller = typeof AbortController === 'function' ? new AbortController() : null;
+    const timer = window.setTimeout(() => controller?.abort(), timeoutMs);
+
+    try {
+      const response = await window.fetch(`${url}${separator}cache=${Date.now()}`, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'omit',
+        cache: 'no-store',
+        redirect: 'follow',
+        ...(controller ? { signal: controller.signal } : {}),
+      });
+      if (!response.ok) {
+        throw new Error(`Google Sheets data request failed with status ${response.status}.`);
+      }
+      return sanitizeApprovedData(await response.json());
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
   function loadJsonp(url, timeoutMs = 45000) {
     return new Promise((resolve, reject) => {
       const callbackName = `providerSheetsCallback_${Date.now()}_${Math.floor(
@@ -450,11 +475,7 @@
         if (settled) return;
         settled = true;
         cleanup();
-        resolve({
-          providers: Array.isArray(payload?.providers) ? payload.providers.map(sanitizeRecord) : [],
-          categories: Array.isArray(payload?.categories) ? payload.categories : [],
-          changes: Array.isArray(payload?.changes) ? payload.changes.map(sanitizeChange) : [],
-        });
+        resolve(sanitizeApprovedData(payload));
       };
 
       script.onerror = () => {
@@ -466,6 +487,14 @@
       script.src = `${url}${separator}callback=${encodeURIComponent(callbackName)}&cache=${Date.now()}`;
       document.head.appendChild(script);
     });
+  }
+
+  function sanitizeApprovedData(payload) {
+    return {
+      providers: Array.isArray(payload?.providers) ? payload.providers.map(sanitizeRecord) : [],
+      categories: Array.isArray(payload?.categories) ? payload.categories : [],
+      changes: Array.isArray(payload?.changes) ? payload.changes.map(sanitizeChange) : [],
+    };
   }
 
   function hasEndpoint() {
