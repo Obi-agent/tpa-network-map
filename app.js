@@ -213,6 +213,9 @@
     if (typeof arcticHospitalClinicProviders !== 'undefined') {
       sources.push(Promise.resolve(arcticHospitalClinicProviders));
     }
+    if (typeof worldwideImportedProviders !== 'undefined') {
+      sources.push(Promise.resolve(worldwideImportedProviders));
+    }
     if (!sources.length) return Promise.resolve([]);
     return Promise.all(sources).then((groups) => groups.flat());
   }
