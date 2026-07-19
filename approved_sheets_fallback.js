@@ -533,6 +533,22 @@ window.providerSheetsFallbackData = {
       "ops_email": "dr.geyer@zahngeyer.at",
       "website": "https://zahngeyer.at/kontakt/kontakt",
       "comments": "GOP will be accepted"
+    },
+    {
+      "id": "manual-1784177703530",
+      "source": "google-sheets-approved",
+      "name": "Clínica Brugal Melosa",
+      "type": "Hospital/Clinic",
+      "agreement": "Agreement signed",
+      "main_country": "Dominican Republic",
+      "country": "Dominican Republic",
+      "city": "Puerto Plata",
+      "lat": 19.799162,
+      "lon": -70.6924332,
+      "address": "Calle José del Carmen Ariza #15, Puerto Plata 57000, Dominican Republic",
+      "ops_phone": "+1 829 755 4940",
+      "ops_email": "international@melosa.com.do",
+      "comments": "Agreement signed, accepting our GOP - you can reach them on whatsapp too:\n+1 829 755 4940 (24/7, including WhatsApp) // international@melosa.com.do & in CC: heidy.ramos@melosa.com.do"
     }
   ],
   "categories": [
@@ -733,7 +749,66 @@ window.providerSheetsFallbackData = {
         "comments": "Owner/type: PUBLIC. PUBLIC - No agreement in place / EHIC accepted OUTPATIENT: PAY & CLAIM only INPATIENT: We can try to issue our GOP; however, as there is no agreement in place, the case may also have to be handled on a PAY & CLAIM basis, depending on the total cost involved. MAIN FOCUS: General healthcare / general medical care.\n\ninvoice will be sent by post - you can request the invoice at: kanzlei-21@ma6.wien.gv.at & kfl.finanzAmbVer@gesundheitsverbund.at (GOP can be accepted)"
       },
       "request_notes": "invoice will be sent by post - you can request the invoice at: kanzlei-21@ma6.wien.gv.at & kfl.finanzAmbVer@gesundheitsverbund.at (GOP can be accepted)"
+    },
+    {
+      "change_action": "edit",
+      "change_summary": "Agreement status: \"Agreement signed\" -> \"Agreement pending\"\nPhone: \"+33 2 35 30 14 19 +33 2 35 21 32 32 // +33 6 11 18 00 01\" -> \"+33 2 35 30 14 19+33 2 35 21 32 32 // +33 6 11 18 00 01\"",
+      "target_provider": {
+        "name": "AMBULANCES DE L´ ESTUAIRE",
+        "type": "Ground Ambulance",
+        "agreement": "Agreement signed",
+        "main_country": "Le Havre",
+        "region": "FRANCE",
+        "lat": 49.49346,
+        "lon": 0.10785,
+        "network_manager": "Michael Rouziou",
+        "ops_phone": "+33 2 35 30 14 19\n+33 2 35 21 32 32 // +33 6 11 18 00 01",
+        "ops_email": "regulation@ambulancesestuaire.com"
+      },
+      "provider": {
+        "id": "manual-1784053253224",
+        "source": "google-sheets-approved-edit",
+        "name": "AMBULANCES DE L´ ESTUAIRE",
+        "type": "Ground Ambulance",
+        "agreement": "Agreement pending",
+        "main_country": "Le Havre",
+        "country": "Le Havre",
+        "region": "FRANCE",
+        "lat": 49.49346,
+        "lon": 0.10785,
+        "network_manager": "Michael Rouziou",
+        "ops_phone": "+33 2 35 30 14 19+33 2 35 21 32 32 // +33 6 11 18 00 01",
+        "ops_email": "regulation@ambulancesestuaire.com"
+      }
+    },
+    {
+      "change_action": "edit",
+      "change_summary": "Category: \"TPA\" -> \"House Calls\"\nAgreement status: \"AGREEMENT SIGNED\" -> \"Agreement pending\"\nPhone: \"+51 967 011 285 +51 985 324 578\" -> \"+51 967 011 285+51 985 324 578\"",
+      "target_provider": {
+        "name": "DOCTOR CUSCO",
+        "type": "TPA",
+        "agreement": "AGREEMENT SIGNED",
+        "main_country": "Peru",
+        "lat": -10,
+        "lon": -76,
+        "network_manager": "David Quispe",
+        "ops_phone": "+51 967 011 285\n+51 985 324 578",
+        "ops_email": "ops.doctorcusco@gmail.com  info@doctorcusco.com"
+      },
+      "provider": {
+        "id": "manual-1784261541137",
+        "source": "google-sheets-approved-edit",
+        "name": "DOCTOR CUSCO",
+        "type": "House Calls",
+        "agreement": "Agreement pending",
+        "main_country": "Peru",
+        "country": "Peru",
+        "lat": -10,
+        "lon": -76,
+        "network_manager": "David Quispe",
+        "ops_phone": "+51 967 011 285+51 985 324 578",
+        "ops_email": "ops.doctorcusco@gmail.com  info@doctorcusco.com"
+      }
     }
   ]
 };
-
