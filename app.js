@@ -216,6 +216,9 @@
     if (typeof worldwideImportedProviders !== 'undefined') {
       sources.push(Promise.resolve(worldwideImportedProviders));
     }
+    if (typeof networkUpdateProviders !== 'undefined') {
+      sources.push(Promise.resolve(networkUpdateProviders));
+    }
     if (!sources.length) return Promise.resolve([]);
     return Promise.all(sources).then((groups) => groups.flat());
   }
