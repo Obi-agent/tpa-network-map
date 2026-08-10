@@ -1,5 +1,25 @@
-// Provider additions confirmed by the network team on 2026-08-06.
+// Provider additions confirmed by the network team.
 const networkUpdateProviders = [
+  {
+    id: "network-update-china-sanya-health-management-20260810",
+    source: "network-team-update-2026-08-10",
+    name: "SANYA HEALTH MANAGEMENT",
+    type: "TPA",
+    agreement: "Agreement signed",
+    main_country: "China",
+    country: "China",
+    city: "Sanya",
+    region: "Hainan",
+    lat: 18.2528,
+    lon: 109.5119,
+    address: "3rd Floor, Zhi Li Hotel, 11 Xianghe Road, Jiyang District, Sanya, Hainan 572000, China",
+    network_manager: "Jalushia Ma",
+    manager_email: "network@sanyahealthmanagement.com",
+    ops_phone: "+86 156 0806 3958",
+    ops_email: "operations@sanyahealthmanagement.com",
+    website: "https://sanyahealthmanagement.com/",
+    comments: "Mutual service agreement. The provider may also request assistance for cases in Europe.",
+  },
   {
     id: "network-update-tanzania-arusha-medivac-house-calls-20260806",
     source: "network-team-update-2026-08-06",
